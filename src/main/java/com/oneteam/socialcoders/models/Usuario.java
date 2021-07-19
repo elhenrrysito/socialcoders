@@ -47,16 +47,16 @@ public class Usuario extends ModeloBase {
     @Transient
     private String passwordConfirmation;
 
-    // relaciones
+    //////////// Relaciones ////////////
 
-    // -- Mensajes
+    // Mensajes //
     @OneToMany(mappedBy = "remitente", fetch = FetchType.LAZY)
     private List<Mensaje> mensajesEnviados;
 
     @OneToMany(mappedBy = "destinatario", fetch = FetchType.LAZY)
     private List<Mensaje> mensajesRecibidos;
 
-    // -- Amigos
+    // Amigos //
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -74,12 +74,12 @@ public class Usuario extends ModeloBase {
     )
     private List<Usuario> amigosUsuario;
 
-    // -- Posts
+    // Posts //
 
     @OneToMany(mappedBy = "creador", fetch = FetchType.LAZY)
     private List<Post> postRealizados ;
     
-    // -- Likes
+    // Likes //
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -89,6 +89,19 @@ public class Usuario extends ModeloBase {
     )
     private List<Post> reaccion;
 
+    // Lenguaje //
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "lenguajes_usuarios",
+        joinColumns = @JoinColumn(name = "usuario_id"),
+        inverseJoinColumns = @JoinColumn(name = "lenguaje_id")
+    )
 
+    private List<Lenguaje> lenguajesUsuario;
+
+    // Comentarios //
+
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
+    private List<Comentario> comentarios;
 }

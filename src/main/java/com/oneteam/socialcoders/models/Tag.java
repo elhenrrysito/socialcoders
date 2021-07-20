@@ -9,6 +9,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.Getter;
@@ -20,6 +21,7 @@ import lombok.Setter;
 @Getter @Setter @NoArgsConstructor
 public class Tag extends ModeloBase {
     @NotBlank
+    @NotNull
     @Size(min = 3, message = "Tag debe tener más de 3 caracteres")
     private String tag;
 

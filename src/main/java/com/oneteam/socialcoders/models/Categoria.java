@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,7 @@ import lombok.Setter;
 @Getter @Setter @NoArgsConstructor
 public class Categoria extends ModeloBase {
     @NotBlank
+    @NotNull
     private String categoria;
     
     //////////// Relaciones ////////////

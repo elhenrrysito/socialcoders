@@ -44,7 +44,7 @@ public class Post extends ModeloBase {
     )
     private List<Usuario> reaccionesUsuarios;
 
-    // Lenguajes //
+    // Lenguajes // 
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lenguaje_id")

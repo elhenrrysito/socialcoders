@@ -1,5 +1,7 @@
 package com.oneteam.socialcoders.models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -17,5 +19,20 @@ public class Lenguaje extends ModeloBase {
     @Size(min = 2)
     private String lenguaje;
 
-    // relaciones
+    //////////// Relaciones ////////////
+
+    // Usuarios //
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "lenguajes_usuarios",
+        joinColumns = @JoinColumn(name = "lenguaje_id"),
+        inverseJoinColumns = @JoinColumn(name = "usuario_id")
+    )
+    private List<Usuario> usuario;
+
+    // Lenguajes //
+
+    @OneToMany(mappedBy = "lenguaje", fetch = FetchType.LAZY)
+    private List<Post> posts;
 }

@@ -24,14 +24,14 @@ public class Post extends ModeloBase {
     @Size(min = 4, message = "Post debe tener más de 4 caracteres")
     private String cuerpo;
 
-    // relaciones
+    //////////// Relaciones ////////////
 
-    // -- USUARIOS
+    // Usuarios //
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id")
     private Usuario creador;
 
-    // -- LIKES
+    // Likes //
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -40,4 +40,10 @@ public class Post extends ModeloBase {
         inverseJoinColumns = @JoinColumn(name = "usuario_id")
     )
     private List<Usuario> reaccionesUsuarios;
+
+    // Lenguajes //
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "lenguaje_id")
+    private Lenguaje lenguaje;
 }

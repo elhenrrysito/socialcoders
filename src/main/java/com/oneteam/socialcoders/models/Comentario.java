@@ -15,6 +15,11 @@ public class Comentario extends ModeloBase {
     @NotBlank
     private String comentario;
 
-    // relaciones
+    //////////// Relaciones ////////////
+
+    // Usuarios //
     
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User userComment;
 }

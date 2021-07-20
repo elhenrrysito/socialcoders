@@ -45,5 +45,5 @@ public class Post extends ModeloBase {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lenguaje_id")
-    private Lenguaje lenguaje;
+    private Lenguaje lenguaje; 
 }

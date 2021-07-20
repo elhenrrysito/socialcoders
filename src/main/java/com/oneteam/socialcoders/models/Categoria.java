@@ -8,8 +8,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
-import org.dom4j.rule.Mode;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

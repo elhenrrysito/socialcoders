@@ -1,6 +1,9 @@
 package com.oneteam.socialcoders.models;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -21,5 +24,5 @@ public class Comentario extends ModeloBase {
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User userComment;
+    private Usuario userComment;
 }

@@ -14,6 +14,7 @@ import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.Getter;
@@ -22,20 +23,24 @@ import lombok.Setter;
 
 @Entity
 @Table(name="usuarios",
-       uniqueConstraints = { @UniqueConstraint(columnNames = { "email", "nombreUsuario" }) })
+       uniqueConstraints = { @UniqueConstraint(columnNames = { "email", "alias" }) })
 @Getter @Setter @NoArgsConstructor
 public class Usuario extends ModeloBase {
     
     @NotBlank
+    @NotNull
     @Size(min = 3, message = "Nombre debe tener más de 3 caracteres")
     private String nombre;
+    @NotNull
     @NotBlank
     @Size(min = 3, message = "Apellido debe tener más de 3 caracteres")
     private String apellido;
     @NotBlank
+    @NotNull
     private String alias;
     
     @NotBlank
+    @NotNull
     @Email
     private String email;    
 

@@ -10,6 +10,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.Getter;
@@ -21,6 +22,7 @@ import lombok.Setter;
 @Getter @Setter @NoArgsConstructor
 public class Lenguaje extends ModeloBase {
     @NotBlank
+    @NotNull
     @Size(min = 2)
     private String lenguaje;
 
@@ -38,6 +40,6 @@ public class Lenguaje extends ModeloBase {
 
     // Lenguajes //
 
-    @OneToMany(mappedBy = "lenguaje", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "lenguajePost", fetch = FetchType.LAZY)
     private List<Post> posts;
 }

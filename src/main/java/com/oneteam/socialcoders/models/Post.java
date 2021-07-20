@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.Getter;
@@ -22,6 +23,7 @@ import lombok.Setter;
 @Getter @Setter @NoArgsConstructor
 public class Post extends ModeloBase {
     @NotBlank
+    @NotNull
     @Size(min = 4, message = "Post debe tener más de 4 caracteres")
     private String cuerpo;
 

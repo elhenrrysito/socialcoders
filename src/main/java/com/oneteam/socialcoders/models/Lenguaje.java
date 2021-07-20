@@ -25,7 +25,7 @@ public class Lenguaje extends ModeloBase {
     private String lenguaje;
 
     //////////// Relaciones ////////////
-
+    
     // Usuarios //
 
     @ManyToMany(fetch = FetchType.LAZY)

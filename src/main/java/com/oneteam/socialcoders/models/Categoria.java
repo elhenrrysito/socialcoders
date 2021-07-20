@@ -1,6 +1,10 @@
 package com.oneteam.socialcoders.models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -17,5 +21,10 @@ public class Categoria extends ModeloBase {
     @NotBlank
     private String categoria;
     
-    // relaciones
+    //////////// Relaciones ////////////
+
+    // Post //
+
+    @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
+    private List<Post> listaPost;
 }

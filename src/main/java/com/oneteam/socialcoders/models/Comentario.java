@@ -24,6 +24,8 @@ public class Comentario extends ModeloBase {
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    private Usuario userComment;
+
     private Usuario usuario;
 
     // Posts //

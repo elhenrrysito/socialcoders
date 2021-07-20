@@ -16,8 +16,6 @@ public class Comentario extends ModeloBase {
     private String comentario;
 
     //////////// Relaciones ////////////
-    // ajsdjasdjasd
-    // Hola hola hola hola hola 
 
     // Usuarios //
     

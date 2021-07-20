@@ -8,8 +8,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.Getter;
@@ -21,6 +23,7 @@ import lombok.Setter;
 @Getter @Setter @NoArgsConstructor
 public class Post extends ModeloBase {
     @NotBlank
+    @NotNull
     @Size(min = 4, message = "Post debe tener más de 4 caracteres")
     private String cuerpo;
 
@@ -41,9 +44,31 @@ public class Post extends ModeloBase {
     )
     private List<Usuario> reaccionesUsuarios;
 
-    // Lenguajes //
+    // Lenguajes // 
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lenguaje_id")
-    private Lenguaje lenguaje; 
+    private Lenguaje lenguajePost; 
+
+    // Comentarios //
+
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
+    private List<Comentario> listaComentarios;
+
+    // Categorias //
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
+
+    // Tags //
+    //Hola
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+    name = "posts_tags", 
+    joinColumns = @JoinColumn(name = "post_id"), 
+    inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
+    private List<Tag> tags;
 }

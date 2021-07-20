@@ -21,7 +21,7 @@ public abstract class ServicioBase<T> {
 		return repositorio.findAll();
 	}
 	
-	public T saveEntity(T entity) {
+	public T saveOrUpdate(T entity) {
 		return repositorio.save(entity);
 	}
 

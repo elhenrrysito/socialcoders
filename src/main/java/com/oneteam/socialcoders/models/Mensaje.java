@@ -6,6 +6,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.Getter;
@@ -18,6 +19,7 @@ import lombok.Setter;
 public class Mensaje extends ModeloBase {
 
     @NotBlank
+    @NotNull
     @Size(min = 1, message = "Mensaje debe tener más de 1 caracter")
     private String message;
 

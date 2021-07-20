@@ -69,7 +69,7 @@ public class Usuario extends ModeloBase {
     joinColumns = @JoinColumn(name = "usuario_id"), 
     inverseJoinColumns = @JoinColumn(name = "seguidor_id")
     )
-    private List<Usuario> amigos;
+    private List<Usuario> seguidos;
     
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -77,7 +77,7 @@ public class Usuario extends ModeloBase {
     joinColumns = @JoinColumn(name = "seguidor_id"), 
     inverseJoinColumns = @JoinColumn(name = "usuario_id")
     )
-    private List<Usuario> amigosUsuario;
+    private List<Usuario> seguidores;
 
     // Posts //
 

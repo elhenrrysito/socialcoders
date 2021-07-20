@@ -60,6 +60,7 @@ public class Post extends ModeloBase {
     private Categoria categoria;
 
     // Tags //
+    //Hola
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(

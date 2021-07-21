@@ -22,6 +22,12 @@ import lombok.Setter;
 @Table(name = "posts")
 @Getter @Setter @NoArgsConstructor
 public class Post extends ModeloBase {
+
+    @NotBlank
+    @NotNull
+    @Size(min = 2, message = "Titulo debe tener más de 2 caracteres")
+    private String titulo;
+
     @NotBlank
     @NotNull
     @Size(min = 4, message = "Post debe tener más de 4 caracteres")

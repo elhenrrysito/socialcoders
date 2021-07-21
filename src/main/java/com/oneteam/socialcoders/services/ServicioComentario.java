@@ -1,5 +1,7 @@
 package com.oneteam.socialcoders.services;
 
+import java.util.List;
+
 import com.oneteam.socialcoders.models.Comentario;
 import com.oneteam.socialcoders.repositories.RepositorioBase;
 import com.oneteam.socialcoders.repositories.RepositorioComentario;
@@ -15,6 +17,8 @@ public class ServicioComentario extends ServicioBase<Comentario> {
         this.repositorioComentario = repositorioComentario;
     }
 
-    
+    public List<Comentario> buscarComentarios(){
+        return repositorioComentario.findAll();
+    }
     
 }

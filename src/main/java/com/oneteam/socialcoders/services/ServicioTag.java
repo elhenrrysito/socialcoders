@@ -1,5 +1,7 @@
 package com.oneteam.socialcoders.services;
 
+import java.util.List;
+
 import com.oneteam.socialcoders.models.Tag;
 import com.oneteam.socialcoders.repositories.RepositorioBase;
 import com.oneteam.socialcoders.repositories.RepositorioTag;
@@ -15,5 +17,7 @@ public class ServicioTag extends ServicioBase<Tag> {
         this.repositorioTag = repositorioTag;
     }
 
-    
+    public List<Tag> buscarTags(){
+        return repositorioTag.findAll();
+    }
 }

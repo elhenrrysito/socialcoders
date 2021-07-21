@@ -1,5 +1,7 @@
 package com.oneteam.socialcoders.services;
 
+import java.util.List;
+
 import com.oneteam.socialcoders.models.Post;
 import com.oneteam.socialcoders.repositories.RepositorioBase;
 import com.oneteam.socialcoders.repositories.RepositorioPost;
@@ -15,4 +17,7 @@ public class ServicioPost extends ServicioBase<Post> {
         this.repositorioPost = repositorioPost;
     }
     
+    public List<Post> buscarPosts(){
+        return repositorioPost.findAll();
+    }
 }

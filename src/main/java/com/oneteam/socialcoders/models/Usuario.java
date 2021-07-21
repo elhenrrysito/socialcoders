@@ -61,7 +61,7 @@ public class Usuario extends ModeloBase {
     @OneToMany(mappedBy = "destinatario", fetch = FetchType.LAZY)
     private List<Mensaje> mensajesRecibidos;
 
-    // Amigos //
+    // Seguidores //
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(

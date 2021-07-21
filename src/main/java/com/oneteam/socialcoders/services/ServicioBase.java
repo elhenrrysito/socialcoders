@@ -31,10 +31,9 @@ public abstract class ServicioBase<T> {
 	
 	public T findEntityById(Long id) {
 		Optional<T> entity = repositorio.findById(id);
-		if(entity!= null) {
+		if(entity.isPresent()) {
 			return entity.get();
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
@@ -42,5 +41,9 @@ public abstract class ServicioBase<T> {
 	public void deleteEntity(Long id) {
 		repositorio.deleteById(id);
 		
+	}
+
+	public void delete(T entity) {
+		repositorio.delete(entity);
 	}
 }

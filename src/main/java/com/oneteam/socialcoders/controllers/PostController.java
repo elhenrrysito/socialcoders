@@ -124,18 +124,4 @@ public class PostController {
         return "redirect:/post/"+ id;    
         }
  
-
-    //ELIMINAR UN POST
-    
-    @GetMapping("eliminar/post/{id}")
-    public String eliminarPost(
-        @PathVariable("id") Long id,
-        HttpSession session){
-        Post postFinal = servicioPost.findEntityById(id);
-        servicioPost.deleteEntity(id);
-        return "redirect:/dashboard";
-
-        }
-
-
 }

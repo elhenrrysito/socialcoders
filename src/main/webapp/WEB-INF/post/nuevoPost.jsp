@@ -47,6 +47,10 @@
                         <form:input path="cuerpo"/>
                     </p>
                     <p>
+                        <form:label path="cuerpo">Tags: </form:label>
+                        <form:input path="cuerpo"/>
+                    </p>
+                    <p>
                     <input type="submit" value="Add Listing"/>
                     </p>
                         

@@ -126,6 +126,7 @@ public class PostController {
         return "redirect:/post/"+ id;    
         }
  
+<<<<<<< HEAD
 
     //ELIMINAR UN POST
     
@@ -140,4 +141,6 @@ public class PostController {
         }
 
 
+=======
+>>>>>>> f04125176eedcdbb1621cc597647a400f9a9d0e6
 }

@@ -22,18 +22,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/comentario")
-public class ControladorComentario {
+public class ComentarioController {
     private final ServicioComentario servicioComentario;
     private final ServicioPost servicioPost;
     private final ServicioUsuario servicioUsuario;
 
-    public ControladorComentario(ServicioComentario servicioComentario, ServicioPost servicioPost,
+    public ComentarioController(ServicioComentario servicioComentario, ServicioPost servicioPost,
             ServicioUsuario servicioUsuario) {
         this.servicioComentario = servicioComentario;
         this.servicioPost = servicioPost;
         this.servicioUsuario = servicioUsuario;
     }
-
 
     @GetMapping("/{idPost}")
     public String comentario(@ModelAttribute("nuevoComentario") Comentario nuevoComentario, @PathVariable("idPost") Long idPost,
@@ -46,7 +45,6 @@ public class ControladorComentario {
         model.addAttribute("usuario", usuario);
         return "soloprueba/pruebaComentario.jsp";
     }
-
 
     @PostMapping("/{idPost}")
     public String agregarComentario(@Valid @ModelAttribute("nuevoComentario") Comentario nuevoComentario, 

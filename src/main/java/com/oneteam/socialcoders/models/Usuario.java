@@ -23,7 +23,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name="usuarios",
-       uniqueConstraints = { @UniqueConstraint(columnNames = { "email", "alias" }) })
+       uniqueConstraints = { @UniqueConstraint(columnNames = { "email"}),@UniqueConstraint(columnNames = {"alias"}) })
 @Getter @Setter @NoArgsConstructor
 public class Usuario extends ModeloBase {
     

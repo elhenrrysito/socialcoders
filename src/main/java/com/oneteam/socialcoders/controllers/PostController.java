@@ -37,7 +37,7 @@ public class PostController {
 
     
 
-    //CREAR POST  1.CREATE
+   
 
     public PostController(ServicioPost servicioPost, ServicioUsuario servicioUsuario,
             ServicioCategoria servicioCategoria, ServicioLenguaje servicioLenguaje, ServicioTag servicioTag) {
@@ -47,6 +47,8 @@ public class PostController {
         this.servicioLenguaje = servicioLenguaje;
         this.servicioTag = servicioTag;
     }
+
+    //CREAR POST  1.CREATE
 
     @GetMapping("nuevo/post")
     public String nuevoPost(@ModelAttribute("post")Post post){
@@ -124,4 +126,18 @@ public class PostController {
         return "redirect:/post/"+ id;    
         }
  
+
+    //ELIMINAR UN POST
+    
+    @GetMapping("eliminar/post/{id}")
+    public String eliminarPost(
+        @PathVariable("id") Long id,
+        HttpSession session){
+        Post postFinal = servicioPost.findEntityById(id);
+        servicioPost.deleteEntity(id);
+        return "redirect:/dashboard";
+
+        }
+
+
 }

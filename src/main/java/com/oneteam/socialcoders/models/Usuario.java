@@ -23,7 +23,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name="usuarios",
-       uniqueConstraints = { @UniqueConstraint(columnNames = { "email"}),@UniqueConstraint(columnNames = {"alias"}) })
+       uniqueConstraints = { @UniqueConstraint(columnNames = { "email"}),@UniqueConstraint(columnNames = {"username"}) })
 @Getter @Setter @NoArgsConstructor
 public class Usuario extends ModeloBase {
     
@@ -37,7 +37,8 @@ public class Usuario extends ModeloBase {
     private String apellido;
     @NotBlank
     @NotNull
-    private String alias;
+    @Size(min=3, message = "Nombre de usuario debe tener más de 3 caracteres")
+    private String username;
     
     @NotBlank
     @NotNull
@@ -53,6 +54,13 @@ public class Usuario extends ModeloBase {
     private String passwordConfirmation;
 
     //////////// Relaciones ////////////
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+        name = "users_roles", 
+        joinColumns = @JoinColumn(name = "user_id"), 
+        inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<Role> roles;
 
     // Mensajes //
     @OneToMany(mappedBy = "remitente", fetch = FetchType.LAZY)

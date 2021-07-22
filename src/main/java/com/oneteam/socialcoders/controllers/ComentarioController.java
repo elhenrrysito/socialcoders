@@ -1,5 +1,7 @@
 package com.oneteam.socialcoders.controllers;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -36,9 +38,10 @@ public class ComentarioController {
 
     @GetMapping("/{idPost}")
     public String comentario(@ModelAttribute("nuevoComentario") Comentario nuevoComentario, @PathVariable("idPost") Long idPost,
-    HttpSession session, Model model) {
-        Long usuarioId = (Long) session.getAttribute("userId"); 
-        Usuario usuario = servicioUsuario.findEntityById(usuarioId);
+                            Model model, Principal principal) {
+        
+        String username = principal.getName();
+        Usuario usuario = servicioUsuario.findByUsername(username);
         Post post = servicioPost.findEntityById(idPost);
 
         model.addAttribute("post", post);
@@ -48,9 +51,9 @@ public class ComentarioController {
 
     @PostMapping("/{idPost}")
     public String agregarComentario(@Valid @ModelAttribute("nuevoComentario") Comentario nuevoComentario, 
-                                    BindingResult result, @PathVariable("idPost") Long idPost, HttpSession session, Model model) {
-        Long userId = (Long) session.getAttribute("userId");
-        Usuario usuario = servicioUsuario.findEntityById(userId);
+                                    BindingResult result, @PathVariable("idPost") Long idPost, Model model, Principal principal) {
+        String username = principal.getName();
+        Usuario usuario = servicioUsuario.findByUsername(username);
         Post post = servicioPost.findEntityById(idPost);
         if(result.hasErrors()) {
             model.addAttribute("post", post);
@@ -91,11 +94,14 @@ public class ComentarioController {
     }
 
     @GetMapping("/eliminar/{idComentario}")
-    public String eliminarComentario(@PathVariable("idComentario") Long idComentario, HttpSession session) {
+    public String eliminarComentario(@PathVariable("idComentario") Long idComentario) {
         Comentario comentario = servicioComentario.findEntityById(idComentario);
         comentario.setUsuario(null);
         comentario.setPost(null);
         servicioComentario.delete(comentario);
         return "redirect:/borrando";
     }
+
+
+
 }

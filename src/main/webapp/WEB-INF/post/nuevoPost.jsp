@@ -47,7 +47,7 @@
                         <form:input path="cuerpo"/>
                     </p>
                     <p>
-                    <input type="submit" value="Add Listing"/>
+                        <input type="submit" value="Add Listing"/>
                     </p>
                         
                 </form:form> 

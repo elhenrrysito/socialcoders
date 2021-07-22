@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class PostController {
@@ -57,7 +58,8 @@ public class PostController {
     @PostMapping("nuevo/post")
     public String nuevoPost(
         @Valid @ModelAttribute("post") Post post, 
-        BindingResult result, HttpSession session){
+        BindingResult result, HttpSession session,
+        @RequestParam(value ="etiqueta") String agregarTag){
         
         if(result.hasErrors()){
             return "/post/nuevoPost.jsp";
@@ -70,12 +72,14 @@ public class PostController {
         post.setCategoria(categoria);
         post.setCreador(usuario);
         post.setLenguajePost(lenguaje);
+            
         List<Tag> tags = new ArrayList<>();
         tags.add(tag);
         post.setTags(tags); 
         servicioPost.saveOrUpdate(post);
         return "redirect:/dashboard";
     }
+
 
     //VER UN POST POR ID 2.READ 
     @GetMapping("post/{id}")

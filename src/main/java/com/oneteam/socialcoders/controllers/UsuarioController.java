@@ -44,7 +44,7 @@ public class UsuarioController {
             result.addError(error);
             return "registrologin/register.jsp";
         }  
-        if(servicioUsuario.usernameExists(user.getUsername())){
+        if(servicioUsuario.usernameExists(user.getUsername())) {
             FieldError error = new FieldError("username", "username", "Nombre de usuario " + user.getUsername() + " ya se encuentra registrado");
             result.addError(error);
             return "registrologin/register.jsp";

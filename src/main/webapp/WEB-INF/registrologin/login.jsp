@@ -17,7 +17,7 @@
             </div>
             <div class="col p-5 rounded-end fondo">
                 <div class="text-end">
-                    <img src="/css/img/key.png" alt="key" width="48">
+                    <img src="/img/key.png" alt="key" width="48">
                 </div>
                 <h2 class="fw-bold text-center py-5 letra">Bienvenido</h2>
                 <!-- LOGIN -->

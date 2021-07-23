@@ -8,33 +8,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/b78efd6fc3.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="/css/estiloPost.css">
+    <link rel="stylesheet" type="text/css" href="/css/postDashboard.css">
     <title>Document</title>
 </head>
 <body>
     <div>
         <c:forEach items="${posts}" var="p">
-            <div class="container border mt-5 post">
-                <div class="row">
-                    <div class="col-3 usuario">
-                        <img src="Black_Belt_in-game.png" alt="imagenUsuario">
-                        <h5 class="border nombreUsuario"><c:out value="${p.creador.username}"/></h5>
+            <div class="container">
+                <div class=" border-bottom-0 mt-5 post rounded shadow-lg">
+                    <div class="row">
+                        <div class="col-2 usuario">
+                            <a href="">
+                                <img src="/images/Black_Belt_in-game.png" alt="imagenUsuario">
+                            </a>
+                            <a href="" class="nombreUsuario">
+                                <c:out value="${p.creador.username}"/>
+                            </a>
+                        </div>
+                        <div class="col titulo mt-4">
+                            <h4><c:out value="${p.titulo}"/></h4>
+                        </div>
+                        <div class="col-2 mt-4 nombre"> 
+                            <a href="" class="lenguaje"><c:out value="${p.lenguajePost.lenguaje}"/></a>
+                        </div>
                     </div>
-                    <div class="col titulo mt-4 titulo">
-                        <h3><c:out value="${p.titulo}"/></h3>
+                    <div class="row">
+                        <div class="col mt-4 pb-3">
+                            <c:out value="${p.cuerpo}"/>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col contenido border">
-                        <c:out value="${p.cuerpo}"/>
+                    <div class="row border-bottom pb-3">
+                        <div class="col">
+                        </div>
+                        <div class="col-1 mt-2 ">
+                            <a href=""><img src="/images/iconImages/Icon 3.svg" alt="like"></a>
+                        </div>
+                        <div class="col-1 mt-2">
+                            <a href=""><img src="/images/iconImages/Icon 6.svg" alt="commentario"></a>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-4 border nombre">
-                        Like
-                    </div>
-                    <div class="col-8 border nombre">
-    
+                    <div class="mt-4">
+                        <c:forEach items="${p.listaComentarios}" var="c"> 
+                            <div class="col-12 mt-3 border-bottom px-3 pe-3">
+                                <img src="/images/Black_Belt_in-game.png" alt="imagenUsuario">
+                                <a href="" class="nombreUsuarioComentario">
+                                    <c:out value="${c.usuario.username}"/>:
+                                </a>
+                                <div class="px-3 pb-2">
+                                    <c:out value="${c.comentario}"/>
+                                </div>
+                            </div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>

@@ -17,7 +17,7 @@ public class HomeController {
         this.servicioPost = servicioPost;
     }
 
-    @GetMapping("/dashboard")
+    @GetMapping("/alosi")
     public String dashboardPosts(Model model){
         List<Post> allPosts = servicioPost.buscarPosts();
         model.addAttribute("posts", allPosts);

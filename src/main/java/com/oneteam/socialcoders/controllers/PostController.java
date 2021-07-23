@@ -64,14 +64,14 @@ public class PostController {
         if(result.hasErrors()){
             return "/post/nuevoPost.jsp";
         }
-        Long id = (long) 1;
-        Usuario usuario = servicioUsuario.findEntityById(id);
-        Lenguaje lenguaje = servicioLenguaje.findEntityById(id);
-        Categoria categoria = servicioCategoria.findEntityById(id);
-        Tag tag = servicioTag.findEntityById(id);
-        post.setCategoria(categoria);
-        post.setCreador(usuario);
-        post.setLenguajePost(lenguaje);
+            Long id = (long) 1;
+            Usuario usuario = servicioUsuario.findEntityById(id);
+            Lenguaje lenguaje = servicioLenguaje.findEntityById(id);
+            Categoria categoria = servicioCategoria.findEntityById(id);
+            Tag tag = servicioTag.findEntityById(id);
+            post.setCategoria(categoria);
+            post.setCreador(usuario);
+            post.setLenguajePost(lenguaje);
             
         List<Tag> tags = new ArrayList<>();
         tags.add(tag);

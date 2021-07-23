@@ -4,7 +4,7 @@ background: linear-gradient(90deg, rgba(37,68,88,1) 44%, rgba(111,166,156,1) 98%
 }
 
 .bg {
-    background-image: url('/css/img/fondo4.png');
+    background-image: url('/img/fondo4.png');
     background-position: center center;
 }
 

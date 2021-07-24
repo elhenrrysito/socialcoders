@@ -48,8 +48,6 @@ public class PostController {
         this.servicioTag = servicioTag;
     }
 
-    //CREAR POST  1.CREATE
-
     @GetMapping("nuevo/post")
     public String nuevoPost(@ModelAttribute("post")Post post){
 
@@ -126,7 +124,6 @@ public class PostController {
         return "redirect:/post/"+ id;    
         }
  
-<<<<<<< HEAD
 
     //ELIMINAR UN POST
     
@@ -141,6 +138,4 @@ public class PostController {
         }
 
 
-=======
->>>>>>> f04125176eedcdbb1621cc597647a400f9a9d0e6
 }

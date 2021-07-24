@@ -34,3 +34,4 @@ build/
 
 ### application properties ###
 application.properties
+pom.xml

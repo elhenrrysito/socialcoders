@@ -2,6 +2,7 @@ package com.oneteam.socialcoders.models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -58,7 +59,7 @@ public class Post extends ModeloBase {
 
     // Comentarios //
 
-    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade=CascadeType.ALL)
     private List<Comentario> listaComentarios;
 
     // Categorias //

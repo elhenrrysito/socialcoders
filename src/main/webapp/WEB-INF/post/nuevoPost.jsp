@@ -43,6 +43,10 @@
                     <form:form class="formRelleno" action="/nuevo/post" method="POST" modelAttribute="post">
                         <input type="hidden" name="_method" value="${method}">	
                     <p>
+                        <form:label path="titulo">Titulo: </form:label>
+                        <form:input path="titulo"/>
+                    </p>
+                    <p>
                         <form:label path="cuerpo">Cuerpo: </form:label>
                         <form:input path="cuerpo"/>
                     </p>

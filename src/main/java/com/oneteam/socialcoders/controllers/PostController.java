@@ -1,17 +1,21 @@
 package com.oneteam.socialcoders.controllers;
 
+import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import com.oneteam.socialcoders.models.Categoria;
+import com.oneteam.socialcoders.models.Comentario;
 import com.oneteam.socialcoders.models.Lenguaje;
 import com.oneteam.socialcoders.models.Post;
 import com.oneteam.socialcoders.models.Tag;
 import com.oneteam.socialcoders.models.Usuario;
 import com.oneteam.socialcoders.services.ServicioCategoria;
+import com.oneteam.socialcoders.services.ServicioComentario;
 import com.oneteam.socialcoders.services.ServicioLenguaje;
 import com.oneteam.socialcoders.services.ServicioPost;
 import com.oneteam.socialcoders.services.ServicioTag;
@@ -35,18 +39,22 @@ public class PostController {
     private final ServicioCategoria servicioCategoria;
     private final ServicioLenguaje servicioLenguaje;
     private final ServicioTag servicioTag;
+    private final ServicioComentario servicioComentario;
 
     
 
-   
+
+    //CREAR POST  1.CREATE
 
     public PostController(ServicioPost servicioPost, ServicioUsuario servicioUsuario,
-            ServicioCategoria servicioCategoria, ServicioLenguaje servicioLenguaje, ServicioTag servicioTag) {
+            ServicioCategoria servicioCategoria, ServicioLenguaje servicioLenguaje, ServicioTag servicioTag,
+            ServicioComentario servicioComentario) {
         this.servicioPost = servicioPost;
         this.servicioUsuario = servicioUsuario;
         this.servicioCategoria = servicioCategoria;
         this.servicioLenguaje = servicioLenguaje;
         this.servicioTag = servicioTag;
+        this.servicioComentario = servicioComentario;
     }
 
     @GetMapping("nuevo/post")
@@ -58,8 +66,7 @@ public class PostController {
     @PostMapping("nuevo/post")
     public String nuevoPost(
         @Valid @ModelAttribute("post") Post post, 
-        BindingResult result, HttpSession session,
-        @RequestParam(value ="etiqueta") String agregarTag){
+        BindingResult result, HttpSession session, String agregarTag){
         
         if(result.hasErrors()){
             return "/post/nuevoPost.jsp";
@@ -69,6 +76,10 @@ public class PostController {
             Lenguaje lenguaje = servicioLenguaje.findEntityById(id);
             Categoria categoria = servicioCategoria.findEntityById(id);
             Tag tag = servicioTag.findEntityById(id);
+            Comentario comentario = servicioComentario.findEntityById(id+4);
+
+            // post.agregarLike(usuario);
+            comentario.setPost(post);
             post.setCategoria(categoria);
             post.setCreador(usuario);
             post.setLenguajePost(lenguaje);
@@ -102,8 +113,6 @@ public class PostController {
         @PathVariable("id") Long id,
         HttpSession session, Model model){
 
-        //PENDIENTE VERIFICAR NOMBRE DE ATRIBUTO DEL ID DEL USUARIO 
-        // Usuario usuario = servicioUsuario.findEntityById((Long) session.getAttribute("usuarioId"));
         Post post = servicioPost.findEntityById(id);
         // if(post.getCreador() == usuario){
         model.addAttribute("post", post);
@@ -133,13 +142,29 @@ public class PostController {
     
     @GetMapping("eliminar/post/{id}")
     public String eliminarPost(
-        @PathVariable("id") Long id,
-        HttpSession session){
-        Post postFinal = servicioPost.findEntityById(id);
+        @PathVariable("id") Long id){
         servicioPost.deleteEntity(id);
         return "redirect:/dashboard";
-
         }
+
+        // @GetMapping("prueba/{idpost}")
+        // public String iji(@PathVariable("idpost")Long idpost, Principal principal){
+            
+        //     Usuario usuario = servicioUsuario.findByUsername(principal.getName());
+        //     Post postFinal = servicioPost.findEntityById(idpost);
+        //     postFinal.agregarLike(usuario);
+        //     // usuario.setPost(postFinal);
+        //     servicioPost.saveOrUpdate(postFinal);
+        //     // System.out.println(postFinal.getReaccionesUsuarios().get(0).getNombre());
+        //     return "redirect:/dashboard";
+        // }
+
+        // @GetMapping("imprimir")
+        // public String imprimir(Principal principal){
+        //     Usuario usuario = servicioUsuario.findByUsername(principal.getName());
+        //     System.out.println(usuario.getReaccion().size());
+        //     return "redirect:/dashboard";
+        // }
 
 
 }

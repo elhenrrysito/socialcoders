@@ -77,4 +77,19 @@ public class Post extends ModeloBase {
     inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
     private List<Tag> tags;
+
+     //Agregar Like //
+
+     public void agregarLike(Usuario usuario){
+        this.reaccionesUsuarios.add(usuario);
+    }
+
+    //Eliminar Lista de Usuarios que dieron Like//
+
+    public void eliminarLikes(){
+        reaccionesUsuarios.clear();
+    }
+    public void eliminarComentarios(){
+        listaComentarios.clear();
+    }
 }

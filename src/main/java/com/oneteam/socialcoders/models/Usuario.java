@@ -117,4 +117,14 @@ public class Usuario extends ModeloBase {
 
     @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
     private List<Comentario> comentarios;
+
+    // Eliminar reaccion de usuario en un post 
+    // "Puede ser implementada para que el usuario pueda eliminar su reaccion independiente del post" // 
+    public void eliminarLikePost(Post post){
+        reaccion.remove(post);
+    }
+
+    public void setPost(Post post){
+        this.reaccion.add(post);
+    }
 }

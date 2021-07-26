@@ -7,12 +7,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-        <title>Welcome</title>
+        <title>Crear Post</title>
   	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	    <link rel="stylesheet" href="/css/style.css">
-        <script src="/js/user.js"></script>
+	    <link rel="stylesheet" href="/css/crearPost.css">
+        <script src="/js/post.js"></script>
 
 	    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
             <!-- CSS only -->
@@ -25,6 +25,11 @@
         <script type="text/javascript" src="js/d3.v3.min.js"></script>
         <script type="text/javascript" src="js/utilities.js"></script>
 
+        <!-- imagenes -->
+        <link href="https://www.cssscript.com/wp-includes/css/sticky.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="dist/css/bootstrap-image-checkbox.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/bootstrap-select.css">
         <!-- Bootstrap  -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -35,28 +40,78 @@
 <body>
 	
         <div class="container">
-            <div class="form mt-5">
-                    <h3>New Listing</h3>
+
+            <div class="form border-bottom-0 mt-5 post rounded shadow-lg">
+                    <h1 class="text-center">Agregar un nuevo Post!</h1>
                     
                     <p class="fs-3 text-warning"><form:errors path="post.*"/></p>
 
-                    <form:form class="formRelleno" action="/nuevo/post" method="POST" modelAttribute="post">
+                    <form:form class="formRelleno" action="/nuevo/post" method="POST" modelAttribute="post" enctype="multipart/form-data">
                         <input type="hidden" name="_method" value="${method}">	
-                    <p>
-                        <form:label path="titulo">Titulo: </form:label>
-                        <form:input path="titulo"/>
+                    <div class="row text-center">
+                        <div>
+                            <form:label class="h2" path="titulo">Titulo: </form:label>
+                        </div>
+                        <div>
+                            <form:input id="texto" class="h3 aaa"  path="titulo"/>        
+                        </div>
+                    </div>
+                    
+                    <div class="file-field">
+                        <div class="z-depth-1-half mb-4">
+                          <img src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg" class="img-fluid"
+                            alt="example placeholder">
+                        </div>
+                        <div class="mb-3">
+                            <label for="file" class="form-label h5">Añadir imagen</label>
+                            <input class="form-control"  type="file" id="file" name="file">
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div>
+                            <form:label class="h2" maxlength="4" path="cuerpo">Descripcion </form:label>
+                        </div>
+                        <div>
+                            <form:textarea cols="70" row="40" placeholder="descripción"  path="cuerpo"/>
+                        </div>
+                    </div>
+                    <div class="text-center mt-3">
+                        <h3>Lenguajes</h3>
+                        <div class="col-md-3 lenguaje d-inline-block mt-3">
+                            <div class="custom-control custom-checkbox image-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="ck1d">
+                                <label class="custom-control-label" for="ck1d">
+                                    <img src="/imagenes/lenguajes/javaScript.png" alt="#" width="60" height="60" class="img-fluid">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 lenguaje d-inline-block">
+                            <div class="custom-control custom-checkbox image-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="ck2d">
+                                <label class="custom-control-label" for="ck2d">
+                                    <img src="/imagenes/lenguajes/pythonn.png" alt="#" width="60" height="60" class="img-fluid">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 lenguaje d-inline-block">
+                            <div class="custom-control custom-checkbox image-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="ck3d">
+                                <label class="custom-control-label aa" for="ck3d">
+                                    <img src="/imagenes/lenguajes/java.png" alt="#" width="60" height="60" class="img-fluid">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mt-5 text-center">
+                        <input  class="btn btn-primary" type="submit" value="Crear Post"/>
                     </p>
-                    <p>
-                        <form:label path="cuerpo">Cuerpo: </form:label>
-                        <form:input path="cuerpo"/>
-                    </p>
-                    <p>
-                        <input type="submit" value="Add Listing"/>
-                    </p>
-                        
+                
+                    
                 </form:form> 
+               
                 
             </div>
 	    </div>	
+        
 </body>
 </html>

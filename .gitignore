@@ -34,3 +34,4 @@ build/
 
 ### application properties ###
 socialcoders\src\main\resources\application.properties
+*.properties

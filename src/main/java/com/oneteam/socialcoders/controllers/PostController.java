@@ -1,8 +1,11 @@
 package com.oneteam.socialcoders.controllers;
 
-import java.security.Principal;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -30,6 +33,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class PostController {
@@ -66,7 +70,8 @@ public class PostController {
     @PostMapping("nuevo/post")
     public String nuevoPost(
         @Valid @ModelAttribute("post") Post post, 
-        BindingResult result, HttpSession session, String agregarTag){
+        BindingResult result,
+        @RequestParam("file") MultipartFile imagen){
         
         if(result.hasErrors()){
             return "/post/nuevoPost.jsp";
@@ -87,6 +92,29 @@ public class PostController {
         List<Tag> tags = new ArrayList<>();
         tags.add(tag);
         post.setTags(tags); 
+
+            //AGREGAR IMAGEN OPCIONAL
+            if(imagen != null){
+                Path directorioImagenes = Paths.get("src//main//resources//static/imagenes");
+                String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath() + "/" +usuario.getId();
+                File directorio = new File(rutaAbsoluta);
+                if(directorio.exists() == false){
+                    directorio.mkdir();
+                }
+
+                try {
+                    byte[] bytesImg = imagen.getBytes();
+                    Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + imagen.getOriginalFilename());
+                    Files.write(rutaCompleta, bytesImg);
+
+                    post.setImagenPost(imagen.getOriginalFilename());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                    
+
+            }
+
         servicioPost.saveOrUpdate(post);
         return "redirect:/dashboard";
     }
@@ -165,6 +193,9 @@ public class PostController {
         //     System.out.println(usuario.getReaccion().size());
         //     return "redirect:/dashboard";
         // }
+
+
+
 
 
 }

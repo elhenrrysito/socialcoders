@@ -34,6 +34,8 @@ public class Post extends ModeloBase {
     @Size(min = 4, message = "Post debe tener más de 4 caracteres")
     private String cuerpo;
 
+    private String imagenPost;
+
     //////////// Relaciones ////////////
 
     // Usuarios //

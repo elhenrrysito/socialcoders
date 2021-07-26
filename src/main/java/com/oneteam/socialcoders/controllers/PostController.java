@@ -71,7 +71,7 @@ public class PostController {
     public String nuevoPost(
         @Valid @ModelAttribute("post") Post post, 
         BindingResult result,
-        @RequestParam("file") MultipartFile imagen){
+        @RequestParam(value="file", required=false) MultipartFile imagen){
         
         if(result.hasErrors()){
             return "/post/nuevoPost.jsp";
@@ -84,7 +84,6 @@ public class PostController {
             Comentario comentario = servicioComentario.findEntityById(id+4);
 
             // post.agregarLike(usuario);
-            comentario.setPost(post);
             post.setCategoria(categoria);
             post.setCreador(usuario);
             post.setLenguajePost(lenguaje);

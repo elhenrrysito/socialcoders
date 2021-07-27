@@ -128,4 +128,23 @@ public class Usuario extends ModeloBase {
     public void setPost(Post post){
         this.reaccion.add(post);
     }
+
+    public List<Mensaje> getChat(Usuario destinatario) {
+        List<Mensaje> chat = new ArrayList<>();
+
+        for(Mensaje mensaje : this.getMensajesEnviados()) {
+            if(mensaje.getDestinatario().getUsername().equals(destinatario.getUsername())) {
+                chat.add(mensaje);
+            }
+        }
+
+        for(Mensaje mensaje : this.getMensajesRecibidos()) {
+            if(mensaje.getDestinatario().getUsername().equals(destinatario.getUsername())) {
+                chat.add(mensaje);
+            }
+        }
+
+
+        return chat;
+    }
 }

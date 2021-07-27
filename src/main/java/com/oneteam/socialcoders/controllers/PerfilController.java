@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -33,16 +32,42 @@ public class PerfilController {
         } 
     }
 
-    @PostMapping("/follow/{username}")
+    @GetMapping("/follow/{username}")
     public String seguir(@PathVariable("username") String username, Model model, Principal principal) {
         String usernameActual = principal.getName(); 
         Usuario seguidor = servicioUsuario.findByUsername(usernameActual);
         Usuario seguido = servicioUsuario.findByUsername(username);
         List<Usuario> seguidos = seguidor.getSeguidos();
-        seguidos.add(seguido);
-        
-        return "redirect:/socialcoders/perfil/" + username;
+        if(seguidos.contains(seguido)) {
+            return "redirect:/socialcoders/perfil/" + username;
+        } else {
+            seguidos.add(seguido);
+            servicioUsuario.saveOrUpdate(seguido);
+            return "redirect:/socialcoders/perfil/" + username;
+        }
+    }
+
+    @GetMapping("/unfollow/{username}")
+    public String dejarSeguir(@PathVariable("username") String username, Model model, Principal principal) {
+        String usernameActual = principal.getName();
+        Usuario seguidor = servicioUsuario.findByUsername(usernameActual);
+        Usuario seguido = servicioUsuario.findByUsername(username);
+        List<Usuario> seguidos = seguidor.getSeguidos();
+        if(!seguidos.contains(seguido)) {
+            return "redirect:/socialcoders/perfil/" + username;
+        } else {
+            seguidos.remove(seguido);
+            servicioUsuario.saveOrUpdate(seguido);
+            return "redirect:/perfil/siunfollow";
+        }
     }
     
+    @GetMapping("/seguidos")
+    public String listaSeguidos(Model model, Principal principal) {
+        String username = principal.getName();
+        Usuario usuario = servicioUsuario.findByUsername(username);
+        model.addAttribute("listaSeguidos", usuario.getSeguidos());
+        return "soloprueba/seguidos.jsp";
+    }
    
 }

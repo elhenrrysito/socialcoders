@@ -1,5 +1,7 @@
 package com.oneteam.socialcoders.services;
 
+import java.util.List;
+
 import com.oneteam.socialcoders.models.Usuario;
 import com.oneteam.socialcoders.repositories.RepositorioUsuario;
 import com.oneteam.socialcoders.repositories.RoleRepository;
@@ -48,5 +50,8 @@ public class ServicioUsuario extends ServicioBase<Usuario> {
         return repositorioUsuario.existsByUsername(username);
     }
 
+    public List<Usuario> allByNombre(String nombre) {
+        return repositorioUsuario.findAllByNombreContaining(nombre);
+    }
     
 }

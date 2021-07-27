@@ -24,4 +24,8 @@ public class ServicioPost extends ServicioBase<Post> {
     public boolean verificador(Post p){
         return repositorioPost.existsPostByTitulo(p.getTitulo());
     }
+  
+    public List<Post> allByTitulo(String titulo) {
+        return repositorioPost.findAllByTituloContaining(titulo);
+    }
 }

@@ -24,8 +24,8 @@ public class HomeController {
         this.servicioComentario = servicioComentario;
     }
 
-    @GetMapping("/alosi")
-    public String dashboardPosts(Model model){
+    @GetMapping(value = {"/dashboard", "/"})
+    public String dashboardPosts(Model model) {
         List<Post> allPosts = servicioPost.buscarPosts();
         model.addAttribute("posts", allPosts);
         return "/post/dashboardPost.jsp";

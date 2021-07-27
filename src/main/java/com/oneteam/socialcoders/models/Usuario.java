@@ -144,7 +144,6 @@ public class Usuario extends ModeloBase {
             }
         }
 
-
         return chat;
     }
 }

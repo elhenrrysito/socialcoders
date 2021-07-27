@@ -65,12 +65,4 @@ public class UsuarioController {
         return "registrologin/login.jsp";
     }
 
-    @GetMapping(value = {"/", "/dashboard"})
-    public String home(Principal principal, Model model) {
-        String username = principal.getName();
-        Usuario currentUser = servicioUsuario.findByUsername(username);
-        model.addAttribute("currentUser", currentUser);
-        return "soloprueba/homePage.jsp";
-    }
-
 }

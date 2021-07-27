@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/mensaje")
+@RequestMapping("/mensajes")
 public class MessageController {
     private final ServicioMensaje servicioMensaje;
     private final ServicioUsuario servicioUsuario;

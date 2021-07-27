@@ -34,7 +34,7 @@ label{
     background-color: #0dceda;
 }
 .aaa{
-    background-color: rgb(47, 191, 216);
+    background-color: #E8F0FE;
     border-color: rebeccapurple;
     height: 60px;
 }
@@ -42,7 +42,7 @@ textarea{
     height: 150px;
 }
 .lenguaje{
-    background-color: red;
+    background-color: rgba(7, 172, 198, 0.463);
     height: 80px;
 }
 /*!

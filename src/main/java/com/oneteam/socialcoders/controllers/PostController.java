@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -34,6 +36,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class PostController {
@@ -63,59 +66,87 @@ public class PostController {
 
     @GetMapping("nuevo/post")
     public String nuevoPost(@ModelAttribute("post")Post post){
-
         return "/post/nuevoPost.jsp";
     }
 
     @PostMapping("nuevo/post")
     public String nuevoPost(
         @Valid @ModelAttribute("post") Post post, 
-        BindingResult result,
-        @RequestParam(value="file", required=false) MultipartFile imagen){
+        BindingResult result, Principal principal,
+        @RequestParam(value="file", required=false) MultipartFile imagen,
+        @RequestParam(value="tags", required=false) String postTag, RedirectAttributes flash){
         
         if(result.hasErrors()){
             return "/post/nuevoPost.jsp";
-        }
-            Long id = (long) 1;
-            Usuario usuario = servicioUsuario.findEntityById(id);
-            Lenguaje lenguaje = servicioLenguaje.findEntityById(id);
-            Categoria categoria = servicioCategoria.findEntityById(id);
-            Tag tag = servicioTag.findEntityById(id);
-            Comentario comentario = servicioComentario.findEntityById(id+4);
-
-            // post.agregarLike(usuario);
-            post.setCategoria(categoria);
-            post.setCreador(usuario);
-            post.setLenguajePost(lenguaje);
-            
-        List<Tag> tags = new ArrayList<>();
-        tags.add(tag);
-        post.setTags(tags); 
-
-            //AGREGAR IMAGEN OPCIONAL
-            if(imagen != null){
-                Path directorioImagenes = Paths.get("src//main//resources//static/imagenes");
-                String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath() + "/" +usuario.getId();
-                File directorio = new File(rutaAbsoluta);
-                if(directorio.exists() == false){
-                    directorio.mkdir();
-                }
-
-                try {
-                    byte[] bytesImg = imagen.getBytes();
-                    Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + imagen.getOriginalFilename());
-                    Files.write(rutaCompleta, bytesImg);
-
-                    post.setImagenPost(imagen.getOriginalFilename());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                    
-
+        } 
+        //AGREGAR IMAGEN OPCIONAL
+        if(imagen != null){
+            Path directorioImagenes = Paths.get("src//main//resources//static/imagenes");
+            String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath() + "/" +principal.getName();
+            File directorio = new File(rutaAbsoluta);
+            if(directorio.exists() == false){
+                directorio.mkdir();
             }
 
-        servicioPost.saveOrUpdate(post);
-        return "redirect:/dashboard";
+            try {
+                byte[] bytesImg = imagen.getBytes();
+                Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + imagen.getOriginalFilename());
+                Files.write(rutaCompleta, bytesImg);
+
+                post.setImagenPost(imagen.getOriginalFilename());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        List<String> items = Arrays.asList(postTag.trim().split("\\s*,\\s*")); 
+		int cantidadComas = postTag.replaceAll("[^,]", "").length();
+		if(cantidadComas > 2) {
+			flash.addFlashAttribute("error", "Solo 3 tags por Preguntas, SEPARALOS POR UNA (,) Y MINUSCULA PLIS :D");
+//			return "redirect:/questions/new";
+		}
+		
+		if(!postTag.equals(postTag.toLowerCase())) {
+			flash.addFlashAttribute("error", "Cada Tag En minuscula Por Favor");
+//			return "redirect:/questions/new";
+		}
+		
+		if(result.hasErrors() || servicioPost.verificador(post) || (flash.getFlashAttributes().size()>0)) {
+			flash.addFlashAttribute("error", "La pregunta no puede estar En Blanco O Esta pregunta ya existe");
+			return "redirect:/questions/new";
+		}
+		
+		//EN CASO DE QUE EL OR DEL IF DE ARRIBA NO FUNCIONE
+		
+//		if(questionService.verificador(question)) {
+//			flash.addFlashAttribute("error", "Ya existe esta pregunta");
+//			return "redirect:/question/new";
+//		}
+		if(postTag.length() == 0) {
+			flash.addFlashAttribute("error", "Debes incluir al menos 1 Tag Brooooooou");
+			return "redirect:/questions/new";
+		}
+		
+		else {
+			Post estePost = servicioPost.saveOrUpdate(post);
+			System.out.println(items);
+			
+			ArrayList<Tag> tags = new ArrayList<Tag>();
+			for(int i = 0; i<items.size(); i++) {
+				if(servicioTag.validation(postTag)) {
+					Tag tag = servicioTag.buscarPorTag(postTag);
+					tags.add(tag);
+				}
+				else {
+					tags.add(servicioTag.createTag(items.get(i)));
+				}
+			}
+			estePost.setTags(tags);
+			servicioPost.saveOrUpdate(estePost);
+			return "redirect:/questions/new";
+			
+			
+		}
     }
 
 

@@ -20,4 +20,8 @@ public class ServicioPost extends ServicioBase<Post> {
     public List<Post> buscarPosts(){
         return repositorioPost.findAll();
     }
+
+    public boolean verificador(Post p){
+        return repositorioPost.existsPostByTitulo(p.getTitulo());
+    }
 }

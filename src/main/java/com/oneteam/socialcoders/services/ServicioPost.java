@@ -20,4 +20,8 @@ public class ServicioPost extends ServicioBase<Post> {
     public List<Post> buscarPosts(){
         return repositorioPost.findAll();
     }
+
+    public List<Post> allByTitulo(String titulo) {
+        return repositorioPost.findAllByTituloContaining(titulo);
+    }
 }

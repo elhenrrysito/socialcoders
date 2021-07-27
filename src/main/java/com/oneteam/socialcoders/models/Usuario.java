@@ -1,6 +1,7 @@
 package com.oneteam.socialcoders.models;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -77,7 +78,7 @@ public class Usuario extends ModeloBase {
     joinColumns = @JoinColumn(name = "usuario_id"), 
     inverseJoinColumns = @JoinColumn(name = "seguidor_id")
     )
-    private List<Usuario> seguidos;
+    private List<Usuario> seguidores; // lista de seguidores que tiene el usuario
     
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -85,7 +86,7 @@ public class Usuario extends ModeloBase {
     joinColumns = @JoinColumn(name = "seguidor_id"), 
     inverseJoinColumns = @JoinColumn(name = "usuario_id")
     )
-    private List<Usuario> seguidores;
+    private List<Usuario> seguidos; // lista a las que sigue el usuario
 
     // Posts //
 

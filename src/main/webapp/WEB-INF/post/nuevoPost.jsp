@@ -26,6 +26,7 @@
         <script type="text/javascript" src="js/utilities.js"></script>
 
         <!-- imagenes -->
+        <link rel="stylesheet" href="css/bootstrap-select.css">
         <link href="https://www.cssscript.com/wp-includes/css/sticky.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link href="dist/css/bootstrap-image-checkbox.css" rel="stylesheet">
@@ -63,7 +64,7 @@
                             alt="example placeholder">
                         </div>
                         <div class="mb-3">
-                            <label for="file" class="form-label h5">Añadir imagen</label>
+                            <label for="file" class="form-label h5">Añadir imagen (Opcional)</label>
                             <input class="form-control"  type="file" id="file" name="file">
                         </div>
                     </div>
@@ -101,9 +102,17 @@
                                 </label>
                             </div>
                         </div>
+                        <select title="Select your surfboard" class="selectpicker">
+                            <option>Select...</option>
+                            <option style="background-image: url(/imagenes/lenguajes/java.png) ">Chrome</option>
+                            <option data-thumbnail="/imagenes/lenguajes/java.png">Firefox</option>
+                            <option data-thumbnail="/imagenes/lenguajes/java.png">IE</option>
+                            <option data-thumbnail="/imagenes/lenguajes/java.png">Opera</option>
+                            <option data-thumbnail="/imagenes/lenguajes/java.png">Safari</option>
+                          </select>
                     </div>
                     <p class="mt-5 text-center">
-                        <input  class="btn btn-primary" type="submit" value="Crear Post"/>
+                        <input  class="btn yellow-500" type="submit" value="Crear Post"/>
                     </p>
                 
                     

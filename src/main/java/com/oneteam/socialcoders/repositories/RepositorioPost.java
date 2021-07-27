@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 public interface RepositorioPost extends RepositorioBase<Post> {
     
     List<Post> findAll();
+    List<Post> findAllByTituloContaining(String titulo);
 }

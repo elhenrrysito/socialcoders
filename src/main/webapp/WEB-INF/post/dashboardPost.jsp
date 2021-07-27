@@ -13,8 +13,8 @@
 </head>
 <body>
     <div>
-        <c:forEach items="${posts}" var="p">
-            <div class="container">
+        <div class="container">
+            <c:forEach items="${posts}" var="p"> 
                 <div class=" border-bottom-0 mt-5 post rounded shadow-lg">
                     <div class="row">
                         <div class="col-2 usuario">
@@ -28,8 +28,10 @@
                         <div class="col titulo mt-4">
                             <h4><c:out value="${p.titulo}"/></h4>
                         </div>
-                        <div class="col-2 mt-4 nombre"> 
-                            <a href="" class="lenguaje"><c:out value="${p.lenguajePost.lenguaje}"/></a>
+                        <div class="col-2"> 
+                            <a href="" class="lenguaje">
+                                <img src='/images/lenguajesImages/${p.lenguajePost.lenguaje}.png' alt="lenguaje">
+                            </a>
                         </div>
                     </div>
                     <div class="row">
@@ -37,7 +39,7 @@
                             <c:out value="${p.cuerpo}"/>
                         </div>
                     </div>
-                    <div class="row border-bottom pb-3">
+                    <div class="row border-bottom border-dark pb-3">
                         <div class="col">
                         </div>
                         <div class="col-1 mt-2 ">
@@ -49,7 +51,7 @@
                     </div>
                     <div class="mt-4">
                         <c:forEach items="${p.listaComentarios}" var="c"> 
-                            <div class="col-12 mt-3 border-bottom px-3 pe-3">
+                            <div class="col-12 mt-3 border-bottom border-light px-3 pe-3">
                                 <img src="/images/Black_Belt_in-game.png" alt="imagenUsuario">
                                 <a href="" class="nombreUsuarioComentario">
                                     <c:out value="${c.usuario.username}"/>:
@@ -61,8 +63,8 @@
                         </c:forEach>
                     </div>
                 </div>
-            </div>
-        </c:forEach>
+            </c:forEach>
+        </div>  
     </div>
 </body>
 </html>

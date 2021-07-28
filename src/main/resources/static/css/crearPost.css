@@ -45,6 +45,13 @@ textarea{
     background-color: rgba(7, 172, 198, 0.463);
     height: 80px;
 }
+textarea {
+  background: url(/imagenes/lenguajes/coders.png) center center no-repeat; /* This ruins default border */
+  border: 1px solid #888; 
+  resize: none;
+  background-color: white;
+  width: 90%;
+}
 /*!
  * Bootstrap Image Checkbox v0.1.0 (https://iqbalfn.github.io/bootstrap-image-checkbox/)
  * Copyright 2019 Iqbal Fauzi
@@ -53,6 +60,7 @@ textarea{
  .custom-control.image-checkbox {
     position: relative;
     padding-left: 0;
+    
   }
   
   .custom-control.image-checkbox .custom-control-input:checked ~ .custom-control-label:after, .custom-control.image-checkbox .custom-control-input:checked ~ .custom-control-label:before {
@@ -64,8 +72,8 @@ textarea{
   }
   
   .custom-control.image-checkbox label:before {
-    border-color: #007bff;
-    background-color: #007bff;
+    border-color: red;
+    background-color: red;
   }
   
   .custom-control.image-checkbox label:after, .custom-control.image-checkbox label:before {
@@ -88,6 +96,9 @@ textarea{
   
   .form-group-image-checkbox.is-invalid .invalid-feedback {
     display: block;
+  }
+  .img-fluid{
+      margin-top: 10px;
   }
   
   /*# sourceMappingURL=bootstrap-image-checkbox.css.map */

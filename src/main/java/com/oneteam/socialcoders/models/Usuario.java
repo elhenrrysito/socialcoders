@@ -130,14 +130,6 @@ public class Usuario extends ModeloBase {
     }
 
 
-    // public void setMensajeEnviado(Mensaje mensaje){
-    //     this.mensajesEnviados.add(mensaje);
-    // }
-    
-    // public void setMensajeRecibido(Mensaje mensaje){
-    //     this.mensajesRecibidos.add(mensaje);
-    // }
-
     public List<Mensaje> getChat(Usuario destinatario) {
         List<Mensaje> chat = new ArrayList<>();
 

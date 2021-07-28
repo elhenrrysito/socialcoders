@@ -80,7 +80,7 @@
                         <h3>Lenguajes</h3>
                         <div class="col ml-1 lenguaje d-inline-block ">
                             <div class="custom-control custom-checkbox image-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="ck1d" name="javaScript" value="javaScript">
+                                <input type="checkbox" class="custom-control-input" id="ck1d" name="lenguaje" value="javaScript">
                                 <label class="custom-control-label" for="ck1d">
                                     <img src="/imagenes/lenguajes/javaScript.png" alt="#" width="60" height="60" class="img-fluid">
                                 </label>
@@ -88,7 +88,7 @@
                         </div>
                         <div class="col ml-1 lenguaje d-inline-block">
                             <div class="custom-control custom-checkbox image-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="ck2d" name="python" value="python">
+                                <input type="checkbox" class="custom-control-input" id="ck2d" name="lenguaje" value="python">
                                 <label class="custom-control-label" for="ck2d">
                                     <img src="/imagenes/lenguajes/pythonn.png" alt="#" width="60" height="60" class="img-fluid">
                                 </label>
@@ -96,7 +96,7 @@
                         </div>
                         <div class="col ml-1 lenguaje d-inline-block">
                             <div class="custom-control custom-checkbox image-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="ck3d" name="java" value="java">
+                                <input type="checkbox" class="custom-control-input" id="ck3d" name="lenguaje" value="java">
                                 <label class="custom-control-label aa" for="ck3d">
                                     <img src="/imagenes/lenguajes/java.png" alt="#" width="60" height="60" class="img-fluid">
                                 </label>
@@ -104,7 +104,7 @@
                         </div>
                         <div class="col ml-1 lenguaje d-inline-block">
                             <div class="custom-control custom-checkbox image-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="ck4d" name="c++" value="c++">
+                                <input type="checkbox" class="custom-control-input" id="ck4d" name="lenguaje" value="c++">
                                 <label class="custom-control-label aa" for="ck4d">
                                     <img src="/imagenes/lenguajes/c++.png" alt="#" width="60" height="60" class="img-fluid">
                                 </label>

@@ -128,4 +128,12 @@ public class Usuario extends ModeloBase {
     public void setPost(Post post){
         this.reaccion.add(post);
     }
+
+    public void setMensajeEnviado(Mensaje mensaje){
+        this.mensajesEnviados.add(mensaje);
+    }
+    
+    public void setMensajeRecibido(Mensaje mensaje){
+        this.mensajesRecibidos.add(mensaje);
+    }
 }

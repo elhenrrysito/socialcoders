@@ -3,14 +3,16 @@
     padding: 0;
 }
 
-body{
+body {
     background: rgb(37,68,88);
-    background: linear-gradient(90deg, rgba(37,68,88,1) 44%, rgb(94, 141, 132) 98%);
-
+    background: linear-gradient(90deg, rgba(37,68,88,1) 44%, rgb(46, 91, 102) 98%);
+    color: white;
 }
 
 .post, .comentario{
-    background-color: #eee4d1;
+    background-color: #18191dd3;
+    border: solid 1px;
+    border-color: aliceblue;
     margin: 0 auto;
     width: 700px;
     padding: 25px;
@@ -39,8 +41,6 @@ img{
 }
 
 .lenguaje, .nombreUsuario{
-    border: solid 1px rgb(139, 139, 139);
-    background-color: rgb(230 219 199);
     text-decoration: none;
     border-radius: 25px;
     padding: 4px;
@@ -49,4 +49,18 @@ img{
 
 .nombreUsuarioComentario{
     text-decoration: none;
+}
+
+.modalComentario{
+    background-color: black;
+}
+
+.comentar{
+    background-image: url(/images/iconImages/comentar.png);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: rgba(0, 255, 255, 0);
+    height: 32px;
+    width: 32px;
+    border: none;
 }

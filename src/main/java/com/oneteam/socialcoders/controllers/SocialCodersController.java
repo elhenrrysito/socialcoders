@@ -1,5 +1,6 @@
 package com.oneteam.socialcoders.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import com.oneteam.socialcoders.models.Post;
@@ -32,18 +33,20 @@ public class SocialCodersController {
         return "socialcoders/post.jsp"; 
     }
 
-    @GetMapping("/perfil/{username}")
-    public String verUsuario(@PathVariable("username") String username, Model model) {
-        if(!servicioUsuario.usernameExists(username)) {
+    @GetMapping("/perfil/{usernamePerfil}")
+    public String verUsuario(@PathVariable("usernamePerfil") String usernamePerfil, Model model, Principal principal) {
+        if(!servicioUsuario.usernameExists(usernamePerfil)) {
             return "noEncontrado.jsp";
         } else {
-            Usuario usuario = servicioUsuario.findByUsername(username);
-            model.addAttribute("postsUsuario", usuario.getPostRealizados());
-            model.addAttribute("usuario", usuario);
+            String usernameSesion = principal.getName();
+            Usuario usuarioSesion = servicioUsuario.findByUsername(usernameSesion);
+            Usuario usuarioPerfil = servicioUsuario.findByUsername(usernamePerfil);
+            model.addAttribute("postsUsuario", usuarioPerfil.getPostRealizados());
+            model.addAttribute("usuarioPerfil", usuarioPerfil);
+            model.addAttribute("usuarioSesion", usuarioSesion);
             return "perfil/perfil.jsp";
         }
     }
-
 
     @GetMapping("/buscar")
     public String buscar(@RequestParam("busqueda") String busqueda, Model model) {

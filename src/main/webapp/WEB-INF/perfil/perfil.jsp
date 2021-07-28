@@ -56,16 +56,24 @@
             <div class="col-12 border shadow rounded-3 fondo">
                 <div class="row mt-4">
                     <div class="col rounded-circle  text-center">
-                        <img src="/images/Black_Belt_in-game.png" alt="foto" id="fotoperfil">
+                        <img src="{usuario.imagen}" alt="foto" id="fotoperfil">
                         <h2><c:out value="${usuario.username}"/></h2>
                     </div>
                 </div>
                 <div class="row mx-2">
                     <div class="col text-center">
                         <div class="mt-3 mb-3">
-                            <a href="#" class="text-decoration-none">
-                                <img src="/images/iconImages/followed.png" alt="follow" width="32" height="32">
-                            </a>
+                           <c:if test="${usuarioPerfil.seguidores.contains(usuarioSesion)}">
+                                <a href="/perfil/unfollow/${usuarioPerfil.username}" class="text-decoration-none">
+                                    <img src="/images/iconImages/followed.png" alt="follow" width="32" height="32">
+                                </a>
+                           </c:if> 
+
+                           <c:if test="${!usuarioPerfil.seguidores.contains(usuarioSesion)}">
+                                <a href="/perfil/follow/${usuarioPerfil.username}" class="text-decoration-none">
+                                    <img src="/images/iconImages/followers.png" alt="follow" width="32" height="32">
+                                </a>
+                           </c:if> 
                             <span class="mx-5">Seguidores: <c:out value="${usuario.seguidores.size()}"/></span>
                             <span class="mx-2">Seguidos <c:out value="${usuario.seguidos.size()}"/></span>
                         </div>

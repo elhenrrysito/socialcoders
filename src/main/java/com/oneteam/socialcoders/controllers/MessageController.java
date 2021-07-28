@@ -1,6 +1,7 @@
 package com.oneteam.socialcoders.controllers;
 
 import java.security.Principal;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -37,10 +38,11 @@ public class MessageController {
         String usernameEmisor = principal.getName();
         Usuario destinatario = servicioUsuario.findByUsername(destinatarioUsername);
         Usuario emisor = servicioUsuario.findByUsername(usernameEmisor);
+        List<Mensaje> chat = servicioMensaje.getChat(destinatario, emisor);
 
         model.addAttribute("destinatario", destinatario);
         model.addAttribute("emisor", emisor);
-        model.addAttribute("chat", emisor.getChat(destinatario));
+        model.addAttribute("chat", chat);
 
         return "soloprueba/mensajes.jsp";
     }
@@ -59,7 +61,7 @@ public class MessageController {
             mensaje.setRemitente(remitente);
             servicioMensaje.saveOrUpdate(mensaje);
 
-            return "redirect:/mensaje/" + destinatarioUsername;
+            return "redirect:/mensajes/" + destinatarioUsername;
         }
         
     }

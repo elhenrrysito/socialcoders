@@ -129,6 +129,7 @@ public class Usuario extends ModeloBase {
         this.reaccion.add(post);
     }
 
+
     // public void setMensajeEnviado(Mensaje mensaje){
     //     this.mensajesEnviados.add(mensaje);
     // }
@@ -136,4 +137,23 @@ public class Usuario extends ModeloBase {
     // public void setMensajeRecibido(Mensaje mensaje){
     //     this.mensajesRecibidos.add(mensaje);
     // }
+
+    public List<Mensaje> getChat(Usuario destinatario) {
+        List<Mensaje> chat = new ArrayList<>();
+
+        for(Mensaje mensaje : this.getMensajesEnviados()) {
+            if(mensaje.getDestinatario().getUsername().equals(destinatario.getUsername())) {
+                chat.add(mensaje);
+            }
+        }
+
+        for(Mensaje mensaje : this.getMensajesRecibidos()) {
+            if(mensaje.getDestinatario().getUsername().equals(destinatario.getUsername())) {
+                chat.add(mensaje);
+            }
+        }
+
+        return chat;
+    }
+
 }

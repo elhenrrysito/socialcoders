@@ -34,4 +34,8 @@ public class Tag extends ModeloBase {
     inverseJoinColumns = @JoinColumn(name = "post_id")
     )
     private List<Post> posts;
+
+    public Tag(String tag){
+        this.tag = tag;
+    }
 }

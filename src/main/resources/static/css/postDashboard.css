@@ -10,7 +10,7 @@ body{
 }
 
 .post, .comentario{
-    background-color: aliceblue;
+    background-color: #eee4d1;
     margin: 0 auto;
     width: 700px;
     padding: 25px;
@@ -20,10 +20,15 @@ img{
     height: 25px;
 }
 
+.lenguaje img{
+    height: 64px;
+    width: 6;
+}
+
 .usuario img{
     width: 75px;
     height: 75px;
-    border: solid 1px #dee2e6;
+    border: solid 1px rgb(139, 139, 139);
     border-radius: 50px;
 }
 
@@ -34,10 +39,11 @@ img{
 }
 
 .lenguaje, .nombreUsuario{
-    border: solid 1px #dee2e6;
+    border: solid 1px rgb(139, 139, 139);
+    background-color: rgb(230 219 199);
     text-decoration: none;
     border-radius: 25px;
-    padding: 8px;
+    padding: 4px;
 }
 
 

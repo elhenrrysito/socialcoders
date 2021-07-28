@@ -20,4 +20,16 @@ public class ServicioTag extends ServicioBase<Tag> {
     public List<Tag> buscarTags(){
         return repositorioTag.findAll();
     }
+
+    public boolean validation(String etiqueta) {
+		return repositorioTag.existsTagByTag(etiqueta);
+	}
+
+    public Tag createTag(String tag) {
+		return repositorioTag.save(new Tag(tag));
+	}
+
+    public Tag buscarPorTag(String etiqueta) {
+		return repositorioTag.findByTag(etiqueta);
+	}
 }

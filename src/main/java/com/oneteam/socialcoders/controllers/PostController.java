@@ -74,8 +74,9 @@ public class PostController {
         @Valid @ModelAttribute("post") Post post, 
         BindingResult result, Principal principal,
         @RequestParam(value="file", required=false) MultipartFile imagen,
-        @RequestParam(value="tags", required=false) String postTag, RedirectAttributes flash){
-        
+        @RequestParam(value="tags", required=false) String postTag, RedirectAttributes flash,
+        @RequestParam(name="lenguaje")List<String> lenguaje){
+        System.out.println(lenguaje);
         if(result.hasErrors()){
             return "/post/nuevoPost.jsp";
         } 

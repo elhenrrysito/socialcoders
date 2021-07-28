@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +16,7 @@
         <div class="row">
             <h1>Chat</h1>
             <c:forEach var="message" items="${chat}">
-                <p><c:out value="${message.message}"/></p>
+                <p><fmt:formatDate pattern="HH:mm" value="${message.createdAt}"/><c:out value=" ${message.remitente.username}: ${message.message}"/> </p>
             </c:forEach>
             <form:form action="" method="post" modelAttribute="mensaje">
                 <form:input path="message" placeholder="Enviar mensaje"/>

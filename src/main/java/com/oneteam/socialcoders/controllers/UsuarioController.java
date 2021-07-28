@@ -59,6 +59,7 @@ public class UsuarioController {
         if(error != null) {
             model.addAttribute("errorMessage", "Credenciales inválidas, por favor intenta de nuevo.");
         }
+
         if(logout != null) {
             model.addAttribute("logoutMessage", "Has cerrado sesión exitosamente.");
         }

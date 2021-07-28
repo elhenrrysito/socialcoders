@@ -58,7 +58,7 @@ public class PerfilController {
         } else {
             seguidos.remove(seguido);
             servicioUsuario.saveOrUpdate(seguido);
-            return "redirect:/perfil/siunfollow";
+            return "redirect:/socialcoders/perfil/" + username;
         }
     }
     

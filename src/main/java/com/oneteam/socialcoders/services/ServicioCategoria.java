@@ -14,5 +14,9 @@ public class ServicioCategoria extends ServicioBase<Categoria> {
         super(repositorioCategoria);
         this.repositorioCategoria = repositorioCategoria;
     }
+
+    public Categoria findByCategoria(String categoria){
+        return repositorioCategoria.findByCategoria(categoria);
+    }
     
 }

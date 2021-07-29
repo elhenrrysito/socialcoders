@@ -26,12 +26,12 @@ public class Post extends ModeloBase {
 
     @NotBlank
     @NotNull
-    @Size(min = 2, message = "Titulo debe tener más de 2 caracteres")
+    @Size(min = 2, message = "El Titulo debe tener más de 2 caracteres")
     private String titulo;
 
     @NotBlank
     @NotNull
-    @Size(min = 4, message = "Post debe tener más de 4 caracteres")
+    @Size(min = 4, message = "La Descripcion debe tener más de 4 caracteres")
     private String cuerpo;
 
     private String imagenPost;
@@ -93,5 +93,14 @@ public class Post extends ModeloBase {
     }
     public void eliminarComentarios(){
         listaComentarios.clear();
+    }
+    
+    public String getTagString(){
+        String tags = "";
+        for (Tag tag : this.tags) {
+            tags = tags +"," + tag.getTag();
+        }
+        String tagFinal = tags.substring(1, tags.length()-1);
+        return tagFinal;
     }
 }

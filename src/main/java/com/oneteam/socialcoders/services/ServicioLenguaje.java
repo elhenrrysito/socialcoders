@@ -14,6 +14,10 @@ public class ServicioLenguaje extends ServicioBase<Lenguaje> {
         super(repositorioLenguaje);
         this.repositorioLenguaje = repositorioLenguaje;
     }
+
+    public Lenguaje findByLenguaje(String lenguaje){
+        return repositorioLenguaje.findByLenguaje(lenguaje);
+    }
     
     
 }

@@ -19,7 +19,20 @@
       
         <div class="pb-5">
             <nav class="navegacion">
-                <img src="/images/logo/logo.png" alt="">
+                <a href="/">
+                    <img src="/images/logo/logo.png" alt="socialCodersLogo">
+                </a>
+                <div class="infoUsuario">
+                    <c:if test="${usuario.id != null}">
+                        <form id="logoutForm" method="POST" action="/logout">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                            <input type="submit" value="Logout!" />
+                        </form>
+                        <a href="/socialcoders/perfil/${usuario.username}">
+                           Perfil
+                        </a>
+                    </c:if>
+                </div>
             </nav>
         </div>
         
@@ -53,10 +66,10 @@
                 <div class="post mt-5 rounded shadow-lg">
                     <div class="row">
                         <div class="col-2 usuario">
-                            <a href="">
+                            <a href="/socialcoders/perfil/${p.creador.username}">
                                 <img src="/images/Black_Belt_in-game.png" alt="imagenUsuario">
                             </a>
-                            <a href="" class="nombreUsuario">
+                            <a href="/socialcoders/perfil/${p.creador.username}" class="nombreUsuario">
                                 <c:out value="${p.creador.username}"/>
                             </a>
                         </div>

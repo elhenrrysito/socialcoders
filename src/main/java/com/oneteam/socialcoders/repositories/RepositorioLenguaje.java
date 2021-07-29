@@ -10,5 +10,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RepositorioLenguaje extends RepositorioBase<Lenguaje>{
     List<Lenguaje> findByUsuarioNotContaining(Usuario usuario);
+
     Lenguaje findByLenguajeContaining(String lenguaje);
+
+    Lenguaje findLenguajeByLenguaje(String lenguaje);
 }

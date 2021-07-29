@@ -124,8 +124,20 @@ li{
 
 .navegacion{
     position: fixed;
+    display: flex;
     background-color: black;
     border-bottom: solid 1px aliceblue;
     height: 50px;
     width: 100%;
+}
+
+.navegacion img{
+    margin-left: 10px;
+    width: 200px;
+    height: 50px;
+}
+
+.infoUsuario{
+    display: flex;
+    padding: 10px;
 }

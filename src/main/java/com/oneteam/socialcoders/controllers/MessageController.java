@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -45,25 +46,6 @@ public class MessageController {
         model.addAttribute("chat", chat);
 
         return "soloprueba/mensajes.jsp";
-    }
-
-    
-    @PostMapping("/{destinatarioUsername}")
-    public String enviarMensaje(@Valid @ModelAttribute("mensaje") Mensaje mensaje, BindingResult result,
-                    @PathVariable("destinatarioUsername") String destinatarioUsername, Principal principal, Model model) {
-        if(result.hasErrors()) {
-            return "soloprueba/mensajes.jsp";
-        } else {
-            String usernameEmisor = principal.getName();
-            Usuario remitente = servicioUsuario.findByUsername(usernameEmisor);
-            Usuario destinatario = servicioUsuario.findByUsername(destinatarioUsername);
-            mensaje.setDestinatario(destinatario);
-            mensaje.setRemitente(remitente);
-            servicioMensaje.saveOrUpdate(mensaje);
-
-            return "redirect:/mensajes/" + destinatarioUsername;
-        }
-        
     }
 
 }

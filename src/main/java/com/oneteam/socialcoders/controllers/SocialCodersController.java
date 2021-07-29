@@ -42,6 +42,7 @@ public class SocialCodersController {
             Usuario usuarioSesion = servicioUsuario.findByUsername(usernameSesion);
             Usuario usuarioPerfil = servicioUsuario.findByUsername(usernamePerfil);
             model.addAttribute("postsUsuario", usuarioPerfil.getPostRealizados());
+            model.addAttribute("lenguajesUsuario", usuarioPerfil.getLenguajesUsuario());
             model.addAttribute("usuarioPerfil", usuarioPerfil);
             model.addAttribute("usuarioSesion", usuarioSesion);
             return "perfil/perfil.jsp";

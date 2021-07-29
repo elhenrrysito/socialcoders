@@ -1,0 +1,27 @@
+.infoUsuario{
+    display: flex;
+    padding: 10px;
+}
+
+.dropdownColor{
+    color: white;
+    background-color: #212529;
+}
+
+a{
+    text-decoration: none;
+}
+
+.infoUsuario img{
+    width: 25px;
+    height: 25px;
+    margin-bottom: 5px;
+}
+
+.navegacion{
+    position: fixed;
+    display: flex;
+    background-color: #212529;
+    height: 50px;
+    width: 100%;
+}

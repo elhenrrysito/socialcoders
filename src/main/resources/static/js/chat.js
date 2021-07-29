@@ -1,4 +1,5 @@
 let url = document.getElementById("url");
+var autoScroll = document.getElementById('chat');
 
 $(document).ready(async function () {
     $("#submitMensaje").click(function () {
@@ -9,7 +10,9 @@ $(document).ready(async function () {
             dataType: "JSON"
         })
         .done(function(respuesta){
-            cargarMensajes(respuesta)
+            cargarMensajes(respuesta);
+            let inputMensaje = document.getElementById("inputMensaje").value = " ";
+            autoScroll.scrollTop = autoScroll.scrollHeight;
             console.log(respuesta);
         })
         .fail(function(respuesta){

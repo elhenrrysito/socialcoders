@@ -7,7 +7,7 @@ import org.springframework.data.repository.NoRepositoryBean;
 
 @NoRepositoryBean
 public interface RepositorioBase<T> extends CrudRepository<T, Long> {
+    
     List<T> findAll();
 
-    
 }

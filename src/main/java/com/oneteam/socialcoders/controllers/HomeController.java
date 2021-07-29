@@ -44,31 +44,37 @@ public class HomeController {
     }
 
     @GetMapping(value = {"/dashboard", "/"})
-    public String dashboardPosts(@ModelAttribute("nuevoComentario") Comentario nuevoComentario ,Model model) {
+    public String dashboardPosts(@ModelAttribute("nuevoComentario") Comentario nuevoComentario ,Model model, Principal principal) {
+        Usuario esteUsuario = servicioUsuario.findByUsername(principal.getName());
         List<Post> allPosts = servicioPost.buscarPosts();
         List<Lenguaje> todosLenguajes = servicioLenguaje.allEntitys();
         model.addAttribute("lenguajes", todosLenguajes);
         model.addAttribute("posts", allPosts);
+        model.addAttribute("usuario", esteUsuario);
         return "/post/dashboardPost.jsp";
     }
 
     @GetMapping("/socialCoders/memes")
-    public String dashboardMemes(@ModelAttribute("nuevoComentario") Comentario nuevoComentario, Model model){
+    public String dashboardMemes(@ModelAttribute("nuevoComentario") Comentario nuevoComentario, Model model, Principal principal){
+        Usuario esteUsuario = servicioUsuario.findByUsername(principal.getName());
         Categoria c = servicioCategoria.buscarPorNombre("Memes");
         List<Post> postsMemes = servicioPost.buscarPorCategoria(c);
         List<Lenguaje> todosLenguajes = servicioLenguaje.allEntitys();
         model.addAttribute("lenguajes", todosLenguajes);
         model.addAttribute("posts", postsMemes);
+        model.addAttribute("usuario", esteUsuario);
         return "/post/dashboardPost.jsp";
     }
 
     @GetMapping("/socialCoders/preguntas")
-    public String dashboardPreguntas(@ModelAttribute("nuevoComentario") Comentario nuevoComentario, Model model){
+    public String dashboardPreguntas(@ModelAttribute("nuevoComentario") Comentario nuevoComentario, Model model, Principal principal){
+        Usuario esteUsuario = servicioUsuario.findByUsername(principal.getName());
         Categoria c = servicioCategoria.buscarPorNombre("Preguntas");
         List<Post> postsPreguntas = servicioPost.buscarPorCategoria(c);
         List<Lenguaje> todosLenguajes = servicioLenguaje.allEntitys();
         model.addAttribute("lenguajes", todosLenguajes);
         model.addAttribute("posts", postsPreguntas);
+        model.addAttribute("usuario", esteUsuario);
         return "/post/dashboardPost.jsp";
     }
 
@@ -80,14 +86,18 @@ public class HomeController {
         List<Lenguaje> todosLenguajes = servicioLenguaje.allEntitys();
         model.addAttribute("lenguajes", todosLenguajes);
         model.addAttribute("posts", postsSeguidos);
+        model.addAttribute("usuario", esteUsuario);
         return "/post/dashboardPost.jsp";
     }
 
     @GetMapping("/socialCoders/{lenguaje}")
     public String dashboardLenguaje(@ModelAttribute("nuevoComentario") Comentario nuevoComentario, 
-                                    Model model, @PathVariable("lenguaje") Lenguaje lenguaje){
+                                    Model model, @PathVariable("lenguaje") String lenguaje, Principal principal){
+        Usuario esteUsuario = servicioUsuario.findByUsername(principal.getName());
         List<Lenguaje> todosLenguajes = servicioLenguaje.allEntitys();
-        List<Post> postsLenguaje = servicioPost.buscarPorLenguaje(lenguaje);
+        Lenguaje l = servicioLenguaje.buscarPorNombre(lenguaje);
+        List<Post> postsLenguaje = servicioPost.buscarPorLenguaje(l);
+        model.addAttribute("usuario", esteUsuario);
         model.addAttribute("lenguajes", todosLenguajes);
         model.addAttribute("posts", postsLenguaje);
         return "/post/dashboardPost.jsp";

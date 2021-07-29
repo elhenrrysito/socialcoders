@@ -25,5 +25,8 @@ public class ServicioLenguaje extends ServicioBase<Lenguaje> {
         return repositorioLenguaje.findByLenguajeContaining(lenguaje);
     }
     
+    public Lenguaje buscarPorNombre(String l){
+        return repositorioLenguaje.findLenguajeByLenguaje(l);
+    }
     
 }

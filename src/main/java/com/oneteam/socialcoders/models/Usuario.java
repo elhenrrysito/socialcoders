@@ -46,6 +46,8 @@ public class Usuario extends ModeloBase {
     @Email
     private String email;    
 
+    private String descripcion;
+
     private String imagen;
 
     @Size(min = 8, message = "Contraseña debe tener más de 8 caracteres")

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -47,7 +48,6 @@ public class MessageController {
         return "soloprueba/mensajes.jsp";
     }
 
-    
     @PostMapping("/{destinatarioUsername}")
     public String enviarMensaje(@Valid @ModelAttribute("mensaje") Mensaje mensaje, BindingResult result,
                     @PathVariable("destinatarioUsername") String destinatarioUsername, Principal principal, Model model) {
@@ -74,5 +74,4 @@ public class MessageController {
         }
         
     }
-
 }

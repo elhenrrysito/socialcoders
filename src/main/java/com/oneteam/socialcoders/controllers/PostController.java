@@ -103,7 +103,7 @@ public class PostController {
         }
         List<String> errores = new ArrayList<>();
         //AGREGAR LENGUAJES
-            Lenguaje lenguajeP = servicioLenguaje.findByLenguaje(lenguaje);
+            Lenguaje lenguajeP = servicioLenguaje.findByLenguajee(lenguaje);
             post.setLenguajePost(lenguajeP);
         //AGREGAR CATEGORIA
         

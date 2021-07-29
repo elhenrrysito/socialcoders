@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class TestController {
-    @RequestMapping("/")
+    @RequestMapping("/seleccionarLenguaje")
     public String SeleccionarLenguaje(){
-        return "lenguajes.jsp";
+        return "/test/lenguajes.jsp";
     }
     @RequestMapping("/java")
     public String preguntasJava(@RequestParam(value = "correcta", required = false) String respuesta,

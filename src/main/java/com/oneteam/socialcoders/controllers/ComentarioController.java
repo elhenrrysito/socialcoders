@@ -58,13 +58,12 @@ public class ComentarioController {
         if(result.hasErrors()) {
             model.addAttribute("post", post);
             model.addAttribute("usuario", usuario);
-            return "soloprueba/pruebaComentario.jsp";
+            return "post/dashboardPost";
         } else {
             nuevoComentario.setPost(post);
             nuevoComentario.setUsuario(usuario);
             servicioComentario.saveOrUpdate(nuevoComentario);
         }
-
         return "redirect:/siFunciona";
     }
 

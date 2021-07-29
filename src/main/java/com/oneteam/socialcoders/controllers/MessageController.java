@@ -52,6 +52,15 @@ public class MessageController {
     public String enviarMensaje(@Valid @ModelAttribute("mensaje") Mensaje mensaje, BindingResult result,
                     @PathVariable("destinatarioUsername") String destinatarioUsername, Principal principal, Model model) {
         if(result.hasErrors()) {
+            String usernameEmisor = principal.getName();
+            Usuario destinatario = servicioUsuario.findByUsername(destinatarioUsername);
+            Usuario emisor = servicioUsuario.findByUsername(usernameEmisor);
+            List<Mensaje> chat = servicioMensaje.getChat(destinatario, emisor);
+    
+            model.addAttribute("destinatario", destinatario);
+            model.addAttribute("emisor", emisor);
+            model.addAttribute("chat", chat);
+    
             return "soloprueba/mensajes.jsp";
         } else {
             String usernameEmisor = principal.getName();

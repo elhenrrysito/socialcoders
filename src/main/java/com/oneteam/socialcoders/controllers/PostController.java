@@ -228,8 +228,23 @@ public class PostController {
         //     return "redirect:/dashboard";
         // }
 
-
-
-
+        @GetMapping("/like/{postId}")
+        public String likePost(@PathVariable("postId") Long id, Principal principal) {
+            Post estePost = servicioPost.findEntityById(id);
+            List<Usuario> usuariosLikeados = estePost.getReaccionesUsuarios();
+            for (Usuario usuario : usuariosLikeados) {
+                if(!usuario.getUsername().equals(principal.getName())){
+                    List<Post> postLikeados = usuario.getReaccion();
+                    postLikeados.add(estePost);
+                    usuario.setReaccion(postLikeados);
+                    servicioUsuario.saveOrUpdate(usuario);
+                    usuariosLikeados.add(usuario);
+                    estePost.setReaccionesUsuarios(usuariosLikeados);
+                    servicioPost.saveOrUpdate(estePost);
+                }
+            }
+            return "redirect:/";
+        }
+        
 
 }

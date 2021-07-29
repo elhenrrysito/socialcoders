@@ -57,6 +57,7 @@
                     <li><a href="/socialCoders/memes" class="btn btn-primary">Memes</a></li>
                     <li><a href="/socialCoders/seguidos" class="btn btn-primary">Seguidos</a></li>
                     <li><a href="/socialCoders/preguntas" class="btn btn-primary">Preguntas</a></li>
+                    <li><a href="/nuevo/post" class="btn btn-primary">Crear Post</a></li>
                 </ul>
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -102,7 +103,7 @@
                         </div>
                         <div class="col-1 mt-2 ">
                             <c:if test="${!p.reaccionesUsuarios.contains(usuario)}">
-                                <a href=""><img src="/images/iconImages/favouritewhite.png" alt="like"></a>
+                                <a href="/like/${p.id}"><img src="/images/iconImages/favouritewhite.png" alt="like"></a>
                             </c:if>
                             <c:if test="${p.reaccionesUsuarios.contains(usuario)}">
                                 <a href=""><img src="/images/iconImages/likeado.png" alt="like"></a>
@@ -113,7 +114,7 @@
                         <c:forEach items="${p.listaComentarios}" var="c"> 
                             <div class="col-12 mt-3 border-bottom border-light px-3 pe-3">
                                 <img src="/images/Black_Belt_in-game.png" alt="imagenUsuario">
-                                <a href="" class="nombreUsuarioComentario">
+                                <a href="/socialcoders/perfil/${c.usuario.username}" class="nombreUsuarioComentario">
                                     <c:out value="${c.usuario.username}"/>:
                                 </a>
                                 <div class="px-3 pb-2">

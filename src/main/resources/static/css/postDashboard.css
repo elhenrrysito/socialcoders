@@ -110,7 +110,7 @@ li{
 
 .navegador{
     position: fixed;
-    background-color: #18191dd3;
+    background-color: #212529;
     border: solid 1px;
     border-color: aliceblue;
     margin-right: -55px;
@@ -125,8 +125,7 @@ li{
 .navegacion{
     position: fixed;
     display: flex;
-    background-color: black;
-    border-bottom: solid 1px aliceblue;
+    background-color: #212529;
     height: 50px;
     width: 100%;
 }
@@ -140,4 +139,19 @@ li{
 .infoUsuario{
     display: flex;
     padding: 10px;
+}
+
+.dropdownColor{
+    color: white;
+    background-color: #212529;
+}
+
+a{
+    text-decoration: none;
+}
+
+.infoUsuario img{
+    width: 25px;
+    height: 25px;
+    margin-bottom: 5px;
 }

@@ -19,6 +19,7 @@ public class ServicioCategoria extends ServicioBase<Categoria> {
     public Categoria findByCategoria(String categoria){
         return repositorioCategoria.findByCategoria(categoria);
     }
+
     public Categoria buscarPorNombre(String c){
         return repositorioCategoria.findCategoriaByCategoria(c);
 

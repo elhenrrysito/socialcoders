@@ -37,6 +37,10 @@
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 	    
+        <!-- Select  -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+        <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
 </head>
 <body>
 	
@@ -47,7 +51,7 @@
                     
                     <p class="fs-3 text-warning"><form:errors path="post.*"/></p>
 
-                    <form:form class="formRelleno" action="/nuevo/post" method="POST" modelAttribute="post" enctype="multipart/form-data">
+                    <form:form class="formRelleno" action="" method="POST" modelAttribute="post" enctype="multipart/form-data">
                         <input type="hidden" name="_method" value="${method}">	
                     <div class="row text-center">
                         <div>
@@ -56,6 +60,41 @@
                         <div>
                             <form:input id="texto" class="h3 aaa"  path="titulo"/>        
                         </div>
+                        <div class="text-left">
+                            <h4 class="d-inline-block">Tags</h4>
+                            <c:if test="${numero == 1}">
+                                <input class="d-inline-block" type="text" name="categoria" value="${post.getTagString()}">(Cada Tag Debe ir separado por "," Maximo 3 Tags)
+                                <c:forEach items="${errors}" var="error">
+        					        <p class="text-danger"> <c:out value="${error}"></c:out> </p> 
+                                </c:forEach>
+
+                            </c:if>
+                            <c:if test="${numero == null}">
+                                <input class="d-inline-block form-control mb-3" style="width: 200px;" type="text" name="tagsP">(Cada Tag Debe ir separado por "," Maximo 3 Tags)
+                                <c:forEach items="${errors}" var="error">
+        					        <p class="text-danger"> <c:out value="${error}"></c:out> </p> 
+                                </c:forEach>
+
+                            </c:if>
+                            <div>
+                                <h4 class="d-inline-block">Cateogrias</h4>
+                                <select class="form-select d-inline-block col-3 " id="id_select2_example" data-placeholder="Begin typing a name to filter..." name="test" >
+                                    <option value=""></option>
+                                    <option value="trabajo" >Trabajo</option>
+                                    <option value="front" >Front End</option>
+                                    <option value="back" >Back End</option>
+                                    <option value="database" >Data Base</option>
+                                    <option value="diversion" >Diversión</option>
+                                    <option value="noticias" >Noticias</option>
+                                    <option value="memes" >Memes</option>
+                                    <option value="proyectos" >Proyectos</option>
+                                    <option value="social" >Social</option>
+                                    
+                              </select>
+                            </div>        
+                            
+					    </div>
+
                     </div>
                     
                     <div class="file-field">
@@ -79,32 +118,32 @@
                     <div class="row text-center mt-3">
                         <h3>Lenguajes</h3>
                         <div class="col ml-1 lenguaje d-inline-block ">
-                            <div class="custom-control custom-checkbox image-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="ck1d" name="lenguaje" value="javaScript">
+                            <div class="custom-control custom-radio image-checkbox">
+                                <input type="radio" class="custom-control-input" id="ck1d" name="lenguajeP" value="javaScript">
                                 <label class="custom-control-label" for="ck1d">
                                     <img src="/imagenes/lenguajes/javaScript.png" alt="#" width="60" height="60" class="img-fluid">
                                 </label>
                             </div>
                         </div>
                         <div class="col ml-1 lenguaje d-inline-block">
-                            <div class="custom-control custom-checkbox image-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="ck2d" name="lenguaje" value="python">
+                            <div class="custom-control custom-radio image-checkbox">
+                                <input type="radio" class="custom-control-input" id="ck2d" name="lenguajeP" value="python">
                                 <label class="custom-control-label" for="ck2d">
                                     <img src="/imagenes/lenguajes/pythonn.png" alt="#" width="60" height="60" class="img-fluid">
                                 </label>
                             </div>
                         </div>
                         <div class="col ml-1 lenguaje d-inline-block">
-                            <div class="custom-control custom-checkbox image-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="ck3d" name="lenguaje" value="java">
+                            <div class="custom-control custom-radio image-checkbox">
+                                <input type="radio" class="custom-control-input" id="ck3d" name="lenguajeP" value="java">
                                 <label class="custom-control-label aa" for="ck3d">
                                     <img src="/imagenes/lenguajes/java.png" alt="#" width="60" height="60" class="img-fluid">
                                 </label>
                             </div>
                         </div>
                         <div class="col ml-1 lenguaje d-inline-block">
-                            <div class="custom-control custom-checkbox image-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="ck4d" name="lenguaje" value="c++">
+                            <div class="custom-control custom-radio image-checkbox">
+                                <input type="radio" class="custom-control-input" id="ck4d" name="lenguajeP" value="c++">
                                 <label class="custom-control-label aa" for="ck4d">
                                     <img src="/imagenes/lenguajes/c++.png" alt="#" width="60" height="60" class="img-fluid">
                                 </label>
@@ -112,12 +151,14 @@
                         </div>
                     </div>
                     <p class="mt-5 text-center">
+                       
                         <input  class="btn btn-primary" type="submit" value="Crear Post"/>
                     </p>
                 
                     
                 </form:form> 
-               
+                <button class="btn btn-warning" onclick="window.location.href='/'">Volver</button>
+                
                 
             </div>
 	    </div>	

@@ -65,7 +65,8 @@ public class PostController {
     }
 
     @GetMapping("nuevo/post")
-    public String nuevoPost(@ModelAttribute("post")Post post){
+    public String nuevoPost(@ModelAttribute("post")Post post, Model model){
+        model.addAttribute("method", "POST");
         return "/post/nuevoPost.jsp";
     }
 
@@ -74,12 +75,13 @@ public class PostController {
         @Valid @ModelAttribute("post") Post post, 
         BindingResult result, Principal principal,
         @RequestParam(value="file", required=false) MultipartFile imagen,
-        @RequestParam(value="tags", required=false) String postTag, RedirectAttributes flash,
-        @RequestParam(name="lenguaje")List<String> lenguaje){
-        System.out.println(lenguaje);
+        @RequestParam(value="tagsP", required=false) String postTag, RedirectAttributes flash,
+        @RequestParam(name="lenguajeP", required=false)String lenguaje,
+        @RequestParam(name="categoria", required=false) String categoria){
         if(result.hasErrors()){
             return "/post/nuevoPost.jsp";
         } 
+        
         //AGREGAR IMAGEN OPCIONAL
         if(imagen != null){
             Path directorioImagenes = Paths.get("src//main//resources//static/imagenes");
@@ -99,55 +101,61 @@ public class PostController {
                 e.printStackTrace();
             }
         }
+        List<String> errores = new ArrayList<>();
+        //AGREGAR LENGUAJES
+            Lenguaje lenguajeP = servicioLenguaje.findByLenguaje(lenguaje);
+            post.setLenguajePost(lenguajeP);
+        //AGREGAR CATEGORIA
         
-        List<String> items = Arrays.asList(postTag.trim().split("\\s*,\\s*")); 
-		int cantidadComas = postTag.replaceAll("[^,]", "").length();
-		if(cantidadComas > 2) {
-			flash.addFlashAttribute("error", "Solo 3 tags por Preguntas, SEPARALOS POR UNA (,) Y MINUSCULA PLIS :D");
-//			return "redirect:/questions/new";
-		}
-		
-		if(!postTag.equals(postTag.toLowerCase())) {
-			flash.addFlashAttribute("error", "Cada Tag En minuscula Por Favor");
-//			return "redirect:/questions/new";
-		}
-		
-		if(result.hasErrors() || servicioPost.verificador(post) || (flash.getFlashAttributes().size()>0)) {
-			flash.addFlashAttribute("error", "La pregunta no puede estar En Blanco O Esta pregunta ya existe");
-			return "redirect:/questions/new";
-		}
-		
-		//EN CASO DE QUE EL OR DEL IF DE ARRIBA NO FUNCIONE
-		
-//		if(questionService.verificador(question)) {
-//			flash.addFlashAttribute("error", "Ya existe esta pregunta");
-//			return "redirect:/question/new";
-//		}
-		if(postTag.length() == 0) {
-			flash.addFlashAttribute("error", "Debes incluir al menos 1 Tag Brooooooou");
-			return "redirect:/questions/new";
-		}
-		
-		else {
-			Post estePost = servicioPost.saveOrUpdate(post);
-			System.out.println(items);
-			
-			ArrayList<Tag> tags = new ArrayList<Tag>();
-			for(int i = 0; i<items.size(); i++) {
-				if(servicioTag.validation(postTag)) {
-					Tag tag = servicioTag.buscarPorTag(postTag);
-					tags.add(tag);
-				}
-				else {
-					tags.add(servicioTag.createTag(items.get(i)));
-				}
-			}
-			estePost.setTags(tags);
-			servicioPost.saveOrUpdate(estePost);
-			return "redirect:/questions/new";
-			
-			
-		}
+       
+            
+            Categoria categoriaP = servicioCategoria.findByCategoria(categoria);
+            post.setCategoria(categoriaP);
+        
+        //Tags 
+        if(postTag != null){
+            List<String> items = Arrays.asList(postTag.trim().split("\\s*,\\s*")); 
+            int cantidadComas = postTag.replaceAll("[^,]", "").length();
+            if(cantidadComas > 2) {
+                errores.add("Solo 3 tags por Preguntas, SEPARALOS POR UNA (,) PLISs");
+            }
+            if(servicioPost.verificador(post)) {
+                errores.add("Este Post ya existe");
+            }
+            if(postTag.length() == 0) {
+                errores.add("Debes incluir al menos 1 Tag");
+            }
+            if(errores.size() > 0){
+                flash.addFlashAttribute("errors", errores);
+                return "redirect:/nuevo/post";
+            }
+            
+            else {
+                servicioPost.saveOrUpdate(post);
+                
+                ArrayList<Tag> tags = new ArrayList<Tag>();
+                for(int i = 0; i<items.size(); i++) {
+                    String tagTemporal = items.get(i);
+                    if(servicioTag.validation(tagTemporal)) {
+                        Tag tag = servicioTag.buscarPorTag(tagTemporal);
+                        tags.add(tag);
+                    }
+                    else {
+                        tags.add(servicioTag.createTag(items.get(i)));
+                    }
+                }
+                post.setTags(tags);
+                servicioPost.saveOrUpdate(post);
+                return "redirect:/post/" + post.getId();
+            }
+        }
+        
+        else{
+            servicioPost.saveOrUpdate(post);
+            return "redirect:/post/" + post.getId();
+        }
+        
+
     }
 
 
@@ -171,14 +179,12 @@ public class PostController {
     public String editarPost(
         @PathVariable("id") Long id,
         HttpSession session, Model model){
-
+        model.addAttribute("method", "PUT");
+        
         Post post = servicioPost.findEntityById(id);
-        // if(post.getCreador() == usuario){
         model.addAttribute("post", post);
-        // model.addAttribute("usuario", usuario);
-        return "/post/editarPost.jsp";
-        // }
-        // return "/dashboard";
+        model.addAttribute("numero", 1);
+        return "/post/nuevoPost.jsp";
     }
 
     @PutMapping("editar/post/{id}")
@@ -187,12 +193,9 @@ public class PostController {
         BindingResult result,
         @PathVariable("id") Long id){
         if(result.hasErrors()){
-            return "/post/editarPost.jsp";
+            return "/post/nuevoPost.jsp";
         }
-
-        Post postFinal = servicioPost.findEntityById(id);
-        postFinal.setCuerpo(post.getCuerpo());
-        servicioPost.saveOrUpdate(postFinal);
+        servicioPost.saveOrUpdate(post);
         return "redirect:/post/"+ id;    
         }
  

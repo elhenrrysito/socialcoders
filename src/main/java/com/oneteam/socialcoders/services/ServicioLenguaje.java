@@ -17,12 +17,17 @@ public class ServicioLenguaje extends ServicioBase<Lenguaje> {
         this.repositorioLenguaje = repositorioLenguaje;
     }
 
+
+    public Lenguaje findByLenguaje(String lenguaje){
+        return repositorioLenguaje.findByLenguaje(lenguaje);
+
     public List<Lenguaje> lenguajesNoUtilizados(Usuario usuario) {
         return repositorioLenguaje.findByUsuarioNotContaining(usuario);
     }
 
     public Lenguaje findByLenguaje(String lenguaje) {
         return repositorioLenguaje.findByLenguajeContaining(lenguaje);
+
     }
     
     public Lenguaje buscarPorNombre(String l){

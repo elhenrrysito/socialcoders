@@ -18,19 +18,29 @@
         <!-- NAVBAR -->
       
         <div class="pb-5">
-            <nav class="navegacion">
+            <nav class="navegacion shadow d-flex justify-content-between">
                 <a href="/">
                     <img src="/images/logo/logo.png" alt="socialCodersLogo">
                 </a>
                 <div class="infoUsuario">
                     <c:if test="${usuario.id != null}">
-                        <form id="logoutForm" method="POST" action="/logout">
-                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                            <input type="submit" value="Logout!" />
-                        </form>
-                        <a href="/socialcoders/perfil/${usuario.username}">
-                           Perfil
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="/images/iconImages/user_1.png" alt="">
                         </a>
+                          <ul class="dropdown-menu dropdownColor" aria-labelledby="dropdownMenuButton1">
+                            <li><a href="/socialcoders/perfil/${usuario.username}">Perfil</a></li>
+                            <li><a href="/perfil/editarPerfil">Editar Perfil</a></li>
+                            <li>
+                                <form id="logoutForm" method="POST" action="/logout">
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                    <input type="submit" value="Logout!"/>
+                                </form>
+                            </li>
+                          </ul>
+                    </c:if>
+                    <c:if test="${usuario.id == null}">
+                        <a href="/login">Logeate!</a>
+                        <a href="/register">Registrate!</a>
                     </c:if>
                 </div>
             </nav>
@@ -91,7 +101,12 @@
                         <div class="col">
                         </div>
                         <div class="col-1 mt-2 ">
-                            <a href=""><img src="/images/iconImages/Icon 3.svg" alt="like"></a>
+                            <c:if test="${!p.reaccionesUsuarios.contains(usuario)}">
+                                <a href=""><img src="/images/iconImages/favouritewhite.png" alt="like"></a>
+                            </c:if>
+                            <c:if test="${p.reaccionesUsuarios.contains(usuario)}">
+                                <a href=""><img src="/images/iconImages/likeado.png" alt="like"></a>
+                            </c:if>
                         </div>
                     </div>
                     <div class="mt-4 comentarioOverflow">

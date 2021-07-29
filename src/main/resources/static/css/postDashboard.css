@@ -64,3 +64,80 @@ img{
     width: 32px;
     border: none;
 }
+
+.comentarDiv{
+    display: flex;
+    text-align: end;
+}
+
+::-webkit-scrollbar {
+    background: rgb(78, 78, 78);
+    border-radius: 10px;
+    width: 15px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+}
+
+  /* Handle */
+::-webkit-scrollbar-thumb {
+    background: black;
+    border: solid white 1px; 
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.719); 
+}
+
+.comentarioOverflow{
+    height: 200px;
+    overflow: auto;
+}
+
+ul{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+li{
+    list-style-type: none;
+    margin: 4px;
+}
+
+.navegador{
+    position: fixed;
+    background-color: #18191dd3;
+    border: solid 1px;
+    border-color: aliceblue;
+    margin-right: -55px;
+    margin-left: 55px;
+    padding: 25px;
+}
+
+.navegador h2{
+    text-align: center;
+}
+
+.navegacion{
+    position: fixed;
+    display: flex;
+    background-color: black;
+    border-bottom: solid 1px aliceblue;
+    height: 50px;
+    width: 100%;
+}
+
+.navegacion img{
+    margin-left: 10px;
+    width: 200px;
+    height: 50px;
+}
+
+.infoUsuario{
+    display: flex;
+    padding: 10px;
+}

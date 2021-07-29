@@ -1,0 +1,28 @@
+.container {
+    /* border: 1px solid #254458; */
+    padding: 30px;
+    margin: 30px 0 0 40px;
+    font-family: Arial, Verdana, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+
+    }
+    .pregunta{
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .pregunta {
+        font-size: 40px;
+        color: #254458;
+        margin-top: 30px;
+    }
+    
+    .respuestas {
+    font-size: 20px;
+    padding: 10px;
+    font-weight: normal;
+    }
+    #boton1{
+        margin-left: 1100px;
+        padding-top: 20px;
+    }

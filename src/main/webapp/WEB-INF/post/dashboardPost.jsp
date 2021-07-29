@@ -1,6 +1,7 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,54 +16,60 @@
 <body>
     <div>
         <!-- NAVBAR -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li>
-                </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+      
+        <div class="pb-5">
+            <nav class="navegacion">
+                <a href="/">
+                    <img src="/images/logo/logo.png" alt="socialCodersLogo">
+                </a>
+                <div class="infoUsuario">
+                    <c:if test="${usuario.id != null}">
+                        <form id="logoutForm" method="POST" action="/logout">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                            <input type="submit" value="Logout!" />
+                        </form>
+                        <a href="/socialcoders/perfil/${usuario.username}">
+                           Perfil
+                        </a>
+                    </c:if>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
+        
+        <!-- BUSCADOR -->
+
+        <div class="contenedor">
+        
+            <aside class="col-3 mt-5 navegador">
+                <h2>Categorías</h2>
+                <ul class="mt-4">
+                    <li><a href="/" class="btn btn-primary">Posts</a></li>
+                    <li><a href="/socialCoders/memes" class="btn btn-primary">Memes</a></li>
+                    <li><a href="/socialCoders/seguidos" class="btn btn-primary">Seguidos</a></li>
+                    <li><a href="/socialCoders/preguntas" class="btn btn-primary">Preguntas</a></li>
+                </ul>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      Lenguajes
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <c:forEach items="${lenguajes}" var="l">
+                            <li><a class="dropdown-item" href="/socialCoders/${l.lenguaje}">${l.lenguaje}</a></li>
+                        </c:forEach>
+                    </ul>
+                  </div>
+            </aside>
 
         <!-- POSTS -->
 
-        <div class="container">
             <c:forEach items="${posts}" var="p"> 
-                <div class="mt-5 post rounded shadow-lg">
+                <div class="post mt-5 rounded shadow-lg">
                     <div class="row">
                         <div class="col-2 usuario">
-                            <a href="">
+                            <a href="/socialcoders/perfil/${p.creador.username}">
                                 <img src="/images/Black_Belt_in-game.png" alt="imagenUsuario">
                             </a>
-                            <a href="" class="nombreUsuario">
+                            <a href="/socialcoders/perfil/${p.creador.username}" class="nombreUsuario">
                                 <c:out value="${p.creador.username}"/>
                             </a>
                         </div>
@@ -86,11 +93,8 @@
                         <div class="col-1 mt-2 ">
                             <a href=""><img src="/images/iconImages/Icon 3.svg" alt="like"></a>
                         </div>
-                        <div class="col-1 mt-2">
-                            <button type="button" class="comentar" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"></button>
-                        </div>
                     </div>
-                    <div class="mt-4">
+                    <div class="mt-4 comentarioOverflow">
                         <c:forEach items="${p.listaComentarios}" var="c"> 
                             <div class="col-12 mt-3 border-bottom border-light px-3 pe-3">
                                 <img src="/images/Black_Belt_in-game.png" alt="imagenUsuario">
@@ -103,31 +107,33 @@
                             </div>
                         </c:forEach>
                     </div>
-                </div>
-            </c:forEach>
-        </div>  
-
-        <!-- COMENTARIO -->
-
-        <div class="modal fade modalComentario" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Comentar</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form:form modelAttribute="nuevoComentario" method="POST" action="/comentario/">
-                            <p><form:input type="text" path="comentario" placeholder="Escribe un comentario..."/></p>
+                    <div class="mt-4">
+                        <form:form method="POST" modelAttribute="nuevoComentario" action="/comentario/${p.id}">
+                            <table class="comentarDiv">
+                                <tr>
+                                    <td>
+                                        <form:input type="text" path="comentario" class="form-control" placeholder="Escriba un comentario..."/>
+                                    </td>
+                                    <td>
+                                        <input type="submit" value="" class="btn btn-primary comentar col"/>
+                                    </td>
+                                </tr>     
+                            </table>
                         </form:form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <input type="submit" class="btn btn-primary" name="Comentar"/>
-                    </div>
                 </div>
-            </div>
-        </div>
+            </c:forEach>
+        
+        <!-- AMIGOS -->
+
+            <aside class="col-2">
+                <h5></h5>
+                <ul>
+                    <li></li>
+                </ul>
+            </aside>
+
+        <!-- COMENTARIO -->
 
     </div>
 </body>

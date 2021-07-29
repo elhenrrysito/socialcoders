@@ -36,18 +36,18 @@ public class ComentarioController {
         this.servicioUsuario = servicioUsuario;
     }
 
-    // @GetMapping("/{idPost}")
-    // public String comentario(@ModelAttribute("nuevoComentario") Comentario nuevoComentario, @PathVariable("idPost") Long idPost,
-    //                         Model model, Principal principal) {
+    @GetMapping("/{idPost}")
+    public String comentario(@ModelAttribute("nuevoComentario") Comentario nuevoComentario, @PathVariable("idPost") Long idPost,
+                            Model model, Principal principal) {
         
-    //     String username = principal.getName();
-    //     Usuario usuario = servicioUsuario.findByUsername(username);
-    //     Post post = servicioPost.findEntityById(idPost);
+        String username = principal.getName();
+        Usuario usuario = servicioUsuario.findByUsername(username);
+        Post post = servicioPost.findEntityById(idPost);
 
-    //     model.addAttribute("post", post);
-    //     model.addAttribute("usuario", usuario);
-    //     return "soloprueba/pruebaComentario.jsp";
-    // }
+        model.addAttribute("post", post);
+        model.addAttribute("usuario", usuario);
+        return "soloprueba/pruebaComentario.jsp";
+    }
 
     @PostMapping("/{idPost}")
     public String agregarComentario(@Valid @ModelAttribute("nuevoComentario") Comentario nuevoComentario, 
@@ -58,13 +58,12 @@ public class ComentarioController {
         if(result.hasErrors()) {
             model.addAttribute("post", post);
             model.addAttribute("usuario", usuario);
-            return "soloprueba/pruebaComentario.jsp";
+            return "post/dashboardPost";
         } else {
             nuevoComentario.setPost(post);
             nuevoComentario.setUsuario(usuario);
             servicioComentario.saveOrUpdate(nuevoComentario);
         }
-
         return "redirect:/siFunciona";
     }
 

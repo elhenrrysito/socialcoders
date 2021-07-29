@@ -64,7 +64,7 @@ public class ComentarioController {
             nuevoComentario.setUsuario(usuario);
             servicioComentario.saveOrUpdate(nuevoComentario);
         }
-        return "redirect:/siFunciona";
+        return "redirect:/";
     }
 
     @GetMapping("/modificar/{idComentario}")

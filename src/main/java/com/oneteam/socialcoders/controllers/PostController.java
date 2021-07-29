@@ -65,8 +65,11 @@ public class PostController {
     }
 
     @GetMapping("nuevo/post")
-    public String nuevoPost(@ModelAttribute("post")Post post, Model model){
+    public String nuevoPost(@ModelAttribute("post")Post post, Model model, Principal principal){
+        String userName = principal.getName();
+        Usuario usuario = servicioUsuario.findByUsername(userName);
         model.addAttribute("method", "POST");
+        model.addAttribute("usuario", usuario);
         return "/post/nuevoPost.jsp";
     }
 
@@ -230,19 +233,24 @@ public class PostController {
 
         @GetMapping("/like/{postId}")
         public String likePost(@PathVariable("postId") Long id, Principal principal) {
+            String username = principal.getName();
+            Usuario usuarioSesion = servicioUsuario.findByUsername(username); 
             Post estePost = servicioPost.findEntityById(id);
             List<Usuario> usuariosLikeados = estePost.getReaccionesUsuarios();
-            for (Usuario usuario : usuariosLikeados) {
-                if(!usuario.getUsername().equals(principal.getName())){
-                    List<Post> postLikeados = usuario.getReaccion();
-                    postLikeados.add(estePost);
-                    usuario.setReaccion(postLikeados);
-                    servicioUsuario.saveOrUpdate(usuario);
-                    usuariosLikeados.add(usuario);
-                    estePost.setReaccionesUsuarios(usuariosLikeados);
-                    servicioPost.saveOrUpdate(estePost);
-                }
+            if(!usuariosLikeados.contains(usuarioSesion)){
+                usuariosLikeados.add(usuarioSesion);
+                estePost.setReaccionesUsuarios(usuariosLikeados);
+                servicioPost.saveOrUpdate(estePost);
             }
+            // for (Usuario usuario : usuariosLikeados) {
+            //     if(!usuario.getUsername().equals(principal.getName())){
+            //         List<Post> postLikeados = usuario.getReaccion();
+            //         postLikeados.add(estePost);
+            //         usuario.setReaccion(postLikeados);
+            //         servicioUsuario.saveOrUpdate(usuario);
+            //         usuariosLikeados.add(usuario);
+            //     }
+            // }
             return "redirect:/";
         }
         

@@ -7,6 +7,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+    
         <title>Crear Post</title>
   	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <meta charset="utf-8">
@@ -36,13 +38,42 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-	    
+	    <link rel="stylesheet" href="/css/navbar.css">
         <!-- Select  -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
         <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
 </head>
 <body>
+
+    <div class="pb-5">
+        <nav class="navegacion shadow d-flex justify-content-between">
+            <a href="/">
+                <img src="/images/logo/logo.png" alt="socialCodersLogo">
+            </a>
+            <div class="infoUsuario">
+                <c:if test="${usuario.id != null}">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="/images/iconImages/user_1.png" alt="">
+                    </a>
+                      <ul class="dropdown-menu dropdownColor" aria-labelledby="dropdownMenuButton1">
+                        <li><a href="/socialcoders/perfil/${usuario.username}">Perfil</a></li>
+                        <li><a href="/perfil/editarPerfil">Editar Perfil</a></li>
+                        <li>
+                            <form id="logoutForm" method="POST" action="/logout">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                <input type="submit" value="Logout!"/>
+                            </form>
+                        </li>
+                      </ul>
+                </c:if>
+                <c:if test="${usuario.id == null}">
+                    <a href="/login">Logeate!</a>
+                    <a href="/register">Registrate!</a>
+                </c:if>
+            </div>
+        </nav>
+    </div>
 	
         <div class="container">
 

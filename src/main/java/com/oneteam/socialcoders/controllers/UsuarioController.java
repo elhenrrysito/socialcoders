@@ -49,7 +49,7 @@ public class UsuarioController {
             result.addError(error);
             return "registrologin/register.jsp";
         }
-        
+        user.setImagen("Black_Belt_ing-game.png");
         servicioUsuario.saveWithUserRole(user);
         return "redirect:/login";
     }
@@ -64,6 +64,20 @@ public class UsuarioController {
             model.addAttribute("logoutMessage", "Has cerrado sesión exitosamente.");
         }
         return "registrologin/login.jsp";
+    }
+
+    @GetMapping("cambiar/icono")
+    public String cambiarIcono(Principal principal, Model model){
+        model.addAttribute("username", principal.getName());
+        
+        return "/usuario/cambiarIcono.jsp";
+    }
+
+    @PostMapping("cambiar/icono")
+    public String cambiarIcon(Principal principal, @RequestParam("icono")String icono){
+        Usuario usuario = servicioUsuario.findByUsername(principal.getName());
+        usuario.setImagen(icono);
+        return "redirect:/socialcoders/perfil/"+principal.getName();
     }
 
 }

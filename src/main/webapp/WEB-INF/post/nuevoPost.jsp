@@ -79,16 +79,8 @@
                             <div>
                                 <h4 class="d-inline-block">Cateogrias</h4>
                                 <select class="form-select d-inline-block col-3 " id="id_select2_example" data-placeholder="Begin typing a name to filter..." name="test" >
-                                    <option value=""></option>
-                                    <option value="trabajo" >Trabajo</option>
-                                    <option value="front" >Front End</option>
-                                    <option value="back" >Back End</option>
-                                    <option value="database" >Data Base</option>
-                                    <option value="diversion" >Diversión</option>
-                                    <option value="noticias" >Noticias</option>
                                     <option value="memes" >Memes</option>
-                                    <option value="proyectos" >Proyectos</option>
-                                    <option value="social" >Social</option>
+                                    <option value="pregunta" >Preguntas</option>
                                     
                               </select>
                             </div>        

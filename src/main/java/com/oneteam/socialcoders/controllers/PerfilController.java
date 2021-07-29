@@ -86,7 +86,7 @@ public class PerfilController {
         String username = principal.getName();
         Usuario usuarioSesion = servicioUsuario.findByUsername(username);
         model.addAttribute("usuarioSesion", usuarioSesion);
-        model.addAttribute("lenguajesNoutilizados", servicioLenguaje.lenguajesNoUtilizados(usuario));
+        model.addAttribute("lenguajesNoUtilizados", servicioLenguaje.lenguajesNoUtilizados(usuarioSesion));
 
         return "perfil/editar.jsp";
     }
@@ -104,8 +104,20 @@ public class PerfilController {
             usuarioSesion.setDescripcion(usuario.getDescripcion());
 
             if(usuario.getEmail() != null) {
-                if(servicioUsuario.emailExist(usuario.getEmail())) {
+                if(servicioUsuario.emailExist(usuario.getEmail()) && !usuarioSesion.getEmail().equals(usuario.getEmail())) {
                     FieldError error = new FieldError("email", "email", "Email " + usuario.getEmail() + " ya se encuentra registrado");
+                    result.addError(error);
+                    return "perfil/editar.jsp";
+                } else {
+                    usuarioSesion.setEmail(usuario.getEmail());
+                }
+            } 
+
+            if(usuario.getUsername() != null) {
+                if(usuario.getUsername().equals(usuarioSesion.getUsername())) {
+                    usuarioSesion.setUsername(usuario.getUsername());
+                } else if(servicioUsuario.usernameExists(usuario.getUsername())) {
+                    FieldError error = new FieldError("username", "username", "Nombre de usuario " + usuario.getUsername() + " ya se encuentra registrado");
                     result.addError(error);
                     return "perfil/editar.jsp";
                 } else {
@@ -120,12 +132,11 @@ public class PerfilController {
     }
 
     @GetMapping("/agregarLenguaje")
-    public String agregarLenguajeUsuario(@RequestParam("lenguajes") List<String> lenguajes, Principal principal, Model model) {
+    public String agregarLenguajeUsuario(@RequestParam("lenguaje") Long idLenguaje, Principal principal, Model model) {
         String username = principal.getName();
         Usuario usuarioSesion = servicioUsuario.findByUsername(username);
-        for (String str : lenguajes) {
-            if(servicioLenguaje.findByLenguaje(str) != null) {
-                Lenguaje lenguaje = servicioLenguaje.findByLenguaje(str);
+            if(servicioLenguaje.findEntityById(idLenguaje) != null) {
+                Lenguaje lenguaje = servicioLenguaje.findEntityById(idLenguaje);
                 if(usuarioSesion.getLenguajesUsuario().contains(lenguaje)) {
                     return "redirect:/socialcoders/perfil/" + usuarioSesion.getUsername();
                 } else {
@@ -133,9 +144,8 @@ public class PerfilController {
                     lenguajesUsuario.add(lenguaje);
                 }
             }
-        }
         servicioUsuario.saveOrUpdate(usuarioSesion);
-        return "redirect:/editarPerfil";
+        return "redirect:/perfil/editarPerfil";
     }
     
 

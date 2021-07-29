@@ -56,8 +56,8 @@
             <div class="col-12 border shadow rounded-3 fondo">
                 <div class="row mt-4">
                     <div class="col rounded-circle  text-center">
-                        <img src="{usuario.imagen}" alt="foto" id="fotoperfil">
-                        <h2><c:out value="${usuario.username}"/></h2>
+                        <img src="{usuarioPerfil.imagen}" alt="foto" id="fotoperfil">
+                        <h2><c:out value="${usuarioPerfil.username}"/></h2>
                     </div>
                 </div>
                 <div class="row mx-2">
@@ -74,10 +74,10 @@
                                     <img src="/images/iconImages/followers.png" alt="follow" width="32" height="32">
                                 </a>
                            </c:if> 
-                            <span class="mx-5">Seguidores: <c:out value="${usuario.seguidores.size()}"/></span>
-                            <span class="mx-2">Seguidos <c:out value="${usuario.seguidos.size()}"/></span>
+                            <span class="mx-5">Seguidores: <c:out value="${usuarioPerfil.seguidores.size()}"/></span>
+                            <span class="mx-2">Seguidos <c:out value="${usuarioPerfil.seguidos.size()}"/></span>
                         </div>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit dignissimos itaque quis, soluta atque dicta necessitatibus ab? Dolore rerum accusamus ea aperiam minus, quisquam perferendis voluptatibus veritatis, nemo minima numquam.</p>
+                        <p><c:out value="${usuarioPerfil.descripcion}"/></p>
                     </div>
                 </div>
             </div>

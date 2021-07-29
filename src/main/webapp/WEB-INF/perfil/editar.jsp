@@ -14,24 +14,51 @@
 <body>
     <div class="container">
         <div class="row">
+            <h1>Editar Perfil</h1>
             <div class="col">
+                <form:errors path="usuario.*"/>
                 <form:form action="" method="post" modelAttribute="usuario">
-                    <form:label>Nombre: </form:label>
+                    <form:label path="nombre" cssClass="form-label">Nombre: </form:label>
                     <form:input path="nombre" value="${usuarioSesion.nombre}" cssClass="form-control"/>
                     <form:errors path="nombre"/>
 
-                    <form:label>Apellido: </form:label>
+                    <form:label path="apellido" cssClass="form-label">Apellido: </form:label>
                     <form:input path="apellido" value="${usuarioSesion.apellido}" cssClass="form-control"/>
                     <form:errors path="apellido"/>
 
 
-                    <form:label>Email: </form:label>
+                    <form:label path="email" cssClass="form-label">Email: </form:label>
                     <form:input path="email" value="${usuarioSesion.email}" cssClass="form-control"/>
                     <form:errors path="email"/>
 
-                    <form:textarea path="descripcion">${usuarioSesion.descripcion}</form:textarea>
+
+                    <form:label path="username" cssClass="form-label">Username: </form:label>
+                    <form:input path="username" value="${usuarioSesion.username}" cssClass="form-control"/>
+                    <form:errors path="username"/>
+
+                    <form:textarea path="descripcion" value="${usuarioSesion.descripcion}"></form:textarea>
+
+                    <input type="submit" value="Enviar">
 
                 </form:form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table>
+                        <c:forEach var="lenguaje" items="${lenguajesNoUtilizados}">
+                        <thead>
+                            <th>Lenguaje</th>
+                            <th>Añadir</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><c:out value="${lenguaje.lenguaje}"/></td>
+                                <td><a href="/perfil/agregarLenguaje?lenguaje=${lenguaje.lenguaje}">Añadir</a></td>
+                            </tr>
+                        </tbody>
+                    </c:forEach>
+                    </table>
             </div>
         </div>
 

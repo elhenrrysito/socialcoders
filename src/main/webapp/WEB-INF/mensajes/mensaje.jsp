@@ -60,18 +60,8 @@
                 </form:form>
             
             </div>
-            <div class="mensajes">
+            <div id="chat" class="mensajes">
                 
-                <c:forEach items="${mensajes}" var="mensaje">
-                    <textarea name="" id="" cols="100" rows="50">
-<c:out value="${mensaje.message}" /> <c:out value="${mensaje.remitente.username}" />
-<c:out value="${mensaje.message}" /> <c:out value="${mensaje.destinatario.username}" />
-
-                    </textarea>
-
-
-                </c:forEach>
-
             </div>
 	    </div>	
         

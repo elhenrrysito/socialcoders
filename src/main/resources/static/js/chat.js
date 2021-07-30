@@ -1,30 +1,17 @@
 let url = document.getElementById("url");
 var autoScroll = document.getElementById('chat');
 
-$(document).ready(async function () {
+$(document).ready(function () {
     $("#submitMensaje").click(function () {
-        $.ajax({
-            type: "post",
-            data: $("#formMensaje").serialize(),
-            url: $(url).val(),
-            dataType: "JSON"
-        })
-        .done(function(respuesta){
-            cargarMensajes(respuesta);
-            let inputMensaje = document.getElementById("inputMensaje").value = " ";
-            autoScroll.scrollTop = autoScroll.scrollHeight;
-            console.log(respuesta);
-        })
-        .fail(function(respuesta){
-            console.log("Error ",  respuesta);
-        })
+       leerMensajes();
     })
+
 });
+setInterval(leerMensajes, 1000);
 
 function cargarMensajes(respuesta) {
     let p = document.createElement("p");
     let d = document.getElementById("chat");
-    d.innerHTML = "";
     let mensajes = respuesta["mensajes"];
 
     for(let mensaje of mensajes) {
@@ -36,4 +23,24 @@ function cargarMensajes(respuesta) {
         }
     }
 
+}
+function leerMensajes(){
+    console.log("leerMensaje");
+    $.ajax({
+        type: "post",
+        data: $("#formMensaje").serialize(),
+        url: $(url).val(),
+        dataType: "JSON"
+    })
+    .done(function(respuesta){
+        cargarMensajes(respuesta);
+        document.getElementById("inputMensaje").value = " ";
+        autoScroll.scrollTop = autoScroll.scrollHeight;
+
+        console.log(respuesta);
+
+    })
+    .fail(function(respuesta){
+        console.log("Error ",  respuesta);
+    })
 }

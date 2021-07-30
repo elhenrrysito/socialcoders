@@ -51,7 +51,10 @@
                 <div class="row mt-4">
                     <a href="/mensajes/${usuarioPerfil.username}" class=""><img src="/images/iconImages/message.png" alt="message"></a>
                     <div class="col rounded-circle  text-center">
-                        <img src="/imagenes/iconosUser/${usuarioPerfil.imagen}" alt="foto" id="fotoperfil">
+                        <a href="/cambiar/icono">
+                            <img class="imagen" src="/imagenes/iconosUser/${usuarioPerfil.imagen}" alt="foto" id="fotoperfil">
+
+                        </a>
                         <h2><c:out value="${usuarioPerfil.username}"/></h2>
                     </div>
                 </div>

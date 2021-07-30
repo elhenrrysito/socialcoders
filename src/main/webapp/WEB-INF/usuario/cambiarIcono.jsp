@@ -53,9 +53,9 @@
                         <div class="row text-center mt-3">
                             <h3>Iconos</h3>
                             <div class="col ml-1 lenguaje d-inline-block ">
-                                <div class="custom-control custom-radio image-checkbox">
-                                    <input type="radio" class="custom-control-input" id="ck1d" name="iconon" value="1.jpg">
-                                    <label class="custom-control-label" for="ck1d">
+                                <div class="custom-control custom-radio image-checkbox ">
+                                    <input type="radio" class="custom-control-input " id="ck1d" name="iconon" value="1.jpg">
+                                    <label class="custom-control-label " for="ck1d">
                                         <img src="/imagenes/iconosUser/1.jpg" alt="#" width="80" height="80" class="img-fluid">
                                     </label>
                                 </div>
@@ -209,6 +209,14 @@
                                     <input type="radio" class="custom-control-input" id="ck20d" name="iconon" value="20.jpg">
                                     <label class="custom-control-label aa" for="ck20d">
                                         <img src="/imagenes/iconosUser/20.jpg" alt="#" width="80" height="80" class="img-fluid">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col ml-1 lenguaje d-inline-block">
+                                <div class="custom-control custom-radio image-checkbox">
+                                    <input type="radio" class="custom-control-input" id="ck21d" name="iconon" value="pinguino.gif">
+                                    <label class="custom-control-label aa" for="ck21d">
+                                        <img src="/imagenes/iconosUser/pinguino.gif" alt="#" width="80" height="80" class="img-fluid">
                                     </label>
                                 </div>
                             </div>

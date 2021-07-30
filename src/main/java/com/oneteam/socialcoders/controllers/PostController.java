@@ -87,8 +87,8 @@ public class PostController {
         
         //AGREGAR IMAGEN OPCIONAL
         if(imagen != null){
-            Path directorioImagenes = Paths.get("src//main//resources//static/imagenes");
-            String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath() + "/" +principal.getName();
+            Path directorioImagenes = Paths.get("src//main//resources//static//imagenes/post");
+            String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath() + "/" + post.getTitulo();
             File directorio = new File(rutaAbsoluta);
             if(directorio.exists() == false){
                 directorio.mkdir();
@@ -104,6 +104,7 @@ public class PostController {
                 e.printStackTrace();
             }
         }
+        
         List<String> errores = new ArrayList<>();
         //AGREGAR LENGUAJES
             Lenguaje lenguajeP = servicioLenguaje.findByLenguajee(lenguaje);
@@ -147,6 +148,9 @@ public class PostController {
                         tags.add(servicioTag.createTag(items.get(i)));
                     }
                 }
+                //Set Creador
+                Usuario usuario = servicioUsuario.findByUsername(principal.getName());
+                post.setCreador(usuario);
                 post.setTags(tags);
                 servicioPost.saveOrUpdate(post);
                 return "redirect:/post/" + post.getId();
@@ -154,6 +158,9 @@ public class PostController {
         }
         
         else{
+            //Set Creador
+            Usuario usuario = servicioUsuario.findByUsername(principal.getName());
+            post.setCreador(usuario);
             servicioPost.saveOrUpdate(post);
             return "redirect:/post/" + post.getId();
         }

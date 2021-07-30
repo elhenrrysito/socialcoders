@@ -44,6 +44,7 @@ public class MessageController {
         model.addAttribute("destinatario", destinatario);
         model.addAttribute("emisor", emisor);
         model.addAttribute("chat", chat);
+        model.addAttribute("usuario", emisor);
 
         return "soloprueba/mensajes.jsp";
     }

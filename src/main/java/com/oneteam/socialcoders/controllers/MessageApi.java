@@ -16,6 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,16 +36,20 @@ public class MessageApi {
 
 
     @PostMapping("/{destinatarioUsername}")
-    public String enviarMensaje(@RequestParam("inputMensaje") String mensaje,
+    public String enviarMensaje(@RequestParam(value = "inputMensaje", required = false) String mensaje ,
                     @PathVariable("destinatarioUsername") String destinatarioUsername, Principal principal, Model model) {
             String usernameEmisor = principal.getName();
             Usuario remitente = servicioUsuario.findByUsername(usernameEmisor);
             Usuario destinatario = servicioUsuario.findByUsername(destinatarioUsername);
-            Mensaje nuevoMensaje = new Mensaje();
-            nuevoMensaje.setMessage(mensaje);
-            nuevoMensaje.setDestinatario(destinatario);
-            nuevoMensaje.setRemitente(remitente);
-            servicioMensaje.saveOrUpdate(nuevoMensaje);
+            System.out.println("Aquiii");
+            System.out.println(mensaje.length());
+            if(!mensaje.trim().equals("")){
+                Mensaje nuevoMensaje = new Mensaje();
+                nuevoMensaje.setMessage(mensaje);
+                nuevoMensaje.setDestinatario(destinatario);
+                nuevoMensaje.setRemitente(remitente);
+                servicioMensaje.saveOrUpdate(nuevoMensaje);
+            }
             JSONObject json = parseJSON(remitente, destinatario);
             String url = "/mensajes/" + usernameEmisor;
             model.addAttribute("url", url);

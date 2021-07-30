@@ -18,7 +18,7 @@
    <div class="pb-5">
             <nav class="navegacion shadow d-flex justify-content-between">
                 <a href="/">
-                    <img src="/images/logo/logo.png" alt="socialCodersLogo">
+                    <img style="width: 50px;" src="/images/logo/logo.png" alt="socialCodersLogo">
                 </a>
                 <div class="infoUsuario">
                     <c:if test="${usuarioSesion.id != null}">
@@ -51,7 +51,7 @@
                 <div class="row mt-4">
                     <a href="/mensajes/${usuarioPerfil.username}" class=""><img src="/images/iconImages/message.png" alt="message"></a>
                     <div class="col rounded-circle  text-center">
-                        <img src="/images/defaultprofile.png" alt="foto" id="fotoperfil">
+                        <img src="/imagenes/iconosUser/${usuarioPerfil.imagen}" alt="foto" id="fotoperfil">
                         <h2><c:out value="${usuarioPerfil.username}"/></h2>
                     </div>
                 </div>

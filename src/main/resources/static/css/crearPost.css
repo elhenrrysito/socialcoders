@@ -31,7 +31,7 @@ label{
     width: 600px;
 }
 .boton{
-    background-color: #0dceda;
+    background-color: red;
 }
 .aaa{
     background-color: #E8F0FE;
@@ -43,7 +43,8 @@ textarea{
 }
 .lenguaje{
     background-color: rgba(7, 172, 198, 0.463);
-    height: 80px;
+    height: 100px;
+    margin-bottom: 4px;
 }
 textarea {
   background: url(/imagenes/lenguajes/coders.png) center center no-repeat; /* This ruins default border */

@@ -38,10 +38,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
             .logout()
                 .permitAll();
+                
+                //Problema forbidden de token Quita seguridad Solo debugeo
+                // http.csrf().disable();
     } 
 // 1
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
     }     
+
 }

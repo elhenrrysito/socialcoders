@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-        <title>Crear Post</title>
+        <title>Cambiar icono</title>
   	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -49,45 +49,172 @@
             <div class="form border-bottom-0 mt-5 post rounded shadow-lg">
                     <h2 class="text-center">Cambia tu icono Siempre cuando quieras :)</h2>
                     
-                    <p class="fs-3 text-warning"><form:errors path="post.*"/></p>
-
                     <form class="formRelleno" action="" method="POST" enctype="multipart/form-data">
                         <div class="row text-center mt-3">
                             <h3>Iconos</h3>
                             <div class="col ml-1 lenguaje d-inline-block ">
                                 <div class="custom-control custom-radio image-checkbox">
-                                    <input type="radio" class="custom-control-input" id="ck1d" name="icono" value="javaScript">
+                                    <input type="radio" class="custom-control-input" id="ck1d" name="iconon" value="1.jpg">
                                     <label class="custom-control-label" for="ck1d">
-                                        <img src="/imagenes/lenguajes/icono1.jpg" alt="#" width="80" height="80" class="img-fluid">
+                                        <img src="/imagenes/iconosUser/1.jpg" alt="#" width="80" height="80" class="img-fluid">
                                     </label>
                                 </div>
                             </div>
                             <div class="col ml-1 lenguaje d-inline-block">
                                 <div class="custom-control custom-radio image-checkbox">
-                                    <input type="radio" class="custom-control-input" id="ck2d" name="icono" value="python">
+                                    <input type="radio" class="custom-control-input" id="ck2d" name="iconon" value="2.png">
                                     <label class="custom-control-label" for="ck2d">
-                                        <img src="/imagenes/lenguajes/icono2.png" alt="#" width="80" height="80" class="img-fluid">
+                                        <img src="/imagenes/iconosUser/2.png" alt="#" width="80" height="80" class="img-fluid">
                                     </label>
                                 </div>
                             </div>
                             <div class="col ml-1 lenguaje d-inline-block">
                                 <div class="custom-control custom-radio image-checkbox">
-                                    <input type="radio" class="custom-control-input" id="ck3d" name="icono" value="java">
+                                    <input type="radio" class="custom-control-input" id="ck3d" name="iconon" value="3.png">
                                     <label class="custom-control-label aa" for="ck3d">
-                                        <img src="/imagenes/lenguajes/icono3.png" alt="#" width="80" height="80" class="img-fluid">
+                                        <img src="/imagenes/iconosUser/3.png" alt="#" width="80" height="80" class="img-fluid">
                                     </label>
                                 </div>
                             </div>
                             <div class="col ml-1 lenguaje d-inline-block">
                                 <div class="custom-control custom-radio image-checkbox">
-                                    <input type="radio" class="custom-control-input" id="ck4d" name="icono" value="c++">
+                                    <input type="radio" class="custom-control-input" id="ck4d" name="iconon" value="4.png">
                                     <label class="custom-control-label aa" for="ck4d">
-                                        <img src="/imagenes/lenguajes/icono4.jpg" alt="#" width="80" height="80" class="img-fluid">
+                                        <img src="/imagenes/iconosUser/4.png" alt="#" width="80" height="80" class="img-fluid">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col ml-1 lenguaje d-inline-block">
+                                <div class="custom-control custom-radio image-checkbox">
+                                    <input type="radio" class="custom-control-input" id="ck5d" name="iconon" value="5.png">
+                                    <label class="custom-control-label aa" for="ck5d">
+                                        <img src="/imagenes/iconosUser/5.png" alt="#" width="80" height="80" class="img-fluid">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col ml-1 lenguaje d-inline-block">
+                                <div class="custom-control custom-radio image-checkbox">
+                                    <input type="radio" class="custom-control-input" id="ck6d" name="iconon" value="6.jpg">
+                                    <label class="custom-control-label aa" for="ck6d">
+                                        <img src="/imagenes/iconosUser/6.jpg" alt="#" width="80" height="80" class="img-fluid">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col ml-1 lenguaje d-inline-block">
+                                <div class="custom-control custom-radio image-checkbox">
+                                    <input type="radio" class="custom-control-input" id="ck7d" name="iconon" value="7.png">
+                                    <label class="custom-control-label aa" for="ck7d">
+                                        <img src="/imagenes/iconosUser/7.png" alt="#" width="80" height="80" class="img-fluid">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col ml-1 lenguaje d-inline-block">
+                                <div class="custom-control custom-radio image-checkbox">
+                                    <input type="radio" class="custom-control-input" id="ck8d" name="iconon" value="8.jpg">
+                                    <label class="custom-control-label aa" for="ck8d">
+                                        <img src="/imagenes/iconosUser/8.jpg" alt="#" width="80" height="80" class="img-fluid">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col ml-1 lenguaje d-inline-block">
+                                <div class="custom-control custom-radio image-checkbox">
+                                    <input type="radio" class="custom-control-input" id="ck9d" name="iconon" value="9.png">
+                                    <label class="custom-control-label aa" for="ck9d">
+                                        <img src="/imagenes/iconosUser/9.png" alt="#" width="80" height="80" class="img-fluid">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col ml-1 lenguaje d-inline-block">
+                                <div class="custom-control custom-radio image-checkbox">
+                                    <input type="radio" class="custom-control-input" id="ck10d" name="iconon" value="10.jpg">
+                                    <label class="custom-control-label aa" for="ck10d">
+                                        <img src="/imagenes/iconosUser/10.jpg" alt="#" width="80" height="80" class="img-fluid">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col ml-1 lenguaje d-inline-block">
+                                <div class="custom-control custom-radio image-checkbox">
+                                    <input type="radio" class="custom-control-input" id="ck11d" name="iconon" value="11.jpg">
+                                    <label class="custom-control-label aa" for="ck11d">
+                                        <img src="/imagenes/iconosUser/11.jpg" alt="#" width="80" height="80" class="img-fluid">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col ml-1 lenguaje d-inline-block">
+                                <div class="custom-control custom-radio image-checkbox">
+                                    <input type="radio" class="custom-control-input" id="ck12d" name="iconon" value="12.png">
+                                    <label class="custom-control-label aa" for="ck12d">
+                                        <img src="/imagenes/iconosUser/12.png" alt="#" width="80" height="80" class="img-fluid">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col ml-1 lenguaje d-inline-block">
+                                <div class="custom-control custom-radio image-checkbox">
+                                    <input type="radio" class="custom-control-input" id="ck13d" name="iconon" value="13.png">
+                                    <label class="custom-control-label aa" for="ck13d">
+                                        <img src="/imagenes/iconosUser/13.png" alt="#" width="80" height="80" class="img-fluid">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col ml-1 lenguaje d-inline-block">
+                                <div class="custom-control custom-radio image-checkbox">
+                                    <input type="radio" class="custom-control-input" id="ck14d" name="iconon" value="14.png">
+                                    <label class="custom-control-label aa" for="ck14d">
+                                        <img src="/imagenes/iconosUser/14.png" alt="#" width="80" height="80" class="img-fluid">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col ml-1 lenguaje d-inline-block">
+                                <div class="custom-control custom-radio image-checkbox">
+                                    <input type="radio" class="custom-control-input" id="ck15d" name="iconon" value="15.jpg">
+                                    <label class="custom-control-label aa" for="ck15d">
+                                        <img src="/imagenes/iconosUser/15.jpg" alt="#" width="80" height="80" class="img-fluid">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col ml-1 lenguaje d-inline-block">
+                                <div class="custom-control custom-radio image-checkbox">
+                                    <input type="radio" class="custom-control-input" id="ck16d" name="iconon" value="16.png">
+                                    <label class="custom-control-label aa" for="ck16d">
+                                        <img src="/imagenes/iconosUser/16.png" alt="#" width="80" height="80" class="img-fluid">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col ml-1 lenguaje d-inline-block">
+                                <div class="custom-control custom-radio image-checkbox">
+                                    <input type="radio" class="custom-control-input" id="ck17d" name="iconon" value="17.png">
+                                    <label class="custom-control-label aa" for="ck17d">
+                                        <img src="/imagenes/iconosUser/17.png" alt="#" width="80" height="80" class="img-fluid">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col ml-1 lenguaje d-inline-block">
+                                <div class="custom-control custom-radio image-checkbox">
+                                    <input type="radio" class="custom-control-input" id="ck18d" name="iconon" value="18.jpg">
+                                    <label class="custom-control-label aa" for="ck18d">
+                                        <img src="/imagenes/iconosUser/18.jpg" alt="#" width="80" height="80" class="img-fluid">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col ml-1 lenguaje d-inline-block">
+                                <div class="custom-control custom-radio image-checkbox">
+                                    <input type="radio" class="custom-control-input" id="ck19d" name="iconon" value="19.gif">
+                                    <label class="custom-control-label aa" for="ck19d">
+                                        <img src="/imagenes/iconosUser/19.gif" alt="#" width="80" height="80" class="img-fluid">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col ml-1 lenguaje d-inline-block">
+                                <div class="custom-control custom-radio image-checkbox">
+                                    <input type="radio" class="custom-control-input" id="ck20d" name="iconon" value="20.jpg">
+                                    <label class="custom-control-label aa" for="ck20d">
+                                        <img src="/imagenes/iconosUser/20.jpg" alt="#" width="80" height="80" class="img-fluid">
                                     </label>
                                 </div>
                             </div>
                         </div>
                         <p class="mt-5 text-center">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         
                             <input  class="btn btn-primary" type="submit" value="Cambiar"/>
                         </p>

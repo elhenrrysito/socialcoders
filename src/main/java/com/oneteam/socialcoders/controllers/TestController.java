@@ -96,12 +96,13 @@ public class TestController {
         if(respuesta3.equals(respuestas3.get("correcta3"))){
             count++;
         }
+        System.out.println(count);
         
         if(count < 2){
 
             return "redirect:/java?error="+(3-count);
         } else {
-            return "redirect:/registro";
+            return "redirect:/";
         }
        
  }
@@ -190,7 +191,7 @@ public class TestController {
 
             return "redirect:/javascript?error="+(3-count);
         } else {
-            return "redirect:/registro";
+            return "redirect:/";
         }
        
     }

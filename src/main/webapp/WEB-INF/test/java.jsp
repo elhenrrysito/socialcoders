@@ -32,7 +32,8 @@
 
         </div>
     </c:forEach>
-    <input type="submit" value="siguiente">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    <input type="submit" class="boton1"  value="siguiente">
     </form>
 </div>
 <script  type="text/javascript" src="/js/alert.js"></script>

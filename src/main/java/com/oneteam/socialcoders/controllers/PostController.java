@@ -165,14 +165,14 @@ public class PostController {
     //VER UN POST POR ID 2.READ 
     @GetMapping("post/{id}")
     public String mostrarPost
-    (@PathVariable("id")Long id,
+    (@ModelAttribute("comentario") Comentario comentario, @PathVariable("id")Long id, 
     Model model, HttpSession session){
         Post post = servicioPost.findEntityById(id);
         model.addAttribute("post", post);
         //PENDIENTE VERIFICAR NOMBRE DE ATRIBUTO DEL ID DEL USUARIO 
         // Usuario usuario = servicioUsuario.findEntityById((Long)session.getAttribute("usuarioId"));
         // model.addAttribute("usuario", usuario);
-        return "/post/post.jsp";
+        return "/post/mostrarPost.jsp";
 
     }
 

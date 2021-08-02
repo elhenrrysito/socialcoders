@@ -8,11 +8,11 @@ body {
     background: linear-gradient(90deg, rgba(37,68,88,1) 44%, rgb(46, 91, 102) 98%);
     color: white;
 }
-
 .post, .comentario{
     background-color: #18191dd3;
     border: solid 1px;
     border-color: aliceblue;
+    color: aliceblue;
     margin: 0 auto;
     width: 700px;
     padding: 25px;
@@ -39,6 +39,7 @@ img{
     display: inline-block;
     text-align: center;
     font-weight: bold;
+    color: aliceblue;
    
 }
 
@@ -67,34 +68,10 @@ img{
     width: 32px;
     border: none;
 }
-
 .comentarDiv{
     display: flex;
     text-align: end;
 }
-
-::-webkit-scrollbar {
-    background: rgb(78, 78, 78);
-    border-radius: 10px;
-    width: 15px;
-}
-
-::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey; 
-    border-radius: 10px;
-}
-
-  /* Handle */
-::-webkit-scrollbar-thumb {
-    background: black;
-    border: solid white 1px; 
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 0, 0, 0.719); 
-}
-
 .comentarioOverflow{
     height: 200px;
     overflow: auto;
@@ -109,55 +86,4 @@ ul{
 li{
     list-style-type: none;
     margin: 4px;
-}
-
-.navegador{
-    position: fixed;
-    background-color: #212529;
-    border: solid 1px;
-    border-color: aliceblue;
-    margin-right: -55px;
-    margin-left: 55px;
-    padding: 25px;
-}
-
-.navegador h2{
-    text-align: center;
-}
-
-.navegacion{
-    position: fixed;
-    display: flex;
-    background-color: #212529;
-    height: 50px;
-    width: 100%;
-}
-
-.navegacion img{
-    margin-left: 10px;
-    width: 200px;
-    height: 50px;
-}
-
-.infoUsuario{
-    display: flex;
-    padding: 10px;
-}
-
-.dropdownColor{
-    color: white;
-    background-color: #212529;
-    text-align: center;
-    margin-top: 20px;
-    padding: 20px;
-}
-
-a{
-    text-decoration: none;
-}
-
-.infoUsuario img{
-    width: 25px;
-    height: 25px;
-    margin-bottom: 5px;
 }

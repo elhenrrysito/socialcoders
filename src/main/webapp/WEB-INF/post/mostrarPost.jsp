@@ -39,43 +39,60 @@
     <title>Post</title>
 </head>
 <body>
-    
+    <!-- ------NAV------ -->
+    <div class="pb-5">
+        <nav class="navegacion shadow d-flex justify-content-between">
+            <a href="/">
+                <img src="/images/logo/logo.png" alt="socialCodersLogo">
+            </a>
+        </nav>
+    </div>
+
+    <!-- ------post-------- -->
+
+    <!-- -----------foto y nombre de perfil-------------- -->
         <div class="post mt-5 rounded shadow-lg">
             <div class="row">
                 <div class="col-2 usuario">
                     <a href="/socialcoders/perfil/${p.creador.username}">
                         <img src="/images/Black_Belt_in-game.png" alt="imagenUsuario">
                     </a>
-                   
                 </div>
+
+                <!-- ----------titulo del post----------- -->
                 <div class="col contenido mt-4">
-                    <h4><c:out value="${post.titulo}"/></h4>
+                 <h4><c:out value="${post.titulo}"/></h4>
                 </div>
+                <!-- ---------lenguaje--------- -->
                 <div class="col-2"> 
                     <a href="" class="lenguaje">
                         <img src='/images/lenguajesImages/${p.lenguajePost.lenguaje}.png' alt="lenguaje">
                     </a>
                 </div>
             </div>
+            <!-- ----------descripcion------------ -->
             <div class="row">
                 <div class="col mt-4 pb-3">
                     <c:out value="${post.cuerpo}"/>
                 </div>
             </div>
+
+            <!-- -----------likes-------------- -->
             <div class="row border-bottom border-light pb-3">
                 <div class="col">
                 </div>
                 <div class="col-1 mt-2 ">
                     <c:if test="${!p.reaccionesUsuarios.contains(usuario)}">
-                        <a href="/like/${p.id}"><img src="/images/iconImages/favouritewhite.png" alt="like"></a>
+                        <a href="/like/${post.id}"><img src="/images/iconImages/favouritewhite.png" alt="like"></a>
                     </c:if>
                     <c:if test="${p.reaccionesUsuarios.contains(usuario)}">
                         <a href=""><img src="/images/iconImages/likeado.png" alt="like"></a>
                     </c:if>
                 </div>
             </div>
+            <!-- ----------comentarios----------- -->
             <div class="mt-4 comentarioOverflow">
-                <c:forEach items="${p.listaComentarios}" var="c"> 
+                <c:forEach items="${post.listaComentarios}" var="c"> 
                     <div class="col-12 mt-3 border-bottom border-light px-3 pe-3">
                         <img src="/images/Black_Belt_in-game.png" alt="imagenUsuario">
                         <a href="/socialcoders/perfil/${c.usuario.username}" class="nombreUsuarioComentario">
@@ -101,8 +118,9 @@
                     </table>
                 </form:form>
             </div>
+          
         </div>
-    
+
     
 </body>
 </html>

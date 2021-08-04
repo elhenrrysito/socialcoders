@@ -67,23 +67,15 @@ img{
     height: 32px;
     width: 32px;
     border: none;
+    margin-left: 10px;
 }
 .comentarDiv{
     display: flex;
     text-align: end;
+    margin-left: 10px;
 }
 .comentarioOverflow{
     height: 200px;
     overflow: auto;
 }
 
-ul{
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-li{
-    list-style-type: none;
-    margin: 4px;
-}

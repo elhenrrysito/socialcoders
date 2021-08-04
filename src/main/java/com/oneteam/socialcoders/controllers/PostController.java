@@ -177,8 +177,8 @@ public class PostController {
         Post post = servicioPost.findEntityById(id);
         model.addAttribute("post", post);
         //PENDIENTE VERIFICAR NOMBRE DE ATRIBUTO DEL ID DEL USUARIO 
-        // Usuario usuario = servicioUsuario.findEntityById((Long)session.getAttribute("usuarioId"));
-        // model.addAttribute("usuario", usuario);
+        // Usuario usuarios = servicioUsuario.findEntityById((Long)session.getAttribute("usuarioId"));
+        // model.addAttribute("usuarios", usuarios);
         return "/post/mostrarPost.jsp";
 
     }
@@ -248,13 +248,12 @@ public class PostController {
                 usuariosLikeados.add(usuarioSesion);
                 estePost.setReaccionesUsuarios(usuariosLikeados);
                 servicioPost.saveOrUpdate(estePost);
-            }
+            } 
             // for (Usuario usuario : usuariosLikeados) {
             //     if(!usuario.getUsername().equals(principal.getName())){
             //         List<Post> postLikeados = usuario.getReaccion();
             //         postLikeados.add(estePost);
-            //         usuario.setReaccion(postLikeados);
-            //         servicioUsuario.saveOrUpdate(usuario);
+            //         usuario.setReaccion(postLikeados);S
             //         usuariosLikeados.add(usuario);
             //     }
             // }

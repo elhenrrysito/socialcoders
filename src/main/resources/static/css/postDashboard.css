@@ -161,3 +161,24 @@ a{
     height: 25px;
     margin-bottom: 5px;
 }
+
+.linksito{
+    background-color: rgb(33 37 41);
+    border: none;
+    color: #0f61d8;
+}
+
+.linksito:hover{
+    color: #0f61d8;
+}
+
+.imagenPost{
+    background-image: url(/images/iconImages/picture.png);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: rgba(0, 255, 255, 0);
+    height: 32px;
+    width: 32px;
+    border: none;
+}
+

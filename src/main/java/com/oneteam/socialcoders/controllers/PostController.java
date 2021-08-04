@@ -87,8 +87,8 @@ public class PostController {
         
         //AGREGAR IMAGEN OPCIONAL
         if(imagen != null){
-            Path directorioImagenes = Paths.get("src//main//resources//static/imagenes");
-            String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath() + "/" +principal.getName();
+            Path directorioImagenes = Paths.get("src//main//resources//static//imagenes/post");
+            String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath() + "/" + post.getTitulo();
             File directorio = new File(rutaAbsoluta);
             if(directorio.exists() == false){
                 directorio.mkdir();
@@ -104,6 +104,7 @@ public class PostController {
                 e.printStackTrace();
             }
         }
+        
         List<String> errores = new ArrayList<>();
         //AGREGAR LENGUAJES
             Lenguaje lenguajeP = servicioLenguaje.findByLenguaje(lenguaje);
@@ -147,6 +148,9 @@ public class PostController {
                         tags.add(servicioTag.createTag(items.get(i)));
                     }
                 }
+                //Set Creador
+                Usuario usuario = servicioUsuario.findByUsername(principal.getName());
+                post.setCreador(usuario);
                 post.setTags(tags);
                 servicioPost.saveOrUpdate(post);
                 return "redirect:/post/" + post.getId();
@@ -154,6 +158,9 @@ public class PostController {
         }
         
         else{
+            //Set Creador
+            Usuario usuario = servicioUsuario.findByUsername(principal.getName());
+            post.setCreador(usuario);
             servicioPost.saveOrUpdate(post);
             return "redirect:/post/" + post.getId();
         }
@@ -165,14 +172,14 @@ public class PostController {
     //VER UN POST POR ID 2.READ 
     @GetMapping("post/{id}")
     public String mostrarPost
-    (@PathVariable("id")Long id,
+    (@ModelAttribute("comentario") Comentario comentario, @PathVariable("id")Long id, 
     Model model, HttpSession session){
         Post post = servicioPost.findEntityById(id);
         model.addAttribute("post", post);
         //PENDIENTE VERIFICAR NOMBRE DE ATRIBUTO DEL ID DEL USUARIO 
         // Usuario usuario = servicioUsuario.findEntityById((Long)session.getAttribute("usuarioId"));
         // model.addAttribute("usuario", usuario);
-        return "/post/post.jsp";
+        return "/post/mostrarPost.jsp";
 
     }
 

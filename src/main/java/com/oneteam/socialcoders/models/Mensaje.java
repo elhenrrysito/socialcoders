@@ -18,9 +18,8 @@ import lombok.Setter;
 @Getter @Setter @NoArgsConstructor
 public class Mensaje extends ModeloBase {
 
-    @NotBlank
-    @NotNull
-    @Size(min = 1, message = "Mensaje debe tener más de 1 caracter")
+    
+    @Size(min = 0, message = "Mensaje debe tener más de 1 caracter")
     private String message;
 
     // relaciones

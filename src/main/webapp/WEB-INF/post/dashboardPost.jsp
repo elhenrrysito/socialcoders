@@ -78,7 +78,7 @@
                     <div class="row">
                         <div class="col-2 usuario">
                             <a href="/socialcoders/perfil/${p.creador.username}">
-                                <img src="/images/Black_Belt_in-game.png" alt="imagenUsuario">
+                                <img src="/imagenes/iconosUser/${p.creador.imagen}" alt="imagenUsuario">
                             </a>
                             <a href="/socialcoders/perfil/${p.creador.username}" class="nombreUsuario">
                                 <c:out value="${p.creador.username}"/>

@@ -32,12 +32,14 @@ img{
     height: 75px;
     border: solid 1px rgb(139, 139, 139);
     border-radius: 50px;
+    
 }
 
 .titulo, .usuario, .nombre{
     display: inline-block;
     text-align: center;
     font-weight: bold;
+   
 }
 
 .lenguaje, .nombreUsuario{
@@ -53,6 +55,7 @@ img{
 
 .modalComentario{
     background-color: black;
+  
 }
 
 .comentar{
@@ -144,6 +147,9 @@ li{
 .dropdownColor{
     color: white;
     background-color: #212529;
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
 }
 
 a{
@@ -175,3 +181,4 @@ a{
     width: 32px;
     border: none;
 }
+

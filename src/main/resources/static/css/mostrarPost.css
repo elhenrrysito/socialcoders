@@ -1,0 +1,89 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: rgb(37,68,88);
+    background: linear-gradient(90deg, rgba(37,68,88,1) 44%, rgb(46, 91, 102) 98%);
+    color: white;
+}
+.post, .comentario{
+    background-color: #18191dd3;
+    border: solid 1px;
+    border-color: aliceblue;
+    color: aliceblue;
+    margin: 0 auto;
+    width: 700px;
+    padding: 25px;
+}
+
+img{
+    height: 25px;
+}
+
+.lenguaje img{
+    height: 64px;
+    width: 6;
+}
+
+.usuario img{
+    width: 75px;
+    height: 75px;
+    border: solid 1px rgb(139, 139, 139);
+    border-radius: 50px;
+    
+}
+
+.titulo, .usuario, .nombre{
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    color: aliceblue;
+   
+}
+
+.lenguaje, .nombreUsuario{
+    text-decoration: none;
+    border-radius: 25px;
+    padding: 4px;
+}
+
+
+.nombreUsuarioComentario{
+    text-decoration: none;
+}
+
+.modalComentario{
+    background-color: black;
+  
+}
+
+.comentar{
+    background-image: url(/images/iconImages/comentar.png);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: rgba(0, 255, 255, 0);
+    height: 32px;
+    width: 32px;
+    border: none;
+}
+.comentarDiv{
+    display: flex;
+    text-align: end;
+}
+.comentarioOverflow{
+    height: 200px;
+    overflow: auto;
+}
+
+ul{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+li{
+    list-style-type: none;
+    margin: 4px;
+}

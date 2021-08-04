@@ -52,20 +52,19 @@
         <div class="row">
             <div class="col border rounded p-5 shadow fondo">
                 <h1 class="text-center">Chat</h1>
+                
                 <div class="border rounded p-4 mb-3 fondo" id="chat">
-                    <c:forEach var="message" items="${chat}">
-                        <p><fmt:formatDate pattern="HH:mm" value="${message.createdAt}"/><c:out value=" ${message.remitente.username}: ${message.message}"/> </p>
-                    </c:forEach>
+                    
                 </div>
                 <form action="" method="post" modelAttribute="mensaje" cssClass="mt-3" id="formMensaje">
-                        <input path="message" placeholder="Enviar mensaje"  name="inputMensaje" id="inputMensaje" />
-                        <button type="button" id="submitMensaje" class="btn btn-dark border">Enviar</button>
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                        <input type="hidden" value="${url}" id="url"/>
-                    </form>
-                    <div class="col text-center">
-                        <button class="btn btn-danger mx-3 col-3 border mt-3" onclick="window.location.href='/'">Volver</button>
-                    </div>
+                    <input path="message" placeholder="Enviar mensaje"  name="inputMensaje" id="inputMensaje" />
+                    <button type="button" id="submitMensaje" class="btn btn-dark border">Enviar</button>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <input type="hidden" value="${url}" id="url"/>
+                </form>
+                <div class="col text-center">
+                    <button class="btn btn-danger mx-3 col-3 border mt-3" onclick="window.location.href='/'">Volver</button>
+                </div>
             </div>
         </div>
     </div>

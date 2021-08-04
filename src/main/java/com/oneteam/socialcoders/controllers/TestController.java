@@ -24,12 +24,12 @@ public class TestController {
 
         HashMap<String, String> respuestas = new HashMap<>();
 
-        respuestas.put("mala1", "Metodo para ordenar un Array");
-        respuestas.put("mala2", "Llamar una funsion");
+        respuestas.put("mala1", "Método para ordenar un Array");
+        respuestas.put("mala2", "Llamar una función");
         respuestas.put("mala3", "Declarar variable");
         respuestas.put("correcta", "Imprimir en la consola");
         
-        pyr.put("¿Para que se usa system out println en Java?", respuestas);
+        pyr.put("¿Para qué se usa System.out.println en Java?", respuestas);
 
         HashMap<String, String> respuestas2 = new HashMap<>();
 
@@ -38,35 +38,35 @@ public class TestController {
         respuestas2.put("correcta2", "Depende del tipo de dato");
         respuestas2.put("mala3", "Int");
 
-        pyr.put("¿Como se declara una variable en Java?", respuestas2);
+        pyr.put("¿Cómo se declara una variable en Java?", respuestas2);
 
         HashMap<String, String> respuestas3 = new HashMap<>();
 
         respuestas3.put("mala1", "Float es un tipo de dato y Double es nombre de una variable");
         respuestas3.put("correcta3", "un double tiene 15 dígitos decimales de precisión, mientras que el tipo de dato float tiene solamente 7");
         respuestas3.put("mala2", "Son lo mismo");
-        respuestas3.put("mala3", "Double contiene numeros y Float letras");
+        respuestas3.put("mala3", "Double contiene números y Float letras");
 
-        pyr.put("¿Cual es la diferencia entre Float y Double?", respuestas3);
+        pyr.put("¿Cuál es la diferencia entre Float y Double?", respuestas3);
 
         model.addAttribute("pyr", pyr);
         
        return "/test/java.jsp";
     }
     @PostMapping("/java")
-    public String verificarJava(@RequestParam(value = "¿Para que se usa system out println en Java?") String respuesta,
-    @RequestParam(value = "¿Como se declara una variable en Java?") String respuesta2,  @RequestParam(value = "¿Cual es la diferencia entre Float y Double?") String respuesta3){
+    public String verificarJava(@RequestParam(value = "¿Para qué se usa System.out.println en Java?") String respuesta,
+    @RequestParam(value = "¿Cómo se declara una variable en Java?") String respuesta2,  @RequestParam(value = "¿Cuál es la diferencia entre Float y Double?") String respuesta3){
 
         HashMap<String, Object> pyr = new HashMap<>();
 
         HashMap<String, String> respuestas = new HashMap<>();
 
-        respuestas.put("mala1", "Metodo para ordenar un Array");
-        respuestas.put("mala2", "Llamar una funsion");
+        respuestas.put("mala1", "Método para ordenar un Array");
+        respuestas.put("mala2", "Llamar una función");
         respuestas.put("mala3", "Declarar variable");
         respuestas.put("correcta", "Imprimir en la consola");
         
-        pyr.put("¿Para que se usa system out println en Java?", respuestas);
+        pyr.put("¿Para que se usa System.out.println en Java?", respuestas);
 
         HashMap<String, String> respuestas2 = new HashMap<>();
 
@@ -75,16 +75,16 @@ public class TestController {
         respuestas2.put("correcta2", "Depende del tipo de dato");
         respuestas2.put("mala3", "Int");
 
-        pyr.put("¿Como se declara una variable en Java?", respuestas2);
+        pyr.put("¿Cómo se declara una variable en Java?", respuestas2);
 
         HashMap<String, String> respuestas3 = new HashMap<>();
 
         respuestas3.put("mala1", "Float es un tipo de dato y Double es nombre de una variable");
         respuestas3.put("correcta3", "un double tiene 15 dígitos decimales de precisión, mientras que el tipo de dato float tiene solamente 7");
         respuestas3.put("mala2", "Son lo mismo");
-        respuestas3.put("mala3", "Double contiene numeros y Float letras");
+        respuestas3.put("mala3", "Double contiene número y Float letras");
 
-        pyr.put("¿Cual es la diferencia entre Float y Double?", respuestas3);
+        pyr.put("¿cuál es la diferencia entre Float y Double?", respuestas3);
 
         int count = 0;
         if(respuesta.equals(respuestas.get("correcta"))){
@@ -120,7 +120,7 @@ public class TestController {
         respuestas.put("mala2", "Var, Let, Const");
         respuestas.put("mala3", "solo String y y Número");
         respuestas.put("correcta", "String, booleano, Objeto, Número, Indefinido.");
-        preguntaYrespuesta.put("¿Cuales son los tipos de datos JavaScript?", respuestas);
+        preguntaYrespuesta.put("¿Cuáles son los tipos de datos JavaScript?", respuestas);
 
         HashMap<String, String> respuestas2 = new HashMap<>();
 
@@ -146,7 +146,7 @@ public class TestController {
     }
 
     @PostMapping("/javascript")
-    public String verificarJavascript(@RequestParam(value = "¿Cuales son los tipos de datos JavaScript?") String respuesta,
+    public String verificarJavascript(@RequestParam(value = "¿Cuáles son los tipos de datos JavaScript?") String respuesta,
     @RequestParam(value = "¿Qué es el operador ===?") String respuesta2,
     @RequestParam(value = "¿Cuáles son todos los bucles en JavaScript?") String respuesta3){
 
@@ -158,7 +158,7 @@ public class TestController {
         respuestas.put("mala2", "Var, Let, Const");
         respuestas.put("mala3", "solo String y y Número");
         respuestas.put("correcta", "String, booleano, Objeto, Número, Indefinido.");
-        preguntaYrespuesta.put("¿Cuales son los tipos de datos JavaScript?", respuestas);
+        preguntaYrespuesta.put("¿Cuáles son los tipos de datos JavaScript?", respuestas);
 
         HashMap<String, String> respuestas2 = new HashMap<>();
 
@@ -247,7 +247,7 @@ public class TestController {
         respuestas.put("mala2", "Var, Let, Const");
         respuestas.put("mala3", "solo String y y Número");
         respuestas.put("correcta", "String, booleano, Objeto, Número, Indefinido.");
-        preyRe.put("¿Cuales son los tipos de datos JavaScript?", respuestas);
+        preyRe.put("¿Cuáles son los tipos de datos JavaScript?", respuestas);
 
         HashMap<String, String> respuestas2 = new HashMap<>();
 

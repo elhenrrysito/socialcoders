@@ -177,8 +177,8 @@ public class PostController {
         Post post = servicioPost.findEntityById(id);
         model.addAttribute("post", post);
         //PENDIENTE VERIFICAR NOMBRE DE ATRIBUTO DEL ID DEL USUARIO 
-        // Usuario usuario = servicioUsuario.findEntityById((Long)session.getAttribute("usuarioId"));
-        // model.addAttribute("usuario", usuario);
+        // Usuario usuarios = servicioUsuario.findEntityById((Long)session.getAttribute("usuarioId"));
+        // model.addAttribute("usuarios", usuarios);
         return "/post/mostrarPost.jsp";
 
     }
@@ -238,6 +238,28 @@ public class PostController {
         //     return "redirect:/dashboard";
         // }
 
+
+        @GetMapping("/like/{postId}")
+        public String likePost(@PathVariable("postId") Long id, Principal principal) {
+            String username = principal.getName();
+            Usuario usuarioSesion = servicioUsuario.findByUsername(username); 
+            Post estePost = servicioPost.findEntityById(id);
+            List<Usuario> usuariosLikeados = estePost.getReaccionesUsuarios();
+            if(!usuariosLikeados.contains(usuarioSesion)){
+                usuariosLikeados.add(usuarioSesion);
+                estePost.setReaccionesUsuarios(usuariosLikeados);
+                servicioPost.saveOrUpdate(estePost);
+            } 
+            // for (Usuario usuario : usuariosLikeados) {
+            //     if(!usuario.getUsername().equals(principal.getName())){
+            //         List<Post> postLikeados = usuario.getReaccion();
+            //         postLikeados.add(estePost);
+            //         usuario.setReaccion(postLikeados);S
+            //         usuariosLikeados.add(usuario);
+            //     }
+            // }
+            return "redirect:/";
+
     @GetMapping("/like/{postId}")
     public String likePost(@PathVariable("postId") Long id, Principal principal) {
         String username = principal.getName();
@@ -248,6 +270,7 @@ public class PostController {
             usuariosLikeados.add(usuarioSesion);
             estePost.setReaccionesUsuarios(usuariosLikeados);
             servicioPost.saveOrUpdate(estePost);
+
         }
 
         return "redirect:/";

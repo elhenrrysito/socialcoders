@@ -13,7 +13,7 @@ body {
     background-color: #18191dd3;
     border: solid 1px;
     border-color: aliceblue;
-    margin: 0 auto;
+    margin: 0 400px auto;
     width: 700px;
     padding: 25px;
 }
@@ -28,18 +28,26 @@ img{
 }
 
 .usuario img{
-    width: 75px;
-    height: 75px;
+    width: 70px;
+    height: 70px;
     border: solid 1px rgb(139, 139, 139);
     border-radius: 50px;
     
 }
 
-.titulo, .usuario, .nombre{
-    display: inline-block;
-    text-align: center;
+.usuario, .nombre{
+   
     font-weight: bold;
    
+}
+.titulo {
+    text-align: center;
+    margin-right: 50px;
+}
+
+.titulo1 {
+    color: aliceblue;
+    
 }
 
 .lenguaje, .nombreUsuario{
@@ -66,6 +74,7 @@ img{
     height: 32px;
     width: 32px;
     border: none;
+    margin-left: 10px;
 }
 
 .comentarDiv{
@@ -117,8 +126,9 @@ li{
     border: solid 1px;
     border-color: aliceblue;
     margin-right: -55px;
-    margin-left: 55px;
-    padding: 25px;
+    margin-left: 30px;
+    padding: 15px;
+    height: 350px;
 }
 
 .navegador h2{
@@ -160,6 +170,26 @@ a{
     width: 25px;
     height: 25px;
     margin-bottom: 5px;
+}
+
+.titulo1 {
+    color: aliceblue;
+    margin-top: 50px;
+}
+.btnc {
+    padding: 9px;
+    margin: 10px 20px 0 0;
+    border-radius: 4px;
+}
+.btna{
+    margin: 10px 40px 0 0;
+    padding: 9px;
+    border-radius: 4px;
+}
+.btn2{
+    margin-top: 70px;
+    padding: 9px;
+    border-radius: 7px;
 }
 
 .linksito{

@@ -53,14 +53,14 @@
             <aside class="col-3 mt-5 navegador">
                 <h2>Categorías</h2>
                 <ul class="mt-4">
-                    <li><a href="/" class="btn btn-primary">Posts</a></li>
-                    <li><a href="/socialCoders/memes" class="btn btn-primary">Memes</a></li>
-                    <li><a href="/socialCoders/seguidos" class="btn btn-primary">Seguidos</a></li>
-                    <li><a href="/socialCoders/preguntas" class="btn btn-primary">Preguntas</a></li>
-                    <li><a href="/nuevo/post" class="btn btn-primary">Crear Post</a></li>
+                    <a href="/" class="btnc btn-primary">Posts</a>
+                    <a href="/socialCoders/memes" class="btnc btn-primary">Memes</a>
+                    <a href="/socialCoders/seguidos" class="btnc btn-primary">Seguidos</a>
+                    <a href="/socialCoders/preguntas" class="btna btn-primary">Preguntas</a>
+                    <a href="/nuevo/post" class="btna btn-primary">Crear Post</a>
                 </ul>
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn2 btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                       Lenguajes
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -74,9 +74,9 @@
         <!-- POSTS -->
 
             <c:forEach items="${posts}" var="p"> 
-                <div class="post mt-5 rounded shadow-lg">
+                <div class="post mt-4 rounded shadow-lg">
                     <div class="row">
-                        <div class="col-2 usuario">
+                        <div class="col-4 usuario">
                             <a href="/socialcoders/perfil/${p.creador.username}">
                                 <img src="/imagenes/iconosUser/${p.creador.imagen}" alt="imagenUsuario">
                             </a>
@@ -85,7 +85,7 @@
                             </a>
                         </div>
                         <div class="col titulo mt-4">
-                            <h4><c:out value="${p.titulo}"/></h4>
+                       <a href="/post/${p.id}" class="titulo1"> <h4><c:out value="${p.titulo}"/></h4></a>
                         </div>
                         <div class="col-2">
                             <a href="/socialCoders/${p.lenguajePost.lenguaje}" class="lenguaje">

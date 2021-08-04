@@ -33,7 +33,7 @@
                             <li>
                                 <form id="logoutForm" method="POST" action="/logout">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                    <input type="submit" value="Logout!"/>
+                                    <input type="submit" value="Salir" class="linksito"/>
                                 </form>
                             </li>
                           </ul>
@@ -87,8 +87,8 @@
                         <div class="col titulo mt-4">
                             <h4><c:out value="${p.titulo}"/></h4>
                         </div>
-                        <div class="col-2"> 
-                            <a href="" class="lenguaje">
+                        <div class="col-2">
+                            <a href="/socialCoders/${p.lenguajePost.lenguaje}" class="lenguaje">
                                 <img src='/images/lenguajesImages/${p.lenguajePost.lenguaje}.png' alt="lenguaje">
                             </a>
                         </div>
@@ -106,7 +106,7 @@
                                 <a href="/like/${p.id}"><img src="/images/iconImages/favouritewhite.png" alt="like"></a>
                             </c:if>
                             <c:if test="${p.reaccionesUsuarios.contains(usuario)}">
-                                <a href=""><img src="/images/iconImages/likeado.png" alt="like"></a>
+                                <a href="/dislike/${p.id}"><img src="/images/iconImages/likeado.png" alt="like"></a>
                             </c:if>
                         </div>
                     </div>
@@ -123,6 +123,9 @@
                             </div>
                         </c:forEach>
                     </div>
+                   
+                    <!-- COMENTARIO -->
+                   
                     <div class="mt-4">
                         <form:form method="POST" modelAttribute="nuevoComentario" action="/comentario/${p.id}">
                             <table class="comentarDiv">
@@ -148,8 +151,6 @@
                     <li></li>
                 </ul>
             </aside>
-
-        <!-- COMENTARIO -->
 
     </div>
 </body>

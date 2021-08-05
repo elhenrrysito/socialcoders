@@ -69,6 +69,8 @@ public class UsuarioController {
     @GetMapping("cambiar/icono")
     public String cambiarIcono(Principal principal, Model model){
         model.addAttribute("username", principal.getName());
+        Usuario usuario = servicioUsuario.findByUsername(principal.getName());
+        model.addAttribute("usuario", usuario);
         
         return "/usuario/cambiarIcono.jsp";
     }

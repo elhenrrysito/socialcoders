@@ -24,6 +24,10 @@
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
         <script type="text/javascript" src="js/d3.v3.min.js"></script>
         <script type="text/javascript" src="js/utilities.js"></script>
+        <!-- NAVBAR -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+   
 
         <!-- imagenes -->
         <link rel="stylesheet" href="css/bootstrap-select.css">
@@ -43,8 +47,39 @@
         <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
 </head>
 <body>
+        <!-- NAVBAR -->
+      
+        <div class="pb-5">
+            <nav class="navegacion shadow d-flex justify-content-between">
+                <a href="/">
+                    <img src="/images/logo/logo.png" alt="socialCodersLogo">
+                </a>
+                <div class="infoUsuario">
+                    <c:if test="${usuario.id != null}">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="/images/iconImages/user_1.png" alt="">
+                        </a>
+                          <ul class="dropdown-menu dropdownColor" aria-labelledby="dropdownMenuButton1">
+                            <li><a href="/socialcoders/perfil/${usuario.username}">Perfil</a></li>
+                            <li><a href="/perfil/editarPerfil">Editar Perfil</a></li>
+                            <li>
+                                <form id="logoutForm" method="POST" action="/logout">
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                    <input type="submit" value="Salir" class="linksito"/>
+                                </form>
+                            </li>
+                          </ul>
+                    </c:if>
+                    <c:if test="${usuario.id == null}">
+                        <a href="/login">Logeate!</a>
+                        <a href="/register">Registrate!</a>
+                    </c:if>
+                </div>
+            </nav>
+        </div>
 	
         <div class="container">
+        
 
             <div class="form border-bottom-0 mt-5 post rounded shadow-lg">
                     <h2 class="text-center">Cambia tu icono Siempre cuando quieras :)</h2>

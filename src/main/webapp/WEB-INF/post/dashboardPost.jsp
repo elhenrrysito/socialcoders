@@ -110,6 +110,9 @@
                             </c:if>
                         </div>
                     </div>
+                    <div class="text-center mt-4">
+                        <img src="/imagenes/post/${p.titulo}/${p.imagenPost}" alt="imagen"  id="imagenPost">
+                    </div>
                     <div class="mt-4 comentarioOverflow">
                         <c:forEach items="${p.listaComentarios}" var="c"> 
                             <div class="col-12 mt-3 border-bottom border-light px-3 pe-3">

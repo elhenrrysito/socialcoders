@@ -52,7 +52,18 @@ public class MessageApi {
             }
             JSONObject json = parseJSON(remitente, destinatario);
             String url = "/mensajes/" + usernameEmisor;
-            model.addAttribute("url", url);
+            model.addAttribute("username", usernameEmisor);
+
+            return json.toString();
+    }
+
+    @GetMapping("/leer/{destinatarioUsername}")
+    public String leerMensajes(@PathVariable("destinatarioUsername") String destinatarioUsername, Principal principal, Model model) {
+            String usernameEmisor = principal.getName();
+            Usuario remitente = servicioUsuario.findByUsername(usernameEmisor);
+            Usuario destinatario = servicioUsuario.findByUsername(destinatarioUsername);
+            JSONObject json = parseJSON(remitente, destinatario);
+            model.addAttribute("username", usernameEmisor);
 
             return json.toString();
     }

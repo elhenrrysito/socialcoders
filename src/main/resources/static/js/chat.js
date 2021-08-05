@@ -1,13 +1,14 @@
-let url = document.getElementById("url");
-var autoScroll = document.getElementById('chat');
+let autoscroll;
 
 $(document).ready(function () {
+    autoScroll = document.getElementById('chat');
+    let username = document.getElementById('username');
+    autoScroll.scrollTop = autoScroll.scrollHeight;
     $("#submitMensaje").click(function () {
-       leerMensajes();
+       enviarMensaje();
     })
 
 });
-setInterval(leerMensajes, 1000);
 
 function cargarMensajes(respuesta) {
     let p = document.createElement("p");
@@ -24,12 +25,12 @@ function cargarMensajes(respuesta) {
     }
 
 }
-function leerMensajes(){
+function enviarMensaje(){
     console.log("leerMensaje");
     $.ajax({
         type: "post",
         data: $("#formMensaje").serialize(),
-        url: $(url).val(),
+        url: "/mensajes/" + $(username).val(),
         dataType: "JSON"
     })
     .done(function(respuesta){
@@ -44,3 +45,20 @@ function leerMensajes(){
         console.log("Error ",  respuesta);
     })
 }
+
+function leerMensajes() {
+    $.ajax({
+        type: "get",
+        url: "/mensajes/leer/" + $(username).val(),
+        dataType: "JSON"
+    })
+    .done(function(respuesta){
+        cargarMensajes(respuesta);
+        autoScroll.scrollTop = autoScroll.scrollHeight;
+    })
+    .fail(function(respuesta){
+        console.log("Error GET", respuesta);
+    })
+}
+
+setInterval(leerMensajes, 2000);

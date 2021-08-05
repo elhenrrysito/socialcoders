@@ -46,4 +46,5 @@ public abstract class ServicioBase<T> {
 	public void delete(T entity) {
 		repositorio.delete(entity);
 	}
+
 }

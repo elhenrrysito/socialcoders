@@ -20,6 +20,7 @@ body {
 
 img{
     height: 25px;
+    border-radius: 25px;
 }
 
 .lenguaje img{
@@ -51,6 +52,7 @@ img{
 
 .nombreUsuarioComentario{
     text-decoration: none;
+    border-radius: 25px;
 }
 
 .modalComentario{

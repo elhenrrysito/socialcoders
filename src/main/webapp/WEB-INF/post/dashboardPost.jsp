@@ -113,8 +113,8 @@
                     <div class="mt-4 comentarioOverflow">
                         <c:forEach items="${p.listaComentarios}" var="c"> 
                             <div class="col-12 mt-3 border-bottom border-light px-3 pe-3">
-                                <img src="/images/Black_Belt_in-game.png" alt="imagenUsuario">
                                 <a href="/socialcoders/perfil/${c.usuario.username}" class="nombreUsuarioComentario">
+                                    <img src="/imagenes/iconosUser/${c.usuario.imagen}" alt="imagenUsuario">
                                     <c:out value="${c.usuario.username}"/>:
                                 </a>
                                 <div class="px-3 pb-2">

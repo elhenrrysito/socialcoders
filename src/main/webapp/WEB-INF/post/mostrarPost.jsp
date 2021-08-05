@@ -71,6 +71,11 @@
                 </div>
             </div>
             <!-- ----------descripcion------------ -->
+            
+            <div>
+                <img src="/imagenes/post/${post.titulo}/${post.imagenPost}" alt="imagenPost">
+            </div>
+
             <div class="row">
                 <div class="col mt-4 pb-3">
                     <c:out value="${post.cuerpo}"/>
@@ -105,7 +110,7 @@
                 </c:forEach>
             </div>
             <div class="mt-4">
-                <form:form method="POST" modelAttribute="comentario" action="/comentario/${p.id}">
+                <form:form method="POST" modelAttribute="comentario" action="/comentario/${post.id}">
                     <table class="comentarDiv">
                         <tr>
                             <td>

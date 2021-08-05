@@ -201,15 +201,74 @@ public class PostController {
     public String editarPost(
         @Valid @ModelAttribute("post") Post post,
         BindingResult result,
-        @PathVariable("id") Long id){
+        @PathVariable("id") Long id,
+        @RequestParam("tagsP")String postTag,
+        RedirectAttributes flash, Principal principal){
         if(result.hasErrors()){
             return "/post/nuevoPost.jsp";
         }
+
+        System.out.println(post.getImagenPost());
+        System.out.println(post.getId());
+        System.out.println(post.getCuerpo());
+        System.out.println(post.getTitulo());
+        System.out.println(post.getCategoria());
+
         servicioPost.saveOrUpdate(post);
         return "redirect:/post/"+ id;    
     }
- 
 
+
+        //Tags
+        List<String> errores = new ArrayList<>();
+        if(postTag != null){
+            List<String> items = Arrays.asList(postTag.trim().split("\\s*,\\s*")); 
+            int cantidadComas = postTag.replaceAll("[^,]", "").length();
+            if(cantidadComas > 2) {
+                errores.add("Solo 3 tags por Preguntas, SEPARALOS POR UNA (,) PLISs");
+            }
+            if(servicioPost.verificador(post)) {
+                errores.add("Este Post ya existe");
+            }
+            if(postTag.length() == 0) {
+                errores.add("Debes incluir al menos 1 Tag");
+            }
+            if(errores.size() > 0){
+                flash.addFlashAttribute("errors", errores);
+                return "redirect:/nuevo/post";
+            }
+            else {
+                servicioPost.saveOrUpdate(post);
+                
+                ArrayList<Tag> tags = new ArrayList<Tag>();
+                for(int i = 0; i<items.size(); i++) {
+                    String tagTemporal = items.get(i);
+                    if(servicioTag.validation(tagTemporal)) {
+                        Tag tag = servicioTag.buscarPorTag(tagTemporal);
+                        tags.add(tag);
+                    }
+                    else {
+                        tags.add(servicioTag.createTag(items.get(i)));
+                    }
+                }
+                //Set Creador
+                Usuario usuario = servicioUsuario.findByUsername(principal.getName());
+                post.setCreador(usuario);
+                post.setTags(tags);
+                servicioPost.saveOrUpdate(post);
+                return "redirect:/post/" + post.getId();
+            }
+        }
+        
+        else{
+            //Set Creador
+            Usuario usuario = servicioUsuario.findByUsername(principal.getName());
+            post.setCreador(usuario);
+            servicioPost.saveOrUpdate(post);
+            return "redirect:/post/" + post.getId();
+        }
+    }
+        
     //ELIMINAR UN POST
     
     @GetMapping("eliminar/post/{id}")

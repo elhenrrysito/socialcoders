@@ -94,7 +94,7 @@
                         <div class="text-left">
                             <h4 class="d-inline-block">Tags</h4>
                             <c:if test="${numero == 1}">
-                                <input class="d-inline-block" type="text" name="categoria" value="${post.getTagString()}">(Cada Tag Debe ir separado por "," Maximo 3 Tags)
+                                <input class="d-inline-block" type="text" name="tagsP" value="${post.getTagString()}">(Cada Tag Debe ir separado por "," Maximo 3 Tags)
                                 <c:forEach items="${errors}" var="error">
         					        <p class="text-danger"> <c:out value="${error}"></c:out> </p> 
                                 </c:forEach>
@@ -107,7 +107,7 @@
                                 </c:forEach>
 
                             </c:if>
-                            <div>
+                            <div> 
                                 <h4 class="d-inline-block">Cateogrias</h4>
                                 <select class="form-select d-inline-block col-3 " id="id_select2_example" data-placeholder="Begin typing a name to filter..." name="test" >
                                     <option value="memes" >Memes</option>
@@ -122,13 +122,27 @@
                     
                     <div class="file-field">
                         <div class="z-depth-1-half mb-4">
-                          <img src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg" class="img-fluid"
-                            alt="example placeholder">
+                            <c:choose>
+                                <c:when test="${post.imagenPost != null}">
+                                    <img src="/imagenes/post/${post.titulo}/${post.imagenPost}" class="img-fluid"
+                                    alt="imagen Post">
+                                    <div class="mb-3">
+                                        <label for="file" class="form-label h5">Añadir imagen (Opcional)</label>
+                                        <input class="form-control"  type="file" id="file" name="file">
+                                    </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <img src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg" class="img-fluid"
+                                    alt="example placeholder">
+                                    <div class="mb-3">
+                                        <label for="file" class="form-label h5">Añadir imagen (Opcional)</label>
+                                        <input class="form-control"  type="file" id="file" name="file">
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
+                          
                         </div>
-                        <div class="mb-3">
-                            <label for="file" class="form-label h5">Añadir imagen (Opcional)</label>
-                            <input class="form-control"  type="file" id="file" name="file">
-                        </div>
+                        
                     </div>
                     <div class="text-center">
                         <div>

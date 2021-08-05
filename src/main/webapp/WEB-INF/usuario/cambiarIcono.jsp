@@ -11,7 +11,7 @@
   	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	    <link rel="stylesheet" href="/css/crearPost.css">
+	    <link rel="stylesheet" href="/css/cambiarIcono.css">
         <script src="/js/post.js"></script>
 
 	    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
@@ -50,7 +50,7 @@
                     <h2 class="text-center">Cambia tu icono Siempre cuando quieras :)</h2>
                     
                     <form class="formRelleno" action="" method="POST" enctype="multipart/form-data">
-                        <div class="row text-center mt-3">
+                        <div class="row text-center mt-3 iconos">
                             <h3>Iconos</h3>
                             <div class="col ml-1 lenguaje d-inline-block ">
                                 <div class="custom-control custom-radio image-checkbox ">
@@ -212,7 +212,7 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="col ml-1 lenguaje d-inline-block">
+                            <div class="col ml-1 lenguaje d-inline-block ">
                                 <div class="custom-control custom-radio image-checkbox">
                                     <input type="radio" class="custom-control-input" id="ck21d" name="iconon" value="pinguino.gif">
                                     <label class="custom-control-label aa" for="ck21d">
@@ -224,7 +224,7 @@
                         <p class="mt-5 text-center">
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         
-                            <input  class="btn btn-primary" type="submit" value="Cambiar"/>
+                            <button  class="btn btn-primary cambiar" >Cambiar</button>
                         </p>
                 
                     

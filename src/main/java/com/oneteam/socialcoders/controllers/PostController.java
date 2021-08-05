@@ -214,10 +214,7 @@ public class PostController {
         System.out.println(post.getTitulo());
         System.out.println(post.getCategoria());
 
-        servicioPost.saveOrUpdate(post);
-        return "redirect:/post/"+ id;    
-    }
-
+       
 
         //Tags
         List<String> errores = new ArrayList<>();
@@ -267,8 +264,8 @@ public class PostController {
             servicioPost.saveOrUpdate(post);
             return "redirect:/post/" + post.getId();
         }
+    
     }
-        
     //ELIMINAR UN POST
     
     @GetMapping("eliminar/post/{id}")

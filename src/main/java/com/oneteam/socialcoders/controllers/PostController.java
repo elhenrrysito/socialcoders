@@ -214,10 +214,7 @@ public class PostController {
         System.out.println(post.getTitulo());
         System.out.println(post.getCategoria());
 
-        servicioPost.saveOrUpdate(post);
-        return "redirect:/post/"+ id;    
-    }
-
+       
 
         //Tags
         List<String> errores = new ArrayList<>();
@@ -267,8 +264,8 @@ public class PostController {
             servicioPost.saveOrUpdate(post);
             return "redirect:/post/" + post.getId();
         }
+    
     }
-        
     //ELIMINAR UN POST
     
     @GetMapping("eliminar/post/{id}")
@@ -297,27 +294,6 @@ public class PostController {
         //     return "redirect:/dashboard";
         // }
 
-
-        @GetMapping("/like/{postId}")
-        public String likePost(@PathVariable("postId") Long id, Principal principal) {
-            String username = principal.getName();
-            Usuario usuarioSesion = servicioUsuario.findByUsername(username); 
-            Post estePost = servicioPost.findEntityById(id);
-            List<Usuario> usuariosLikeados = estePost.getReaccionesUsuarios();
-            if(!usuariosLikeados.contains(usuarioSesion)){
-                usuariosLikeados.add(usuarioSesion);
-                estePost.setReaccionesUsuarios(usuariosLikeados);
-                servicioPost.saveOrUpdate(estePost);
-            } 
-            // for (Usuario usuario : usuariosLikeados) {
-            //     if(!usuario.getUsername().equals(principal.getName())){
-            //         List<Post> postLikeados = usuario.getReaccion();
-            //         postLikeados.add(estePost);
-            //         usuario.setReaccion(postLikeados);S
-            //         usuariosLikeados.add(usuario);
-            //     }
-            // }
-            return "redirect:/";
 
     @GetMapping("/like/{postId}")
     public String likePost(@PathVariable("postId") Long id, Principal principal) {

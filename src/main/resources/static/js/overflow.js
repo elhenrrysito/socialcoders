@@ -1,2 +1,2 @@
-var autoScroll = document.getElementById('chat');
-autoScroll.scrollTop = autoScroll.scrollHeight;
+// var autoScroll = document.getElementById('chat');
+// autoScroll.scrollTop = autoScroll.scrollHeight;

@@ -107,7 +107,7 @@ public class PostController {
         
         List<String> errores = new ArrayList<>();
         //AGREGAR LENGUAJES
-            Lenguaje lenguajeP = servicioLenguaje.findByLenguajee(lenguaje);
+            Lenguaje lenguajeP = servicioLenguaje.findByLenguaje(lenguaje);
             post.setLenguajePost(lenguajeP);
         //AGREGAR CATEGORIA
         
@@ -172,14 +172,14 @@ public class PostController {
     //VER UN POST POR ID 2.READ 
     @GetMapping("post/{id}")
     public String mostrarPost
-    (@PathVariable("id")Long id,
+    (@ModelAttribute("comentario") Comentario comentario, @PathVariable("id")Long id, 
     Model model, HttpSession session){
         Post post = servicioPost.findEntityById(id);
         model.addAttribute("post", post);
         //PENDIENTE VERIFICAR NOMBRE DE ATRIBUTO DEL ID DEL USUARIO 
-        // Usuario usuario = servicioUsuario.findEntityById((Long)session.getAttribute("usuarioId"));
-        // model.addAttribute("usuario", usuario);
-        return "/post/post.jsp";
+        // Usuario usuarios = servicioUsuario.findEntityById((Long)session.getAttribute("usuarioId"));
+        // model.addAttribute("usuarios", usuarios);
+        return "/post/mostrarPost.jsp";
 
     }
 
@@ -207,12 +207,17 @@ public class PostController {
         if(result.hasErrors()){
             return "/post/nuevoPost.jsp";
         }
+
         System.out.println(post.getImagenPost());
         System.out.println(post.getId());
         System.out.println(post.getCuerpo());
         System.out.println(post.getTitulo());
         System.out.println(post.getCategoria());
-       
+
+        servicioPost.saveOrUpdate(post);
+        return "redirect:/post/"+ id;    
+    }
+
 
         //Tags
         List<String> errores = new ArrayList<>();
@@ -271,7 +276,7 @@ public class PostController {
         @PathVariable("id") Long id){
         servicioPost.deleteEntity(id);
         return "redirect:/dashboard";
-        }
+    }
 
         // @GetMapping("prueba/{idpost}")
         // public String iji(@PathVariable("idpost")Long idpost, Principal principal){
@@ -292,6 +297,7 @@ public class PostController {
         //     return "redirect:/dashboard";
         // }
 
+
         @GetMapping("/like/{postId}")
         public String likePost(@PathVariable("postId") Long id, Principal principal) {
             String username = principal.getName();
@@ -302,18 +308,44 @@ public class PostController {
                 usuariosLikeados.add(usuarioSesion);
                 estePost.setReaccionesUsuarios(usuariosLikeados);
                 servicioPost.saveOrUpdate(estePost);
-            }
+            } 
             // for (Usuario usuario : usuariosLikeados) {
             //     if(!usuario.getUsername().equals(principal.getName())){
             //         List<Post> postLikeados = usuario.getReaccion();
             //         postLikeados.add(estePost);
-            //         usuario.setReaccion(postLikeados);
-            //         servicioUsuario.saveOrUpdate(usuario);
+            //         usuario.setReaccion(postLikeados);S
             //         usuariosLikeados.add(usuario);
             //     }
             // }
             return "redirect:/";
-        }
-        
 
+    @GetMapping("/like/{postId}")
+    public String likePost(@PathVariable("postId") Long id, Principal principal) {
+        String username = principal.getName();
+        Usuario usuarioSesion = servicioUsuario.findByUsername(username); 
+        Post estePost = servicioPost.findEntityById(id);
+        List<Usuario> usuariosLikeados = estePost.getReaccionesUsuarios();
+        if(!usuariosLikeados.contains(usuarioSesion)){
+            usuariosLikeados.add(usuarioSesion);
+            estePost.setReaccionesUsuarios(usuariosLikeados);
+            servicioPost.saveOrUpdate(estePost);
+
+        }
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/dislike/{postId}")
+    public String dislikePost(@PathVariable("postId") Long id, Principal principal){
+        String username = principal.getName();
+        Usuario usuarioSesion = servicioUsuario.findByUsername(username); 
+        Post estePost = servicioPost.findEntityById(id);
+        List<Usuario> usuariosLikeados = estePost.getReaccionesUsuarios();
+        if(usuariosLikeados.contains(usuarioSesion)){
+            usuariosLikeados.remove(usuarioSesion);
+            estePost.setReaccionesUsuarios(usuariosLikeados);
+            servicioPost.saveOrUpdate(estePost);
+        }
+        return "redirect:/";
+    } 
 }

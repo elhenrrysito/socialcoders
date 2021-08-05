@@ -256,8 +256,8 @@ public class PostController {
             servicioPost.saveOrUpdate(post);
             return "redirect:/post/" + post.getId();
         }
+    
     }
-        
     //ELIMINAR UN POST
     
     @GetMapping("eliminar/post/{id}")

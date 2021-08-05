@@ -8,6 +8,66 @@ body {
     background: linear-gradient(90deg, rgba(37,68,88,1) 44%, rgb(46, 91, 102) 98%);
     color: white;
 }
+/* NAVBAR */
+.navegador{
+    position: fixed;
+    background-color: #212529;
+    border: solid 1px;
+    border-color: aliceblue;
+    margin-right: -55px;
+    margin-left: 30px;
+    padding: 15px;
+    height: 350px;
+}
+
+a{
+    text-decoration: none;
+}
+
+.infoUsuario img{
+    width: 25px;
+    height: 25px;
+    margin-bottom: 5px;
+}
+
+ul{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+li{
+    list-style-type: none;
+    margin: 4px;
+}
+.dropdownColor{
+    color: white;
+    background-color: #212529;
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+}
+.navegador h2{
+    text-align: center;
+}
+
+.navegacion{
+    position: fixed;
+    display: flex;
+    background-color: #212529;
+    height: 50px;
+    width: 100%;
+}
+
+.navegacion img{
+    margin-left: 10px;
+    width: 200px;
+    height: 50px;
+}
+
+
+
+
 .post, .comentario{
     background-color: #18191dd3;
     border: solid 1px;
@@ -21,6 +81,11 @@ body {
 img{
     height: 25px;
 }
+#imagenPost{
+    height: 60%;
+    width: 60%;
+    }
+    
 
 .lenguaje img{
     height: 64px;

@@ -49,7 +49,7 @@ public class UsuarioController {
             result.addError(error);
             return "registrologin/register.jsp";
         }
-        user.setImagen("Black_Belt_ing-game.png");
+        user.setImagen("pinguino.gif");
         servicioUsuario.saveWithUserRole(user);
         return "redirect:/login";
     }

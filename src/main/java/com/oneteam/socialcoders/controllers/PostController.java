@@ -35,6 +35,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -296,7 +297,8 @@ public class PostController {
 
 
     @GetMapping("/like/{postId}")
-    public String likePost(@PathVariable("postId") Long id, Principal principal) {
+    @ResponseBody
+    public int likePost(@PathVariable("postId") Long id, Principal principal) {
         String username = principal.getName();
         Usuario usuarioSesion = servicioUsuario.findByUsername(username); 
         Post estePost = servicioPost.findEntityById(id);
@@ -308,11 +310,12 @@ public class PostController {
 
         }
 
-        return "redirect:/";
+        return estePost.getReaccionesUsuarios().size();
     }
 
     @GetMapping("/dislike/{postId}")
-    public String dislikePost(@PathVariable("postId") Long id, Principal principal){
+    @ResponseBody
+    public int dislikePost(@PathVariable("postId") Long id, Principal principal){
         String username = principal.getName();
         Usuario usuarioSesion = servicioUsuario.findByUsername(username); 
         Post estePost = servicioPost.findEntityById(id);
@@ -322,6 +325,6 @@ public class PostController {
             estePost.setReaccionesUsuarios(usuariosLikeados);
             servicioPost.saveOrUpdate(estePost);
         }
-        return "redirect:/";
+        return estePost.getReaccionesUsuarios().size();
     } 
 }

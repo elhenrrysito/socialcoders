@@ -4,14 +4,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="/css/postDashboard.css">
-    <title>Document</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="/css/postDashboard.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="/js/likes.js"></script>
+        <title>Document</title>
 </head>
 <body>
     <div>
@@ -98,16 +101,16 @@
                             <c:out value="${p.cuerpo}"/>
                         </div>
                     </div>
-                    <div class="row border-bottom border-light pb-3">
+                    <div class="row border-bottom border-light pb-3" >
                         <div class="col">
                         </div>
-                        <div class="col-1 mt-2 ">
+                        <div class="col-3 mt-2 d-flex justify-content-end" id=${p.id}>
                             <c:if test="${!p.reaccionesUsuarios.contains(usuario)}">
-                                <a href="/like/${p.id}"><img src="/images/iconImages/favouritewhite.png" alt="like"></a>
+                                <a href="#a" class="btn btn-outline-danger" onclick="like(${p.id}, 'like')"><i class="bi bi-heart"> <c:out value="${p.reaccionesUsuarios.size()}"/></i></a>
                             </c:if>
                             <c:if test="${p.reaccionesUsuarios.contains(usuario)}">
-                                <a href="/dislike/${p.id}"><img src="/images/iconImages/likeado.png" alt="like"></a>
-                            </c:if>
+                                <a href="#a" class="btn btn-danger"  onclick="like(${p.id}, 'dislike')"><i class="bi bi-heart-fill"> <c:out value="${p.reaccionesUsuarios.size()}"/> </i></a>
+                            </c:if> 
                         </div>
                     </div>
                     <div class="mt-4 comentarioOverflow">

@@ -51,7 +51,7 @@ public class ServicioUsuario extends ServicioBase<Usuario> {
     }
 
     public List<Usuario> allByNombre(String nombre) {
-        return repositorioUsuario.findAllByNombreContaining(nombre);
+        return repositorioUsuario.findAllByUsernameContaining(nombre);
     }
     
 }

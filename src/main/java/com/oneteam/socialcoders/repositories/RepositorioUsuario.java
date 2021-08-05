@@ -12,5 +12,5 @@ public interface RepositorioUsuario extends RepositorioBase<Usuario> {
     Usuario findByUsername(String username);
     boolean existsByEmail(String email);
     boolean existsByUsername(String username);
-    List<Usuario> findAllByNombreContaining(String busqueda);
+    List<Usuario> findAllByUsernameContaining(String busqueda);
 }

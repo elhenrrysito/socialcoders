@@ -74,7 +74,10 @@ public class UsuarioController {
     }
 
     @PostMapping("cambiar/icono")
-    public String cambiarIcon(@RequestParam("iconon")String icono, Principal principal){
+    public String cambiarIcon(@RequestParam(value = "iconon", required = false)String icono, Principal principal){
+        if(icono == null){
+            return "redirect:/cambiar/icono";
+        }
         Usuario usuario = servicioUsuario.findByUsername(principal.getName());
         usuario.setImagen(icono);
         servicioUsuario.saveOrUpdate(usuario);

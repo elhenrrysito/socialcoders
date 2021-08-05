@@ -208,14 +208,6 @@ public class PostController {
             return "/post/nuevoPost.jsp";
         }
 
-        System.out.println(post.getImagenPost());
-        System.out.println(post.getId());
-        System.out.println(post.getCuerpo());
-        System.out.println(post.getTitulo());
-        System.out.println(post.getCategoria());
-
-       
-
         //Tags
         List<String> errores = new ArrayList<>();
         if(postTag != null){

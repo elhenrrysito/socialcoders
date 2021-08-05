@@ -51,10 +51,18 @@
                 <div class="row mt-4">
                     <a href="/mensajes/${usuarioPerfil.username}" class=""><img src="/images/iconImages/message.png" alt="message"></a>
                     <div class="col rounded-circle  text-center">
-                        <a href="/cambiar/icono">
-                            <img class="imagen" src="/imagenes/iconosUser/${usuarioPerfil.imagen}" alt="foto" id="fotoperfil">
-
-                        </a>
+                        <c:choose>
+                            <c:when test="${usuarioSesion == usuarioPerfil}">
+                                <a href="/cambiar/icono">
+                                    <img class="imagen" src="/imagenes/iconosUser/${usuarioPerfil.imagen}" alt="foto" id="fotoperfil">
+        
+                                </a>
+                            </c:when>
+                            <c:otherwise>
+                                <img class="imagen" src="/imagenes/iconosUser/${usuarioPerfil.imagen}" alt="foto" id="fotoperfil">
+                            </c:otherwise>
+                        </c:choose>
+                        
                         <h2><c:out value="${usuarioPerfil.username}"/></h2>
                     </div>
                 </div>
@@ -91,7 +99,7 @@
                         <li class="list-group-item list-group-item-action list-group-item-primary d-flex justify-content-between align-items-start bg-dark">
                             <div class="ms-2 me-auto">
                                 <div class="fw-bold">
-                                    <a href="/socialcoders/post/${post.id}"><c:out value="${post.titulo}"/></a>
+                                    <a href="/post/${post.id}"><c:out value="${post.titulo}"/></a>
                                 </div>
                                 Cras justo odio
                             </div>

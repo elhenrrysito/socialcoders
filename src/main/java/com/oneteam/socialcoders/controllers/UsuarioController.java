@@ -49,7 +49,7 @@ public class UsuarioController {
             result.addError(error);
             return "registrologin/register.jsp";
         }
-        user.setImagen("Black_Belt_ing-game.png");
+        user.setImagen("pinguino.gif");
         servicioUsuario.saveWithUserRole(user);
         return "redirect:/login";
     }
@@ -69,6 +69,8 @@ public class UsuarioController {
     @GetMapping("cambiar/icono")
     public String cambiarIcono(Principal principal, Model model){
         model.addAttribute("username", principal.getName());
+        Usuario usuario = servicioUsuario.findByUsername(principal.getName());
+        model.addAttribute("usuario", usuario);
         
         return "/usuario/cambiarIcono.jsp";
     }

@@ -174,7 +174,9 @@ public class PostController {
     @GetMapping("post/{id}")
     public String mostrarPost
     (@ModelAttribute("comentario") Comentario comentario, @PathVariable("id")Long id, 
-    Model model, HttpSession session){
+    Model model, Principal principal){
+        Usuario usuario = servicioUsuario.findByUsername(principal.getName());
+        model.addAttribute("usuario", usuario);
         Post post = servicioPost.findEntityById(id);
         model.addAttribute("post", post);
         //PENDIENTE VERIFICAR NOMBRE DE ATRIBUTO DEL ID DEL USUARIO 
@@ -208,14 +210,6 @@ public class PostController {
         if(result.hasErrors()){
             return "/post/nuevoPost.jsp";
         }
-
-        System.out.println(post.getImagenPost());
-        System.out.println(post.getId());
-        System.out.println(post.getCuerpo());
-        System.out.println(post.getTitulo());
-        System.out.println(post.getCategoria());
-
-       
 
         //Tags
         List<String> errores = new ArrayList<>();
@@ -271,29 +265,18 @@ public class PostController {
     
     @GetMapping("eliminar/post/{id}")
     public String eliminarPost(
-        @PathVariable("id") Long id){
-        servicioPost.deleteEntity(id);
+        @PathVariable("id") Long id,Principal principal){
+        Post post = servicioPost.findEntityById(id);
+        Usuario usuario = servicioUsuario.findByUsername(principal.getName());
+        String nombre = usuario.getNombre();
+        if(post.getCreador().getNombre() == nombre){
+            servicioPost.deleteEntity(id);
+            return "redirect:/dashboard";
+        }
         return "redirect:/dashboard";
     }
 
-        // @GetMapping("prueba/{idpost}")
-        // public String iji(@PathVariable("idpost")Long idpost, Principal principal){
-            
-        //     Usuario usuario = servicioUsuario.findByUsername(principal.getName());
-        //     Post postFinal = servicioPost.findEntityById(idpost);
-        //     postFinal.agregarLike(usuario);
-        //     // usuario.setPost(postFinal);
-        //     servicioPost.saveOrUpdate(postFinal);
-        //     // System.out.println(postFinal.getReaccionesUsuarios().get(0).getNombre());
-        //     return "redirect:/dashboard";
-        // }
-
-        // @GetMapping("imprimir")
-        // public String imprimir(Principal principal){
-        //     Usuario usuario = servicioUsuario.findByUsername(principal.getName());
-        //     System.out.println(usuario.getReaccion().size());
-        //     return "redirect:/dashboard";
-        // }
+       
 
 
     @GetMapping("/like/{postId}")

@@ -1,16 +1,10 @@
 package com.oneteam.socialcoders.controllers;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import com.oneteam.socialcoders.models.Categoria;
@@ -20,7 +14,6 @@ import com.oneteam.socialcoders.models.Post;
 import com.oneteam.socialcoders.models.Tag;
 import com.oneteam.socialcoders.models.Usuario;
 import com.oneteam.socialcoders.services.ServicioCategoria;
-import com.oneteam.socialcoders.services.ServicioComentario;
 import com.oneteam.socialcoders.services.ServicioLenguaje;
 import com.oneteam.socialcoders.services.ServicioPost;
 import com.oneteam.socialcoders.services.ServicioTag;
@@ -47,24 +40,18 @@ public class PostController {
     private final ServicioCategoria servicioCategoria;
     private final ServicioLenguaje servicioLenguaje;
     private final ServicioTag servicioTag;
-    private final ServicioComentario servicioComentario;
 
     
-
-
-    //CREAR POST  1.CREATE
-
     public PostController(ServicioPost servicioPost, ServicioUsuario servicioUsuario,
-            ServicioCategoria servicioCategoria, ServicioLenguaje servicioLenguaje, ServicioTag servicioTag,
-            ServicioComentario servicioComentario) {
+    ServicioCategoria servicioCategoria, ServicioLenguaje servicioLenguaje, ServicioTag servicioTag) {
         this.servicioPost = servicioPost;
         this.servicioUsuario = servicioUsuario;
         this.servicioCategoria = servicioCategoria;
         this.servicioLenguaje = servicioLenguaje;
         this.servicioTag = servicioTag;
-        this.servicioComentario = servicioComentario;
     }
-
+    
+    //CREAR POST  1.CREATE
     @GetMapping("nuevo/post")
     public String nuevoPost(@ModelAttribute("post")Post post, Model model, Principal principal){
         String userName = principal.getName();
@@ -82,94 +69,74 @@ public class PostController {
         @RequestParam(value="tagsP", required=false) String postTag, RedirectAttributes flash,
         @RequestParam(name="lenguajeP", required=false)String lenguaje,
         @RequestParam(name="categoria", required=false) String categoria){
-        if(result.hasErrors()){
-            return "/post/nuevoPost.jsp";
-        } 
+            
+            if(result.hasErrors()){
+                return "/post/nuevoPost.jsp";
+            } 
+            
+            // //AGREGAR IMAGEN OPCIONAL
+            // if(imagen != null){
+                //     Path directorioImagenes = Paths.get("src//main//resources//static//imagenes/post");
+                //     String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath() + "/" + post.getTitulo();
+                //     File directorio = new File(rutaAbsoluta);
+                //     if(directorio.exists() == false){
+                    //         directorio.mkdir();
+                    //     }
+                    
+                    //     try {
+                        //         byte[] bytesImg = imagen.getBytes();
+                        //         Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + imagen.getOriginalFilename());
+                        //         Files.write(rutaCompleta, bytesImg);
+                        
+                        //         post.setImagenPost(imagen.getOriginalFilename());
+                        //     } catch (IOException e) {
+                            //         e.printStackTrace();
+                            //     }
+                            // }
+                            
+        Usuario usuario = servicioUsuario.findByUsername(principal.getName());
         
-        //AGREGAR IMAGEN OPCIONAL
-        if(imagen != null){
-            Path directorioImagenes = Paths.get("src//main//resources//static//imagenes/post");
-            String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath() + "/" + post.getTitulo();
-            File directorio = new File(rutaAbsoluta);
-            if(directorio.exists() == false){
-                directorio.mkdir();
-            }
-
-            try {
-                byte[] bytesImg = imagen.getBytes();
-                Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + imagen.getOriginalFilename());
-                Files.write(rutaCompleta, bytesImg);
-
-                post.setImagenPost(imagen.getOriginalFilename());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        
-        List<String> errores = new ArrayList<>();
         //AGREGAR LENGUAJES
-            Lenguaje lenguajeP = servicioLenguaje.findByLenguaje(lenguaje);
-            post.setLenguajePost(lenguajeP);
+        Lenguaje lenguajeP = servicioLenguaje.findByLenguaje(lenguaje);
+        post.setLenguajePost(lenguajeP);
         //AGREGAR CATEGORIA
         
-       
-            
-            Categoria categoriaP = servicioCategoria.findByCategoria(categoria);
-            post.setCategoria(categoriaP);
+        Categoria categoriaP = servicioCategoria.findByCategoria(categoria);
+        post.setCategoria(categoriaP);
         
         //Tags 
         if(postTag != null){
             List<String> items = Arrays.asList(postTag.trim().split("\\s*,\\s*")); 
-            int cantidadComas = postTag.replaceAll("[^,]", "").length();
-            if(cantidadComas > 2) {
-                errores.add("Solo 3 tags por Preguntas, SEPARALOS POR UNA (,) PLISs");
-            }
-            if(servicioPost.verificador(post)) {
-                errores.add("Este Post ya existe");
-            }
-            if(postTag.length() == 0) {
-                errores.add("Debes incluir al menos 1 Tag");
-            }
+            List<String> errores = servicioPost.erroresEnTags(postTag, post);
+            
             if(errores.size() > 0){
                 flash.addFlashAttribute("errors", errores);
                 return "redirect:/nuevo/post";
-            }
-            
-            else {
+            } else {
                 servicioPost.saveOrUpdate(post);
                 
-                ArrayList<Tag> tags = new ArrayList<Tag>();
-                for(int i = 0; i<items.size(); i++) {
-                    String tagTemporal = items.get(i);
-                    if(servicioTag.validation(tagTemporal)) {
-                        Tag tag = servicioTag.buscarPorTag(tagTemporal);
-                        tags.add(tag);
-                    }
-                    else {
-                        tags.add(servicioTag.createTag(items.get(i)));
-                    }
-                }
+                List<Tag> tags = servicioTag.agregarTags(items);
                 //Set Creador
-                Usuario usuario = servicioUsuario.findByUsername(principal.getName());
                 post.setCreador(usuario);
                 post.setTags(tags);
-                servicioPost.saveOrUpdate(post);
-                return "redirect:/post/" + post.getId();
             }
-        }
-        
-        else{
-            //Set Creador
-            Usuario usuario = servicioUsuario.findByUsername(principal.getName());
-            post.setCreador(usuario);
+        } 
+
+        post.setCreador(usuario);
+        servicioPost.saveOrUpdate(post);
+
+        if(imagen != null) {
+            String url = "archivos/" + usuario.getId() + "/" + post.getId() + "/";
+            servicioPost.subirImagen(imagen, url);
+            System.out.println("Imagen: " + imagen);
+            post.setImagenPost(url + imagen.getOriginalFilename());
             servicioPost.saveOrUpdate(post);
-            return "redirect:/post/" + post.getId();
         }
-        
 
+        return "redirect:/post/" + post.getId();
     }
-
-
+    
+    
     //VER UN POST POR ID 2.READ 
     @GetMapping("post/{id}")
     public String mostrarPost
@@ -191,7 +158,7 @@ public class PostController {
     @GetMapping("editar/post/{id}")
     public String editarPost(
         @PathVariable("id") Long id,
-        HttpSession session, Model model){
+        Model model){
         model.addAttribute("method", "PUT");
         
         Post post = servicioPost.findEntityById(id);
@@ -215,16 +182,6 @@ public class PostController {
         List<String> errores = new ArrayList<>();
         if(postTag != null){
             List<String> items = Arrays.asList(postTag.trim().split("\\s*,\\s*")); 
-            int cantidadComas = postTag.replaceAll("[^,]", "").length();
-            if(cantidadComas > 2) {
-                errores.add("Solo 3 tags por Preguntas, SEPARALOS POR UNA (,) PLISs");
-            }
-            if(servicioPost.verificador(post)) {
-                errores.add("Este Post ya existe");
-            }
-            if(postTag.length() == 0) {
-                errores.add("Debes incluir al menos 1 Tag");
-            }
             if(errores.size() > 0){
                 flash.addFlashAttribute("errors", errores);
                 return "redirect:/nuevo/post";
@@ -232,17 +189,7 @@ public class PostController {
             else {
                 servicioPost.saveOrUpdate(post);
                 
-                ArrayList<Tag> tags = new ArrayList<Tag>();
-                for(int i = 0; i<items.size(); i++) {
-                    String tagTemporal = items.get(i);
-                    if(servicioTag.validation(tagTemporal)) {
-                        Tag tag = servicioTag.buscarPorTag(tagTemporal);
-                        tags.add(tag);
-                    }
-                    else {
-                        tags.add(servicioTag.createTag(items.get(i)));
-                    }
-                }
+                List<Tag> tags = servicioTag.agregarTags(items);
                 //Set Creador
                 Usuario usuario = servicioUsuario.findByUsername(principal.getName());
                 post.setCreador(usuario);
@@ -251,7 +198,6 @@ public class PostController {
                 return "redirect:/post/" + post.getId();
             }
         }
-        
         else{
             //Set Creador
             Usuario usuario = servicioUsuario.findByUsername(principal.getName());
@@ -275,9 +221,6 @@ public class PostController {
         }
         return "redirect:/dashboard";
     }
-
-       
-
 
     @GetMapping("/like/{postId}")
     @ResponseBody

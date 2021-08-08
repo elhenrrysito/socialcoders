@@ -20,7 +20,6 @@
     <link rel="stylesheet" type="text/css" href="/css/mostrarPost.css"> 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="/js/likes.js"></script>
-=======
     <!-- NavBar -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -90,7 +89,7 @@
             <!-- ----------descripcion------------ -->
             
             <div class="mt-3 text-center">
-                <img id="imagenPost"  src="/imagenes/post/${post.titulo}/${post.imagenPost}" alt="imagenPost">
+                <img id="imagenPost"  src="/${post.imagenPost}" alt="imagenPost">
             </div>
 
             <div class="row">

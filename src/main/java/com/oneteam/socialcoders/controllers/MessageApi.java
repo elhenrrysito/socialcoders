@@ -3,7 +3,6 @@ package com.oneteam.socialcoders.controllers;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -51,7 +50,6 @@ public class MessageApi {
                 servicioMensaje.saveOrUpdate(nuevoMensaje);
             }
             JSONObject json = parseJSON(remitente, destinatario);
-            String url = "/mensajes/" + usernameEmisor;
             model.addAttribute("username", usernameEmisor);
 
             return json.toString();

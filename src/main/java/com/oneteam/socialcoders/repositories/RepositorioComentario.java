@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.oneteam.socialcoders.models.Comentario;
 import com.oneteam.socialcoders.models.Post;
-import com.oneteam.socialcoders.models.Usuario;
 
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,5 @@
 package com.oneteam.socialcoders.controllers;
 
-import java.util.Arrays;
 import java.util.List;
 
 import com.oneteam.socialcoders.models.Post;

@@ -17,8 +17,8 @@
 </head>
 <body>
     <div class="container">
-        <a href="/">Volver</a>
-        <form action="/c++" method="post">
+        <a href="/test/seleccionarLenguaje">Volver</a>
+        <form action="/test/c++" method="post">
             <c:forEach var="preguntas" items="${preyRes}">
     
             <div class="display-4 pregunta"><c:out value="${preguntas.key}"/></div>

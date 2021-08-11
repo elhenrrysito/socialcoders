@@ -17,8 +17,8 @@
 </head>
 <body>
   <div class="container">
-    <a href="/">Volver</a>
-    <form action="/java" method="post">
+    <a href="/test/seleccionarLenguaje">Volver</a>
+    <form action="/test/java" method="post">
         <c:forEach var="preguntas" items="${pyr}">
 
         <div class="display-4 pregunta"><c:out value="${preguntas.key}"/></div>

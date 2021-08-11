@@ -40,7 +40,7 @@
                         <button type="submit" class="btn btn-dark boton" name="opcion">Iniciar Sesión</button>
                     </div>
                     <div class="d-grid mt-3">
-                        <a href="/registration" class="btn btn-dark boton">Registrarse</a>
+                        <a href="/test/seleccionarLenguaje" class="btn btn-dark boton">Registrarse</a>
                     </div>
                 </form>
             </div>

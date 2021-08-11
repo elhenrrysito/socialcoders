@@ -1,5 +1,6 @@
 package com.oneteam.socialcoders.controllers;
 
+import java.security.Principal;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,9 +33,11 @@ public class BuscadorController {
     }
 
     @GetMapping("")
-    public String buscador(@RequestParam("q") String busqueda, Model model) {
+    public String buscador(@RequestParam("q") String busqueda, Model model, Principal principal) {
+        Usuario esteUsuario = servicioUsuario.findByUsername(principal.getName());
         List<Post> posts =  servicioPost.allByTitulo(busqueda);
         List<Usuario> usuarios = servicioUsuario.allByNombre(busqueda);
+        model.addAttribute("usuario", esteUsuario);
         model.addAttribute("posts", posts);
         model.addAttribute("usuarios", usuarios);
         model.addAttribute("busqueda", busqueda);
@@ -44,8 +47,10 @@ public class BuscadorController {
     }
 
     @GetMapping("/posts")
-    public String buscadorPost(@RequestParam("q") String busqueda, Model model) {
+    public String buscadorPost(@RequestParam("q") String busqueda, Model model, Principal principal) {
+        Usuario esteUsuario = servicioUsuario.findByUsername(principal.getName());
         List<Post> posts = servicioPost.allByTitulo(busqueda);
+        model.addAttribute("usuario", esteUsuario);
         model.addAttribute("posts", posts);
         model.addAttribute("filtro", "post");
         model.addAttribute("busqueda", busqueda);
@@ -54,8 +59,10 @@ public class BuscadorController {
     }
 
     @GetMapping("/usuarios")
-    public String buscadorUsuario(@RequestParam("q") String busqueda, Model model) {
+    public String buscadorUsuario(@RequestParam("q") String busqueda, Model model, Principal principal) {
+        Usuario esteUsuario = servicioUsuario.findByUsername(principal.getName());
         List<Usuario> usuarios = servicioUsuario.allByNombre(busqueda);
+        model.addAttribute("usuario", esteUsuario);
         model.addAttribute("usuarios", usuarios);
         model.addAttribute("filtro", "usuario");
         model.addAttribute("busqueda", busqueda);

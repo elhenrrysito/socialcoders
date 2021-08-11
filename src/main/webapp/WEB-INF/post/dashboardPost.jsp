@@ -30,7 +30,19 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="/images/iconImages/user_1.png" alt="">
                         </a>
-                          <ul class="dropdown-menu dropdownColor" aria-labelledby="dropdownMenuButton1">
+                        <table>
+                            <form action="/search" method="get">
+                                <tr>
+                                    <td>
+                                        <input type="text" name="q" class="form-control" placeholder="Buscar...">
+                                    </td>
+                                    <td>
+                                        <input type="submit" value="Enviar" class="btn btn-primary">
+                                    </td>    
+                                </tr>
+                            </form>
+                        </table>
+                        <ul class="dropdown-menu dropdownColor" aria-labelledby="dropdownMenuButton1">
                             <li><a href="/socialcoders/perfil/${usuario.username}">Perfil</a></li>
                             <li><a href="/perfil/editarPerfil">Editar Perfil</a></li>
                             <li>
@@ -39,7 +51,7 @@
                                     <input type="submit" value="Salir" class="linksito"/>
                                 </form>
                             </li>
-                          </ul>
+                        </ul>
                     </c:if>
                     <c:if test="${usuario.id == null}">
                         <a href="/login">Logeate!</a>
@@ -114,7 +126,9 @@
                         </div>
                     </div>
                     <div class="text-center mt-4">
-                        <img src="/imagenes/post/${p.titulo}/${p.imagenPost}" alt="imagen"  id="imagenPost">
+                        <c:if test="${!empty p.imagenPost}">
+                            <img src="/imagenes/post/${p.titulo}/${p.imagenPost}" alt="imagen"  id="imagenPost">
+                        </c:if>
                     </div>
                     <div class="mt-4 comentarioOverflow">
                         <c:forEach items="${p.listaComentarios}" var="c"> 

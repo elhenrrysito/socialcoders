@@ -20,7 +20,7 @@
     <link rel="stylesheet" type="text/css" href="/css/mostrarPost.css"> 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="/js/likes.js"></script>
-=======
+
     <!-- NavBar -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -36,7 +36,7 @@
    
      <!-- NAVBAR -->
       
-     <div class="pb-5">
+    <div class="pb-5">
         <nav class="navegacion shadow d-flex justify-content-between">
             <a href="/">
                 <img src="/images/logo/logo.png" alt="socialCodersLogo">
@@ -46,7 +46,19 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="/images/iconImages/user_1.png" alt="">
                     </a>
-                      <ul class="dropdown-menu dropdownColor" aria-labelledby="dropdownMenuButton1">
+                    <table>
+                        <form action="/search" method="get">
+                            <tr>
+                                <td>
+                                    <input type="text" name="q" class="form-control" placeholder="Buscar...">
+                                </td>
+                                <td>
+                                    <input type="submit" value="Enviar" class="btn btn-primary">
+                                </td>    
+                            </tr>
+                        </form>
+                    </table>
+                    <ul class="dropdown-menu dropdownColor" aria-labelledby="dropdownMenuButton1">
                         <li><a href="/socialcoders/perfil/${usuario.username}">Perfil</a></li>
                         <li><a href="/perfil/editarPerfil">Editar Perfil</a></li>
                         <li>
@@ -55,7 +67,7 @@
                                 <input type="submit" value="Salir" class="linksito"/>
                             </form>
                         </li>
-                      </ul>
+                    </ul>
                 </c:if>
                 <c:if test="${usuario.id == null}">
                     <a href="/login">Logeate!</a>
@@ -90,7 +102,9 @@
             <!-- ----------descripcion------------ -->
             
             <div class="mt-3 text-center">
-                <img id="imagenPost"  src="/imagenes/post/${post.titulo}/${post.imagenPost}" alt="imagenPost">
+                <c:if test="${!empty post.imagenPost}">
+                    <img src="/imagenes/post/${post.titulo}/${post.imagenPost}" alt="imagen"  id="imagenPost">
+                </c:if>
             </div>
 
             <div class="row">

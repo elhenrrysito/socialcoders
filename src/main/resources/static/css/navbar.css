@@ -37,3 +37,9 @@ a{
     height: 25px;
     margin-bottom: 5px;
 }
+
+.linksito{
+    background-color: rgb(33 37 41);
+    border: none;
+    color: #0f61d8;
+}

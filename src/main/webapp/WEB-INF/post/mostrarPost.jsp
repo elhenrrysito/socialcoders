@@ -102,9 +102,9 @@
             <!-- ----------descripcion------------ -->
             
             <div class="mt-3 text-center">
-                <c:if test="${!empty post.imagenPost}">
                     <img src="/imagenes/post/${post.titulo}/${post.imagenPost}" alt="imagen"  id="imagenPost">
                 </c:if>
+                <img id="imagenPost"  src="/${post.imagenPost}" alt="imagenPost">
             </div>
 
             <div class="row">

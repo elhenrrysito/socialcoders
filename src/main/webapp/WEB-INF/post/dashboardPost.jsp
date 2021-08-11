@@ -129,6 +129,7 @@
                         <c:if test="${!empty p.imagenPost}">
                             <img src="/imagenes/post/${p.titulo}/${p.imagenPost}" alt="imagen"  id="imagenPost">
                         </c:if>
+                        <img src="${p.imagenPost}" alt="imagen"  id="imagenPost">
                     </div>
                     <div class="mt-4 comentarioOverflow">
                         <c:forEach items="${p.listaComentarios}" var="c"> 

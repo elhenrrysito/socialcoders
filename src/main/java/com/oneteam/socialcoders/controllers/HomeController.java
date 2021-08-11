@@ -1,11 +1,8 @@
 package com.oneteam.socialcoders.controllers;
 
 import java.security.Principal;
-import java.util.HashMap;
 import java.util.List;
 
-import javax.validation.Valid;
-import javax.xml.stream.events.Comment;
 
 import com.oneteam.socialcoders.models.Categoria;
 import com.oneteam.socialcoders.models.Comentario;
@@ -13,7 +10,6 @@ import com.oneteam.socialcoders.models.Lenguaje;
 import com.oneteam.socialcoders.models.Post;
 import com.oneteam.socialcoders.models.Usuario;
 import com.oneteam.socialcoders.services.ServicioCategoria;
-import com.oneteam.socialcoders.services.ServicioComentario;
 import com.oneteam.socialcoders.services.ServicioLenguaje;
 import com.oneteam.socialcoders.services.ServicioPost;
 import com.oneteam.socialcoders.services.ServicioUsuario;
@@ -23,21 +19,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HomeController {
     
     private final ServicioPost servicioPost;
-    private final ServicioComentario servicioComentario;
     private final ServicioCategoria servicioCategoria;
     private final ServicioUsuario servicioUsuario;
     private final ServicioLenguaje servicioLenguaje;
-    public HomeController(ServicioPost servicioPost, ServicioComentario servicioComentario, 
+    public HomeController(ServicioPost servicioPost, 
                         ServicioCategoria servicioCategoria, ServicioUsuario servicioUsuario,
                         ServicioLenguaje servicioLenguaje){
         this.servicioPost = servicioPost;
-        this.servicioComentario = servicioComentario;
         this.servicioCategoria = servicioCategoria;
         this.servicioUsuario = servicioUsuario;
         this.servicioLenguaje = servicioLenguaje;

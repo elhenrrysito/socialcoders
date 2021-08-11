@@ -15,34 +15,46 @@
 </head>
 <body>
     <!-- NAVBAR -->
-   <div class="pb-5">
-            <nav class="navegacion shadow d-flex justify-content-between">
-                <a href="/">
-                    <img style="width: 50px;" src="/images/logo/logo.png" alt="socialCodersLogo">
-                </a>
-                <div class="infoUsuario">
-                    <c:if test="${usuarioSesion.id != null}">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="/images/iconImages/user_1.png" alt="">
-                        </a>
-                          <ul class="dropdown-menu dropdownColor" aria-labelledby="dropdownMenuButton1">
-                            <li><a href="/socialcoders/perfil/${usuarioSesion.username}">Perfil</a></li>
-                            <li><a href="/perfil/editarPerfil">Editar Perfil</a></li>
-                            <li>
-                                <form id="logoutForm" method="POST" action="/logout">
-                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                    <input type="submit" value="Logout!"/>
-                                </form>
-                            </li>
-                          </ul>
-                    </c:if>
-                    <c:if test="${usuarioSesion.id == null}">
-                        <a href="/login">Logeate!</a>
-                        <a href="/register">Registrate!</a>
-                    </c:if>
-                </div>
-            </nav>
-        </div>
+    <div class="pb-5">
+        <nav class="navegacion shadow d-flex justify-content-between">
+            <a href="/">
+                <img src="/images/logo/logo.png" alt="socialCodersLogo">
+            </a>
+            <div class="infoUsuario">
+                <c:if test="${usuario.id == null}">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="/images/iconImages/user_1.png" alt="">
+                    </a>
+                    <table>
+                        <form action="/search" method="get">
+                            <tr>
+                                <td>
+                                    <input type="text" name="q" class="form-control" placeholder="Buscar...">
+                                </td>
+                                <td>
+                                    <input type="submit" value="Enviar" class="btn btn-primary">
+                                </td>    
+                            </tr>
+                        </form>
+                    </table>
+                    <ul class="dropdown-menu dropdownColor" aria-labelledby="dropdownMenuButton1">
+                        <li><a href="/socialcoders/perfil/${usuario.username}">Perfil</a></li>
+                        <li><a href="/perfil/editarPerfil">Editar Perfil</a></li>
+                        <li>
+                            <form id="logoutForm" method="POST" action="/logout">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                <input type="submit" value="Salir" class="linksito"/>
+                            </form>
+                        </li>
+                    </ul>
+                </c:if>
+                <c:if test="${usuario.id != null}">
+                    <a href="/login">Logeate!</a>
+                    <a href="/register">Registrate!</a>
+                </c:if>
+            </div>
+        </nav>
+    </div>
 
     <!-- PERFIL -->
     <div class="container font-">

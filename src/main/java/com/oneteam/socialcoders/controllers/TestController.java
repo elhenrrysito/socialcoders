@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
+@RequestMapping("/test")
 public class TestController {
-    @RequestMapping("/seleccionarLenguaje")
-    public String SeleccionarLenguaje(){
+
+    @GetMapping("/seleccionarLenguaje")
+    public String lenguaje(){
         return "/test/lenguajes.jsp";
     }
     @RequestMapping("/java")
@@ -100,9 +103,9 @@ public class TestController {
         
         if(count < 2){
 
-            return "redirect:/java?error="+(3-count);
+            return "redirect:/test/java?error="+(3-count);
         } else {
-            return "redirect:/";
+            return "redirect:/registration";
         }
        
  }
@@ -189,9 +192,9 @@ public class TestController {
         
         if(count < 2){
 
-            return "redirect:/javascript?error="+(3-count);
+            return "redirect:/test/javascript?error="+(3-count);
         } else {
-            return "redirect:/";
+            return "redirect:/registration";
         }
        
     }
@@ -278,9 +281,9 @@ public class TestController {
         
         if(count < 2){
 
-            return "redirect:/python?error="+(3-count);
+            return "redirect:/test/python?error="+(3-count);
         } else {
-            return "redirect:/registro";
+            return "redirect:/registration";
         }
        
     }
@@ -364,9 +367,9 @@ public class TestController {
         
         if(count < 2){
 
-            return "redirect:/c++?error="+(3-count);
+            return "redirect:/test/c++?error="+(3-count);
         } else {
-            return "redirect:/registro";
+            return "redirect:/registration";
         }
        
     }

@@ -17,8 +17,8 @@
 </head>
 <body>
     <div class="container">
-        <a href="/">Volver</a>
-        <form action="/python" method="post">
+        <a href="/test/seleccionarLenguaje">Volver</a>
+        <form action="/test/python" method="post">
             <c:forEach var="preguntas" items="${preyRe}">
     
             <div class="display-4 pregunta"><c:out value="${preguntas.key}"/></div>

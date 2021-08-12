@@ -39,6 +39,8 @@ public class PerfilController {
         } else {
             Usuario usuario = servicioUsuario.findByUsername(username);
             model.addAttribute("usuario", usuario);
+            model.addAttribute("us", usuario);
+            System.out.println("aaaaaaa");
             return "perfil/perfilUsuario.jsp";
         } 
     }

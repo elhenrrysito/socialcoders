@@ -5,6 +5,7 @@ import java.security.Principal;
 import javax.validation.Valid;
 
 import com.oneteam.socialcoders.models.Usuario;
+import com.oneteam.socialcoders.services.ServicioRole;
 import com.oneteam.socialcoders.services.ServicioUsuario;
 import com.oneteam.socialcoders.validator.UsuarioValidator;
 
@@ -22,10 +23,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class UsuarioController {
     private final ServicioUsuario servicioUsuario;
     private final UsuarioValidator usuarioValidator;
+    private final ServicioRole servicioRole;
 
-    public UsuarioController(ServicioUsuario servicioUsuario, UsuarioValidator usuarioValidator) {
+    public UsuarioController(ServicioUsuario servicioUsuario, UsuarioValidator usuarioValidator, ServicioRole servicioRole) {
         this.servicioUsuario = servicioUsuario;
         this.usuarioValidator = usuarioValidator;
+        this.servicioRole = servicioRole;
     }
     
     @GetMapping("/registration")
@@ -50,8 +53,18 @@ public class UsuarioController {
             return "registrologin/register.jsp";
         }
         user.setImagen("pinguino.gif");
-        servicioUsuario.saveWithUserRole(user);
-        return "redirect:/login";
+        servicioRole.createRol();
+        System.out.println("1");
+        if(servicioUsuario.validationUsers() < 4){
+        System.out.println("2");
+            
+            servicioUsuario.saveUserWithAdminRole(user);
+            return "redirect:/login";
+        }
+        else{ 
+            servicioUsuario.saveWithUserRole(user);
+            return "redirect:/login";
+        }
     }
 
     @GetMapping("/login")

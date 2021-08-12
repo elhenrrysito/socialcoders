@@ -1,0 +1,46 @@
+/* CUERPO POST */
+
+.post, .comentario{
+    background-color: #18191dd3;
+    border: solid 1px;
+    border-color: aliceblue;
+    margin-left: 35%;
+    width: 700px;
+    padding: 25px;
+}
+
+
+/* IMAGENES */
+
+#imagenPost{
+    height: 60%;
+    width: 60%;
+}
+
+.lenguaje img{
+    height: 64px;
+    width: 64px;
+}
+
+.usuario img{
+    width: 70px;
+    height: 70px;
+    border: solid 1px rgb(139, 139, 139);
+    border-radius: 50px;
+    
+}
+
+/* USUARIO */
+
+.usuario, .nombreUsuario{
+    font-weight: bold;
+}
+
+.titulo {
+    text-align: center;
+    margin-right: 50px;
+}
+
+.titulo1 {
+    color: aliceblue;
+}

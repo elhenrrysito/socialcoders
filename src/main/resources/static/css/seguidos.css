@@ -1,0 +1,14 @@
+.seguidos{
+    margin: 0 auto;
+    padding: 4px;
+    width: 200px;
+}
+
+.seguidos img{
+    margin-left: 25px;
+}
+
+.usuariosA{
+    border-bottom: solid #f8f9fa 1px;
+}
+

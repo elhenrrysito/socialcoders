@@ -9,45 +9,9 @@ body {
     color: white;
 }
 
-.post, .comentario{
-    background-color: #18191dd3;
-    border: solid 1px;
-    border-color: aliceblue;
-    margin: 0 auto;
-    width: 700px;
-    padding: 25px;
-}
-
 img{
     height: 25px;
     border-radius: 25px;
-}
-#imagenPost{
-height: 60%;
-width: 60%;
-}
-
-.lenguaje img{
-    height: 64px;
-    width: 6;
-}
-
-.usuario img{
-    width: 70px;
-    height: 70px;
-    border: solid 1px rgb(139, 139, 139);
-    border-radius: 50px;
-    
-}
-
-.usuario, .nombre{
-   
-    font-weight: bold;
-   
-}
-.titulo {
-    text-align: center;
-    margin-right: 50px;
 }
 
 .titulo1 {
@@ -116,14 +80,16 @@ width: 60%;
 }
 
 ul{
+
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
 li{
     list-style-type: none;
-    margin: 4px;
+    padding: 5px;
+    margin: 5px;
 }
 
 .navegador{
@@ -134,7 +100,12 @@ li{
     margin-right: -55px;
     margin-left: 30px;
     padding: 15px;
-    height: 350px;
+    
+}
+
+.dropdownsito{
+    margin-left: 150px;
+    margin-bottom: 30px;
 }
 
 .navegador h2{

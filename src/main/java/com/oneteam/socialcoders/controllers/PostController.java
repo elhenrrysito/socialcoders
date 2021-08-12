@@ -128,7 +128,6 @@ public class PostController {
         if(imagen != null) {
             String url = "archivos/" + usuario.getId() + "/" + post.getId() + "/";
             servicioPost.subirImagen(imagen, url);
-            System.out.println("Imagen: " + imagen);
             post.setImagenPost(url + imagen.getOriginalFilename());
             servicioPost.saveOrUpdate(post);
         }

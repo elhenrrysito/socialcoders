@@ -10,11 +10,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="/css/postDashboard.css">
+        <link rel="stylesheet" type="text/css" href="/css/post.css">
+        <link rel="stylesheet" type="text/css" href="/css/seguidos.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="/js/likes.js"></script>
-        <title>Document</title>
+        <title>socialCoders</title>
 </head>
 <body>
     <div>
@@ -28,7 +30,7 @@
                 <div class="infoUsuario">
                     <c:if test="${usuario.id != null}">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="/images/iconImages/user_1.png" alt="">
+                            <img src="/images/iconImages/user_1.png" alt="imagenUsuario">
                         </a>
                         <table>
                             <form action="/search" method="get">
@@ -75,7 +77,7 @@
                     <a href="/nuevo/post" class="btna btn-primary">Crear Post</a>
                 </ul>
                 <div class="dropdown">
-                    <button class="btn2 btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn2 dropdownsito btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                       Lenguajes
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -83,7 +85,31 @@
                             <li><a class="dropdown-item" href="/socialCoders/${l.lenguaje}">${l.lenguaje}</a></li>
                         </c:forEach>
                     </ul>
-                  </div>
+                </div>
+                <div>
+                    <h2>Seguidos</h2>
+                    <div class="seguidos">
+                        <c:forEach items="${usuario.seguidos}" var="u">
+                            <table class="usuariosA">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <a href="/socialcoders/perfil/${u.username}">                          
+                                                <img src="/imagenes/iconosUser/${u.imagen}" alt="imagenUsuario">
+                                                <c:out value="${u.username}"/>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="/mensajes/${u.username}">
+                                                <img src="/images/iconImages/message.png" alt="message">
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </c:forEach>
+                    </div>
+                </div>
             </aside>
 
         <!-- POSTS -->
@@ -92,11 +118,11 @@
                 <div class="post mt-4 rounded shadow-lg">
                     <div class="row">
                         <div class="col-4 usuario">
-                            <a href="/socialcoders/perfil/${p.creador.username}">
-                                <img src="/imagenes/iconosUser/${p.creador.imagen}" alt="imagenUsuario">
-                            </a>
                             <a href="/socialcoders/perfil/${p.creador.username}" class="nombreUsuario">
+                                <img src="/imagenes/iconosUser/${p.creador.imagen}" alt="imagenUsuario">
                                 <c:out value="${p.creador.username}"/>
+                            </a>
+                            <a href="/socialcoders/perfil/${p.creador.username}" class="">
                             </a>
                         </div>
                         <div class="col titulo mt-4">
@@ -125,12 +151,17 @@
                             </c:if> 
                         </div>
                     </div>
+
+                    <!-- IMAGEN POST -->
+
                     <div class="text-center mt-4">
                         <c:if test="${!empty p.imagenPost}">
                             <img src="/imagenes/post/${p.titulo}/${p.imagenPost}" alt="imagen"  id="imagenPost">
                         </c:if>
-                        <img src="${p.imagenPost}" alt="imagen"  id="imagenPost">
                     </div>
+
+                    <!-- COMENTARIOS -->
+
                     <div class="mt-4 comentarioOverflow">
                         <c:forEach items="${p.listaComentarios}" var="c"> 
                             <div class="col-12 mt-3 border-bottom border-light px-3 pe-3">

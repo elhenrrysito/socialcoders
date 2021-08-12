@@ -43,3 +43,11 @@ a{
     border: none;
     color: #0f61d8;
 }
+
+#colorDropdown{
+    background-color: #212529;
+}
+
+#colorDropdown a{
+    text-decoration: none;
+}

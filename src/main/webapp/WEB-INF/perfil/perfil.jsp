@@ -10,12 +10,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/perfil.css">
+    <link rel="stylesheet" type="text/css" href="/css/perfil.css">
 
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
     <script src="/js/postEliminar.js"></script>
 
         <!-- CSS only -->
@@ -25,6 +25,7 @@
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
         <!-- Bootstrap  -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -77,7 +78,7 @@
                             </tr>
                         </form>
                     </table>
-                    <ul class="dropdown-menu dropdownColor" aria-labelledby="dropdownMenuButton1">
+                    <ul class="dropdown-menu dropdownColor" id="colorDropdown" aria-labelledby="dropdownMenuButton1">
                         <li><a href="/socialcoders/perfil/${usuario.username}">Perfil</a></li>
                         <li><a href="/perfil/editarPerfil">Editar Perfil</a></li>
                         <li>
@@ -153,7 +154,6 @@
                                 <div class="fw-bold">
                                     <a href="/post/${post.id}"><c:out value="${post.titulo}"/></a>
                                 </div>
-                                Cras justo odio
                             </div>
                                     <!-- Modal -->
                             <div id="modal">       
@@ -182,7 +182,7 @@
                                     </div>
                                 </c:if>
                             </div>   
-                            <span class="badge bg-primary rounded-pill" ><c:out value="${post.reaccionesUsuarios.size()}"/></span>
+                            <i class="bi bi-heart"><c:out value="${post.reaccionesUsuarios.size()}"/></i>
                         </li>
                     </c:forEach>
                 </ol>
